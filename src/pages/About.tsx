@@ -1,18 +1,15 @@
-import { searchStay } from "../api";
+import { ItemType, searchStay } from "../api";
 import { useQuery } from "react-query";
 
 const About = () => {
-  const { data, isLoading } = useQuery("searchStay", searchStay);
-
-  const stay = data?.response?.body?.items?.item;
-
-  console.log(stay);
+  const { data, isLoading } = useQuery<ItemType[]>("searchStay", searchStay);
 
   return (
     <ul>
-      {stay &&
-        stay.length > 0 &&
-        stay.map((item: any) => (
+      {isLoading && <div>Loading...</div>}
+      {data &&
+        data.length > 0 &&
+        data.map((item) => (
           <li key={item.contentid}>
             {item.firstimage || item.firstimage2 ? (
               <img
