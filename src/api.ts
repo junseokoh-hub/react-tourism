@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 
 const tourismConfig: AxiosRequestConfig = {
   baseURL: "http://apis.data.go.kr/B551011/KorService/",
@@ -54,14 +54,24 @@ interface fetchDataType {
 }
 
 export const searchStay = async () => {
-  const {
-    data: {
-      response: {
-        body: {
-          items: { item },
+  try {
+    const {
+      data: {
+        response: {
+          body: {
+            items: { item },
+          },
         },
       },
-    },
-  }: fetchDataType = await tourism.get("searchStay");
-  return item;
+    }: fetchDataType = await tourism.get("searchStay");
+    return item;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    console.log(errorResponse);
+  }
 };
