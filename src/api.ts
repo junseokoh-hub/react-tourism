@@ -63,7 +63,7 @@ export const searchStay = async () => {
           },
         },
       },
-    }: fetchDataType = await tourism.get("searchStay");
+    } = await tourism.get("searchStay");
     return item;
   } catch (error) {
     if (axios.isAxiosError(error)) {

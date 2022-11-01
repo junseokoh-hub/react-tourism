@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-type BackdropProps = {
+export type BackdropProps = {
   closeModal: () => void;
 };
 

@@ -1,9 +1,11 @@
-const SideMenu = () => {
+import { BackdropProps } from "../Modal/Modal";
+
+const SideMenu = <T extends BackdropProps>({ closeModal }: T) => {
   return (
     <nav className="p-2 w-80 h-full bg-teal-100 z-[100] fixed top-0 right-0">
       <ul className="h-full space-y-10 relative">
         <li className="flex justify-between">
-          <div>
+          <div onClick={closeModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

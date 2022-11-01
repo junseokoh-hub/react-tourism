@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import SideMenu from "../SideMenu/SideMenu";
 
-const MainHeader = () => {
+type MainHeaderProps = {
+  isView: boolean;
+};
+
+const MainHeader = ({ isView }: MainHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeModal = useCallback(() => {
@@ -14,14 +18,20 @@ const MainHeader = () => {
     <>
       {isMenuOpen && (
         <Modal closeModal={closeModal}>
-          <SideMenu />
+          <SideMenu closeModal={closeModal} />
         </Modal>
       )}
-      <header className="py-5 px-3 space-x-3 w-full flex justify-between bg-zinc-600 text-white font-bold">
+      <header
+        className={`py-5 px-3 space-x-3 w-full fixed top-0 left-0 right-0 flex justify-between bg-transparent font-bold z-50 ${
+          isView || "shadow-md"
+        } transition duration-500 ease-in-out`}
+      >
         <nav>
-          <Link to="/">Tourism</Link>
+          <Link to="/" className="text-2xl">
+            Tourism
+          </Link>
         </nav>
-        <nav className="space-x-3 flex">
+        <nav className="space-x-3 flex items-center">
           <Link to="/search">
             <svg
               xmlns="http://www.w3.org/2000/svg"
