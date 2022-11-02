@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import SideMenu from "../SideMenu/SideMenu";
 
@@ -9,6 +9,8 @@ type MainHeaderProps = {
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const searchMatch = useMatch("search");
+  const navigate = useNavigate();
 
   const closeModal = useCallback(() => {
     setIsMenuOpen(false);
@@ -27,9 +29,28 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         } transition duration-500 ease-in-out`}
       >
         <nav>
-          <Link to="/" className="text-2xl">
-            Tourism
-          </Link>
+          {searchMatch ? (
+            <span onClick={() => navigate(-1)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                />
+              </svg>
+            </span>
+          ) : (
+            <Link to="/" className="text-2xl">
+              Tourism
+            </Link>
+          )}
         </nav>
         <nav className="space-x-3 flex items-center">
           <Link to="/search">
