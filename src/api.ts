@@ -4,7 +4,7 @@ const tourismConfig: AxiosRequestConfig = {
   baseURL: "http://apis.data.go.kr/B551011/KorService/",
   timeout: 1000,
   params: {
-    serviceKey: import.meta.env.VITE_API_KEY,
+    serviceKey: import.meta.env.VITE_APP_API_KEY,
     _type: "json",
     MobileOS: "WIN",
     MobileApp: "Tourism",
