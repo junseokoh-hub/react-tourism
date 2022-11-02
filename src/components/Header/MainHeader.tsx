@@ -14,6 +14,8 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
   const navigate = useNavigate();
   const isAuth = useSelector((state) => state.auth.user);
 
+  console.log(isAuth);
+
   const closeModal = useCallback(() => {
     setIsMenuOpen(false);
   }, []);

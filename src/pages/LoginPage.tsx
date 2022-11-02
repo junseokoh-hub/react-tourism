@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../hooks/useLogin";
 import { AuthType } from "./SignupPage";
 
 const LoginPage = () => {
@@ -10,7 +11,11 @@ const LoginPage = () => {
     formState: { isSubmitting },
   } = useForm<AuthType>();
 
-  const submitHandler = handleSubmit((data) => {});
+  const { isLoading, error, login } = useLogin();
+
+  const submitHandler = handleSubmit((data) => {
+    login(data.email, data.password);
+  });
 
   return (
     <>

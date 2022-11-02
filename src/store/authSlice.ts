@@ -1,19 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "firebase/auth";
 
-const initialState = { user: null, isAuthReady: false };
+type InitialType = {
+  user: User | null;
+  isAuthReady: boolean;
+};
+
+const initialState: InitialType = { user: null, isAuthReady: false };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    onLogin(state, action: PayloadAction<any>) {
-      state = { ...state, user: action.payload };
+    onLogin(state, action: PayloadAction<User | null>) {
+      return { ...state, user: action.payload };
     },
     onLogout(state) {
-      state = { ...state, user: null };
+      return { ...state, user: null };
     },
-    onState(state, action: PayloadAction<any>) {
-      state = { ...state, user: action.payload, isAuthReady: true };
+    onState(state, action: PayloadAction<User | null>) {
+      return { ...state, user: action.payload, isAuthReady: true };
     },
   },
 });

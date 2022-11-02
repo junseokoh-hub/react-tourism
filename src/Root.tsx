@@ -35,13 +35,21 @@ const Root = () => {
     return unsubscribe;
   }, []);
 
+  console.log(authUser);
+
   return (
     <>
-      <MainHeader isView={isView} />
-      <div ref={targetRef} />
-      <Layout>
-        <Outlet />
-      </Layout>
+      {authUser.isAuthReady ? (
+        <>
+          <MainHeader isView={isView} />
+          <div ref={targetRef} />
+          <Layout>
+            <Outlet />
+          </Layout>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   );
 };
