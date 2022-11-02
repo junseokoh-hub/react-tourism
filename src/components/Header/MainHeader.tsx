@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
+import { useSelector } from "../../store/hooks";
 import Modal from "../Modal/Modal";
 import SideMenu from "../SideMenu/SideMenu";
 
@@ -11,9 +12,18 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const searchMatch = useMatch("search");
   const navigate = useNavigate();
+  const isAuth = useSelector((state) => state.auth.user);
 
   const closeModal = useCallback(() => {
     setIsMenuOpen(false);
+  }, []);
+
+  const sideNavHandler = useCallback(() => {
+    if (!isAuth) {
+      if (window.confirm("로그인 하시겠습니까?")) navigate("login");
+    } else {
+      setIsMenuOpen((prev) => !prev);
+    }
   }, []);
 
   return (
@@ -69,10 +79,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               />
             </svg>
           </Link>
-          <span
-            className="cursor-pointer"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-          >
+          <span className="cursor-pointer" onClick={sideNavHandler}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

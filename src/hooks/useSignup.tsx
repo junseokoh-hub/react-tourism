@@ -5,10 +5,13 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import { appAuth } from "../lib/firebaseConfig";
+import { onLogin } from "../store/authSlice";
+import { useDispatch } from "../store/hooks";
 
 export const useSignup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   const signup = (email: string, password: string, displayName: string) => {
     setError(null);
@@ -24,6 +27,7 @@ export const useSignup = () => {
         }
         updateProfile(user, { displayName })
           .then(() => {
+            dispatch(onLogin(user));
             setError(null);
             setIsLoading(false);
           })

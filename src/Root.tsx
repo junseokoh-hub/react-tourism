@@ -1,9 +1,15 @@
+import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import MainHeader from "./components/Header/MainHeader";
 import Layout from "./components/Layout/Layout";
+import { appAuth } from "./lib/firebaseConfig";
+import { onState } from "./store/authSlice";
+import { useDispatch, useSelector } from "./store/hooks";
 
 const Root = () => {
+  const dispatch = useDispatch();
+  const authUser = useSelector((state) => state.auth);
   const [isView, setIsView] = useState(false);
   const targetRef = useRef<HTMLDivElement | null>(null);
 
@@ -20,6 +26,13 @@ const Root = () => {
         io.unobserve(targetRef.current);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(appAuth, (user) => {
+      dispatch(onState(user));
+    });
+    return unsubscribe;
   }, []);
 
   return (

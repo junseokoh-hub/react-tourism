@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  height: 200vh;
+  height: 100vh;
 }
 
 svg {
