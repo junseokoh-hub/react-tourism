@@ -29,6 +29,9 @@ const Root = () => {
       <Layout>
         <Outlet />
       </Layout>
+      <footer className="py-2 px-2 fixed bottom-0 left-0 right-0 bg-teal-300 shadow-md">
+        <span>Home</span>
+      </footer>
     </>
   );
 };
