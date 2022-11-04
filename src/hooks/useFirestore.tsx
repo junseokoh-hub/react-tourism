@@ -12,7 +12,7 @@ import { appFireStore, timestamp } from "../lib/firebaseConfig";
 type InitialStateType = {
   document: any;
   isLoading: boolean;
-  error: any;
+  error: string | null;
   isSuccess: boolean;
 };
 
@@ -21,7 +21,8 @@ type ActionType =
   | { type: "addDoc"; payload: any }
   | { type: "deleteDoc"; payload: any }
   | { type: "updateDoc"; payload: any }
-  | { type: "error"; payload: any };
+  | { type: "error"; payload: string };
+
 const initialState: InitialStateType = {
   document: null,
   isLoading: false,
@@ -58,21 +59,23 @@ export const useFirestore = (transaction: string) => {
   const colRef = collection(appFireStore, transaction);
 
   const addDocument = useCallback(
-    async (doc: any) => {
+    async (doc: string[]) => {
       dispatch({ type: "isLoading" });
       try {
         const createdTime = timestamp.fromDate(new Date());
         const docRef = await addDoc(colRef, { ...doc, createdTime });
         console.log(docRef);
       } catch (error: any) {
-        dispatch({ type: "error", payload: error.message });
+        if (error instanceof Error) {
+          dispatch({ type: "error", payload: error.message });
+        }
       }
     },
     [colRef],
   );
 
   const setDocument = useCallback(
-    async (title: any, info: any) => {
+    async (title: string, info: any) => {
       dispatch({ type: "isLoading" });
       try {
         const createdTime = timestamp.fromDate(new Date());
@@ -82,8 +85,10 @@ export const useFirestore = (transaction: string) => {
         });
 
         dispatch({ type: "addDoc", payload: docRef });
-      } catch (error: any) {
-        dispatch({ type: "error", payload: error.message });
+      } catch (error) {
+        if (error instanceof Error) {
+          dispatch({ type: "error", payload: error.message });
+        }
       }
     },
     [colRef],
@@ -92,13 +97,15 @@ export const useFirestore = (transaction: string) => {
   // 컬렉션에서 문서를 업데이트 한다.
 
   const updateDocument = useCallback(
-    async (id: any, options: any) => {
+    async (id: string, options: any) => {
       dispatch({ type: "isLoading" });
       try {
         const docRef = await updateDoc(doc(colRef, id), options);
         dispatch({ type: "updateDoc", payload: docRef });
-      } catch (error: any) {
-        dispatch({ type: "error", payload: error.message });
+      } catch (error) {
+        if (error instanceof Error) {
+          dispatch({ type: "error", payload: error.message });
+        }
       }
     },
     [colRef],
@@ -106,13 +113,15 @@ export const useFirestore = (transaction: string) => {
 
   // 컬렉션에서 문서를 제거한다.
   const deleteDocument = useCallback(
-    async (id: any) => {
+    async (id: string) => {
       dispatch({ type: "isLoading" });
       try {
         const docRef = await deleteDoc(doc(colRef, id));
         dispatch({ type: "deleteDoc", payload: docRef });
-      } catch (error: any) {
-        dispatch({ type: "error", payload: error.message });
+      } catch (error) {
+        if (error instanceof Error) {
+          dispatch({ type: "error", payload: error.message });
+        }
       }
     },
     [colRef],

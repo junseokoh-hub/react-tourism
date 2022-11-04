@@ -21,7 +21,7 @@ export const useLogout = () => {
       })
       .catch((error) => {
         setError(error.message);
-        setIsLoading(true);
+        setIsLoading(false);
       });
   };
 

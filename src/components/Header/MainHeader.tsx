@@ -12,20 +12,10 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const searchMatch = useMatch("search");
   const navigate = useNavigate();
-  const isAuth = useSelector((state) => state.auth.user);
-
-  console.log(isAuth);
+  const authUser = useSelector((state) => state.auth.user);
 
   const closeModal = useCallback(() => {
     setIsMenuOpen(false);
-  }, []);
-
-  const sideNavHandler = useCallback(() => {
-    if (!isAuth) {
-      if (window.confirm("로그인 하시겠습니까?")) navigate("login");
-    } else {
-      setIsMenuOpen((prev) => !prev);
-    }
   }, []);
 
   return (
@@ -36,9 +26,9 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         </Modal>
       )}
       <header
-        className={`py-5 px-3 space-x-3 w-full fixed top-0 left-0 right-0 flex justify-between bg-transparent font-bold z-50 ${
-          isView || "shadow-md"
-        } transition duration-500 ease-in-out`}
+        className={`py-5 px-3 space-x-3 w-full fixed top-0 left-0 right-0 flex justify-between bg-transparent font-bold ${
+          isView || "shadow-md bg-white"
+        } transition-shadow duration-500 ease-in-out`}
       >
         <nav>
           {searchMatch ? (
@@ -72,7 +62,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 block"
             >
               <path
                 strokeLinecap="round"
@@ -81,22 +71,25 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               />
             </svg>
           </Link>
-          <span className="cursor-pointer" onClick={sideNavHandler}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </span>
+          {!authUser && <Link to="login">Login</Link>}
+          {authUser && (
+            <span onClick={() => setIsMenuOpen((prev) => !prev)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 block"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </span>
+          )}
         </nav>
       </header>
     </>

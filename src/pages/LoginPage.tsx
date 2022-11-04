@@ -5,9 +5,11 @@ import { AuthType } from "./SignupPage";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = useForm<AuthType>();
 
@@ -15,6 +17,9 @@ const LoginPage = () => {
 
   const submitHandler = handleSubmit((data) => {
     login(data.email, data.password);
+    if (!isLoading && !error) {
+      reset();
+    }
   });
 
   return (
@@ -40,6 +45,7 @@ const LoginPage = () => {
           <input
             className="pl-1 w-48 h-10 border"
             id="password"
+            type="password"
             {...register("password")}
           />
         </div>

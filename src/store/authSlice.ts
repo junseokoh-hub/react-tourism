@@ -19,7 +19,11 @@ const authSlice = createSlice({
       return { ...state, user: null };
     },
     onState(state, action: PayloadAction<User | null>) {
-      return { ...state, user: action.payload, isAuthReady: true };
+      return {
+        ...state,
+        user: action.payload,
+        isAuthReady: true,
+      };
     },
   },
 });

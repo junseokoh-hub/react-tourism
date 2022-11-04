@@ -1,6 +1,16 @@
+import { useLogout } from "../../hooks/useLogout";
+import { useSelector } from "../../store/hooks";
 import { BackdropProps } from "../Modal/Modal";
 
 const SideMenu = <T extends BackdropProps>({ closeModal }: T) => {
+  const { logout } = useLogout();
+  const isAuth = useSelector((state) => state.auth.user);
+
+  const logoutHandler = () => {
+    logout();
+    closeModal();
+  };
+
   return (
     <nav className="p-2 w-80 h-full bg-teal-100 z-[100] fixed top-0 right-0">
       <ul className="h-full space-y-10 relative">
@@ -53,7 +63,7 @@ const SideMenu = <T extends BackdropProps>({ closeModal }: T) => {
           </div>
         </li>
         <li className="flex justify-between items-center">
-          <span className="text-2xl font-semibold">Name</span>
+          <span className="text-2xl font-semibold">{isAuth?.displayName}</span>
           <div className="mr-10 w-20 h-20 rounded-full bg-white" />
         </li>
         <li className="flex flex-col divide-y-2 divide-blue-400">
@@ -100,7 +110,9 @@ const SideMenu = <T extends BackdropProps>({ closeModal }: T) => {
           </div>
         </li>
         <li className="space-x-2 flex items-center absolute bottom-2 right-2">
-          <span className="text-lg">로그아웃</span>
+          <span className="text-lg cursor-pointer" onClick={logoutHandler}>
+            로그아웃
+          </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

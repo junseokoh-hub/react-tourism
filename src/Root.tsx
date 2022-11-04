@@ -1,15 +1,9 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import MainHeader from "./components/Header/MainHeader";
 import Layout from "./components/Layout/Layout";
-import { appAuth } from "./lib/firebaseConfig";
-import { onState } from "./store/authSlice";
-import { useDispatch, useSelector } from "./store/hooks";
 
 const Root = () => {
-  const dispatch = useDispatch();
-  const authUser = useSelector((state) => state.auth);
   const [isView, setIsView] = useState(false);
   const targetRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,28 +22,13 @@ const Root = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(appAuth, (user) => {
-      dispatch(onState(user));
-    });
-    return unsubscribe;
-  }, []);
-
-  console.log(authUser);
-
   return (
     <>
-      {authUser.isAuthReady ? (
-        <>
-          <MainHeader isView={isView} />
-          <div ref={targetRef} />
-          <Layout>
-            <Outlet />
-          </Layout>
-        </>
-      ) : (
-        <div>Loading...</div>
-      )}
+      <MainHeader isView={isView} />
+      <div ref={targetRef} />
+      <Layout>
+        <Outlet />
+      </Layout>
     </>
   );
 };

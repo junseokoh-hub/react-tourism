@@ -5,7 +5,7 @@ import { categories } from "../../lib/category";
 const HomeSliders = () => {
   return (
     <section className="pt-10">
-      <Slider sliderId="areas" data={areas} />
+      <Slider sliderId="areas" data={areas.slice(0, 7)} />
       <Slider sliderId="categories" data={categories} />
     </section>
   );
