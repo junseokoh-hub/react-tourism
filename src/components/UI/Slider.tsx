@@ -1,11 +1,9 @@
 import React from "react";
 import { AreasType } from "../../lib/area";
-import { CategoriesType } from "../../lib/category";
-import { SnsType } from "../../lib/sns";
 
 type SliderProps = {
   sliderId: string;
-  data: SnsType[];
+  data: AreasType[];
 };
 
 const Slider = ({ sliderId, data }: SliderProps) => {
@@ -17,13 +15,11 @@ const Slider = ({ sliderId, data }: SliderProps) => {
       >
         {data.map((item) => (
           <li className="mx-0.5" key={item.rnum}>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
-              <img
-                className="w-[200px] h-48 block rounded-full"
-                src={item.image}
-                alt={item.name}
-              />
-            </a>
+            <img
+              className="w-[200px] h-48 block rounded-full"
+              src={item.image}
+              alt={item.name}
+            />
           </li>
         ))}
       </ul>

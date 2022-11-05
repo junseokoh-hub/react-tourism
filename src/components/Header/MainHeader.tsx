@@ -26,11 +26,11 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         </Modal>
       )}
       <header
-        className={`py-5 px-3 space-x-3 w-full fixed top-0 left-0 right-0  bg-white font-bold z-50 ${
+        className={`py-5 space-x-3 fixed top-0 left-0 right-0 bg-white font-bold z-50 border-b ${
           isView || "shadow-xl"
         } transition-shadow duration-500 ease-in-out`}
       >
-        <nav className="px-3 flex justify-between items-center max-w-3xl md:mx-auto">
+        <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">
           <div>
             {searchMatch ? (
               <span onClick={() => navigate(-1)}>
