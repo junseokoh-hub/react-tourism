@@ -6,8 +6,8 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
+import SearchedContent from "./components/Search/SearchedContent";
 import { appAuth } from "./lib/firebaseConfig";
-import About from "./pages/About";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import Search from "./pages/Search";
@@ -38,10 +38,10 @@ const App = () => {
           element: <Home />,
         },
         {
-          path: "about",
-          element: <About />,
+          path: "search",
+          element: <Search />,
+          children: [{ path: "content", element: <SearchedContent /> }],
         },
-        { path: "search", element: <Search /> },
         {
           path: "login",
           element: !authUser.user ? (

@@ -25,7 +25,7 @@ const LoginPage = () => {
   return (
     <>
       <form
-        className="mt-10 mx-auto space-y-4 w-80 h-80 flex flex-col justify-center items-center border border-teal-500 shadow-sm"
+        className="mt-20 mx-auto space-y-6 w-80 h-96 flex flex-col justify-center items-center rounded-md shadow-2xl"
         onSubmit={submitHandler}
       >
         <div className="space-y-1">
@@ -33,7 +33,7 @@ const LoginPage = () => {
             이메일
           </label>
           <input
-            className="pl-1 w-48 h-10 border"
+            className="pl-1 w-48 h-10 border outline-none"
             id="email"
             {...register("email")}
           />
@@ -43,25 +43,26 @@ const LoginPage = () => {
             비밀번호
           </label>
           <input
-            className="pl-1 w-48 h-10 border"
+            className="pl-1 w-48 h-10 border outline-none"
             id="password"
             type="password"
             {...register("password")}
           />
         </div>
         <button
-          className="py-2 w-48 rounded-sm text-lg text-white font-semibold bg-teal-500 hover:bg-teal-800"
+          type="submit"
+          className="py-2 w-48 rounded-sm text-lg text-white font-semibold border-0 outline-none cursor-pointer bg-teal-500 hover:bg-teal-800"
           disabled={isSubmitting}
         >
           로그인
         </button>
+        <span
+          className="mt-5 block text-center text-teal-500 cursor-pointer"
+          onClick={() => navigate("/signup")}
+        >
+          회원가입하기
+        </span>
       </form>
-      <span
-        className="mt-5 block text-center cursor-pointer"
-        onClick={() => navigate("/signup")}
-      >
-        회원가입하기
-      </span>
     </>
   );
 };

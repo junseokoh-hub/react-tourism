@@ -28,7 +28,7 @@ const FrontBanner = () => {
         <span>국내여행 Go</span>
       </div>
       <ul className="flex justify-around">
-        <li className="space-y-0.5 flex flex-col items-center">
+        <li className="space-y-0.5 flex flex-col items-center hover:shadow-md">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
