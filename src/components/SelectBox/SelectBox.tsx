@@ -16,7 +16,11 @@ const SelectBox = ({ isLoading, value, setValue, options }: SelectBoxProps) => {
   }, []);
 
   return (
-    <select value={value} onChange={onChange}>
+    <select
+      className="py-2 w-40 rounded-md font-semibold text-slate-500 border-blue-400 outline-none"
+      value={value}
+      onChange={onChange}
+    >
       {!isLoading &&
         options &&
         options.map((option) => (

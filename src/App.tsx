@@ -16,6 +16,7 @@ import SignupPage from "./pages/SignupPage";
 import Root from "./Root";
 import { onState } from "./store/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
+import Loader from "./utils/Loader";
 
 const App = () => {
   const authUser = useSelector((state) => state.auth, shallowEqual);
@@ -31,7 +32,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: authUser.isAuthReady ? <Root /> : <div>Loading...</div>,
+      element: authUser.isAuthReady ? <Root /> : <Loader />,
       children: [
         {
           path: "",

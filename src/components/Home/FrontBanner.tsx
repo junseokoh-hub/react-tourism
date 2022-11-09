@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const FrontBanner = () => {
@@ -93,4 +94,4 @@ const FrontBanner = () => {
   );
 };
 
-export default FrontBanner;
+export default React.memo(FrontBanner);
