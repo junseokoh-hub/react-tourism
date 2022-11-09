@@ -26,3 +26,7 @@ a {
 button {
   outline: none;
 }
+
+.front_btns {
+  @apply py-2 px-5 space-y-0.5 rounded-md flex flex-col items-center cursor-pointer hover:shadow-md;
+}

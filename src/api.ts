@@ -1,14 +1,18 @@
-import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
+import axios, {
+  AxiosError,
+  AxiosResponse,
+  AxiosRequestConfig,
+  Axios,
+} from "axios";
 
 const tourismConfig: AxiosRequestConfig = {
   baseURL: "http://apis.data.go.kr/B551011/KorService/",
-  timeout: 1000,
   params: {
-    serviceKey: import.meta.env.VITE_APP_API_KEY,
+    serviceKey: import.meta.env.VITE_TOUR_KEY,
     _type: "json",
     MobileOS: "WIN",
     MobileApp: "Tourism",
-    numOfRows: "10",
+    numOfRows: "100",
     pageNo: "1",
   },
 };
@@ -41,18 +45,6 @@ export interface ItemType {
   title: string;
 }
 
-interface fetchDataType {
-  data: {
-    response: {
-      body: {
-        items: {
-          item: ItemType[];
-        };
-      };
-    };
-  };
-}
-
 export const searchStay = async () => {
   try {
     const {
@@ -67,11 +59,36 @@ export const searchStay = async () => {
     return item;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log(
+      throw new Error(
         (error.response as AxiosResponse<{ message: string }>).data.message,
       );
     }
     const errorResponse = (error as AxiosError<{ message: string }>).response;
-    console.log(errorResponse);
+    throw new Error(errorResponse as any);
+  }
+};
+
+export const areaCode = async (code: string) => {
+  try {
+    const {
+      data: {
+        response: {
+          body: {
+            items: { item },
+          },
+        },
+      },
+    } = await tourism.get("areaCode", {
+      params: { areaCode: code },
+    });
+    return item;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
   }
 };

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import SearchedContent from "./components/Search/SearchedContent";
 import { appAuth } from "./lib/firebaseConfig";
+import Accommodation from "./pages/Accommodation";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import Search from "./pages/Search";
@@ -22,7 +23,6 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(appAuth, (user) => {
-      console.log(user);
       dispatch(onState(user));
     });
     return unsubscribe;
@@ -42,6 +42,7 @@ const App = () => {
           element: <Search />,
           children: [{ path: "content", element: <SearchedContent /> }],
         },
+        { path: "accommodation", element: <Accommodation /> },
         {
           path: "login",
           element: !authUser.user ? (

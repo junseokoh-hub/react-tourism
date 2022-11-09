@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const FrontBanner = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="space-y-8">
       <div className="text-3xl font-bold leading-10">
@@ -28,7 +32,7 @@ const FrontBanner = () => {
         <span>국내여행 Go</span>
       </div>
       <ul className="flex justify-around">
-        <li className="space-y-0.5 flex flex-col items-center hover:shadow-md">
+        <li className="front_btns" onClick={() => navigate("accommodation")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -45,7 +49,7 @@ const FrontBanner = () => {
           </svg>
           <span className="font-semibold">숙소</span>
         </li>
-        <li className="space-y-0.5 flex flex-col items-center">
+        <li className="front_btns">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -67,7 +71,7 @@ const FrontBanner = () => {
           </svg>
           <span className="font-semibold">행사</span>
         </li>
-        <li className="space-y-0.5 flex flex-col items-center">
+        <li className="front_btns">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

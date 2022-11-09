@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useSelector } from "../../store/hooks";
 import Modal from "../Modal/Modal";
-import SideMenu from "../SideMenu/SideMenu";
+import SideMenu from "./SideMenu";
 
 type MainHeaderProps = {
   isView: boolean;
@@ -26,8 +26,8 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         </Modal>
       )}
       <header
-        className={`py-5 space-x-3 fixed top-0 left-0 right-0 bg-white font-bold z-50 border-b ${
-          isView || "shadow-xl"
+        className={`py-5 space-x-3 fixed top-0 left-0 right-0 bg-white font-bold z-50 ${
+          !isView ? "shadow-xl" : "shadow-sm"
         } transition-shadow duration-500 ease-in-out`}
       >
         <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">

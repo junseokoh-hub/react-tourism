@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
-import MainHeader from "./components/Header/MainHeader";
+import MainHeader from "./components/UI/MainHeader";
 import Footer from "./components/Layout/Footer";
 import Layout from "./components/Layout/Layout";
 

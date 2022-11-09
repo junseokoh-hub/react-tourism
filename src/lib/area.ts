@@ -2,7 +2,7 @@ export type AreasType = {
   rnum: number;
   code: string;
   name: string;
-  image: string;
+  image?: string;
 };
 
 export const areas: AreasType[] = [
