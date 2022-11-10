@@ -3,8 +3,8 @@ import { AreaCodeType } from "../../pages/Accommodation";
 
 type SelectBoxProps = {
   isLoading?: boolean;
-  value?: string;
-  setValue?: Dispatch<SetStateAction<string>>;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
   options: AreaCodeType[];
 };
 

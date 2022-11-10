@@ -45,7 +45,7 @@ export interface ItemType {
   title: string;
 }
 
-export const searchStay = async () => {
+export const searchStay = async (areaCode: string, sigunguCode: string) => {
   try {
     const {
       data: {
@@ -55,7 +55,9 @@ export const searchStay = async () => {
           },
         },
       },
-    } = await tourism.get("searchStay");
+    } = await tourism.get("searchStay", {
+      params: { areaCode, sigunguCode },
+    });
     return item;
   } catch (error) {
     if (axios.isAxiosError(error)) {
