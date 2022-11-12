@@ -6,7 +6,6 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import SearchedContent from "./components/Search/SearchedContent";
 import { appAuth } from "./lib/firebaseConfig";
 import Accommodation from "./pages/Accommodation";
 import Home from "./pages/Home";
@@ -41,7 +40,6 @@ const App = () => {
         {
           path: "search",
           element: <Search />,
-          children: [{ path: "content", element: <SearchedContent /> }],
         },
         { path: "accommodation", element: <Accommodation /> },
         {
