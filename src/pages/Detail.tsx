@@ -1,49 +1,70 @@
-import { useQuery } from "react-query";
+import { useQueries } from "react-query";
 import { useParams } from "react-router-dom";
-import { detailCommon, detailInfo } from "../api";
-import { DetailCommonType, DetailInfoType } from "../types/DetailType";
+import { detailCommon, detailInfo, detailIntro } from "../api";
 import Loader from "../utils/Loader";
 
 const Detail = () => {
   const { contentId, contentTypeId } = useParams();
 
-  const { data, isLoading } = useQuery<DetailCommonType>(
-    ["accommodation-detail", contentId],
-    () => detailCommon(contentId as string),
-  );
+  const [data, detailInfoData, detailIntroData] = useQueries([
+    {
+      queryKey: ["accommodation-detailCommon", contentId],
+      queryFn: () => detailCommon(contentId as string),
+    },
+    {
+      queryKey: ["accommodation-detailInfo", contentId],
+      queryFn: () => detailInfo(contentId as string, contentTypeId as string),
+    },
+    {
+      queryKey: ["accommodation-detailIntro", contentId],
+      queryFn: () => detailIntro(contentId as string, contentTypeId as string),
+    },
+  ]);
 
-  const { data: detailInfoData, isLoading: detailInfoLoading } = useQuery<
-    DetailInfoType[]
-  >(["accommodation-detailInfo", contentId], () =>
-    detailInfo(contentId as string, contentTypeId as string),
-  );
+  const isLoading =
+    data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
-  console.log(detailInfoData);
+  console.log(detailIntroData.data);
+
   return (
     <>
       {isLoading && <Loader />}
       {!isLoading && (
         <div className="space-y-4">
           <img
-            className="w-48 h-48"
-            src={data?.firstimage || data?.firstimage2}
+            className="w-48 h-48 block"
+            src={data?.data?.firstimage || data?.data?.firstimage2}
           />
-          <h3>{data?.title}</h3>
-          <h4>{data?.overview}</h4>
+          <h3>{data?.data?.title}</h3>
+          <h4>{data?.data?.overview}</h4>
           <div>
-            <span>{data?.telname}</span>
-            <span>{data?.tel}</span>
-            <a href={data?.homepage} target="_blank" rel="noopener noreferrer">
+            <span>{data?.data?.telname}</span>
+            <span>{data?.data?.tel}</span>
+            <a
+              href={data?.data?.homepage}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               홈페이지
             </a>
           </div>
         </div>
       )}
-      {!detailInfoLoading &&
-        detailInfoData &&
-        detailInfoData.map((item) => (
-          <p key={item.roomcode}>{item.roomtitle}</p>
+      <div className="mt-3 grid grid-cols-1 gap-2 text-center">
+        {detailInfoData.data?.map((item) => (
+          <div key={item.roomcode} className="space-y-2">
+            <img
+              className="w-full h-60 block"
+              src={item.roomimg1 || item.roomimg2}
+              alt={item.roomimg1alt || item.roomimg2alt}
+            />
+            <p>{item.roomtitle}</p>
+          </div>
         ))}
+      </div>
+      {detailIntroData.data?.map((item) => (
+        <div key={item.infocenterlodging}>{item.infocenterlodging}</div>
+      ))}
     </>
   );
 };

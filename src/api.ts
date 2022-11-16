@@ -1,4 +1,9 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
+import {
+  DetailCommonType,
+  DetailInfoType,
+  DetailIntroType,
+} from "./types/DetailType";
 
 const tourismConfig: AxiosRequestConfig = {
   baseURL: "http://apis.data.go.kr/B551011/KorService/",
@@ -13,32 +18,6 @@ const tourismConfig: AxiosRequestConfig = {
 };
 
 const tourism = axios.create(tourismConfig);
-
-export interface ItemType {
-  addr1: string;
-  addr2: string;
-  areacode: string;
-  booktour: string;
-  cat1: string;
-  cat2: string;
-  cat3: string;
-  contentid: string;
-  contenttypeid: string;
-  createdtime: string;
-  benikia: string;
-  goodstay: string;
-  hanok: string;
-  firstimage: string;
-  firstimage2: string;
-  mapx: string;
-  mapy: string;
-  mlevel: string;
-  modifiedtime: string;
-  readcount: string;
-  sigungucode: string;
-  tel: string;
-  title: string;
-}
 
 export const searchStay = async (areaCode: string, sigunguCode: string) => {
   try {
@@ -90,7 +69,9 @@ export const areaCode = async (code: string) => {
   }
 };
 
-export const detailCommon = async (contentId: string) => {
+export const detailCommon = async (
+  contentId: string,
+): Promise<DetailCommonType> => {
   try {
     const {
       data: {
@@ -123,7 +104,10 @@ export const detailCommon = async (contentId: string) => {
   }
 };
 
-export const detailInfo = async (contentId: string, contentTypeId: string) => {
+export const detailInfo = async (
+  contentId: string,
+  contentTypeId: string,
+): Promise<DetailInfoType[]> => {
   try {
     const {
       data: {
@@ -134,6 +118,37 @@ export const detailInfo = async (contentId: string, contentTypeId: string) => {
         },
       },
     } = await tourism.get("detailInfo", {
+      params: {
+        contentId,
+        contentTypeId,
+      },
+    });
+    return item;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
+  }
+};
+
+export const detailIntro = async (
+  contentId: string,
+  contentTypeId: string,
+): Promise<DetailIntroType[]> => {
+  try {
+    const {
+      data: {
+        response: {
+          body: {
+            items: { item },
+          },
+        },
+      },
+    } = await tourism.get("detailIntro", {
       params: {
         contentId,
         contentTypeId,
