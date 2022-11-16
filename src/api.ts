@@ -94,3 +94,36 @@ export const areaCode = async (code: string) => {
     throw new Error(errorResponse as any);
   }
 };
+
+export const detailCommon = async (contentId: string) => {
+  try {
+    const {
+      data: {
+        response: {
+          body: {
+            items: { item },
+          },
+        },
+      },
+    } = await tourism.get("detailCommon", {
+      params: {
+        defaultYN: "Y",
+        addrinfoYN: "Y",
+        mapinfoYN: "Y",
+        overviewYN: "Y",
+        firstImageYN: "Y",
+        areacodeYN: "Y",
+        contentId,
+      },
+    });
+    return item[0];
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
+  }
+};

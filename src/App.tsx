@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { appAuth } from "./lib/firebaseConfig";
 import Accommodation from "./pages/Accommodation";
+import Detail from "./pages/Detail";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import Search from "./pages/Search";
@@ -41,7 +42,11 @@ const App = () => {
           path: "search",
           element: <Search />,
         },
-        { path: "accommodation", element: <Accommodation /> },
+        {
+          path: "accommodation",
+          element: <Accommodation />,
+        },
+        { path: "accommodation/:contentId", element: <Detail /> },
         {
           path: "login",
           element: !authUser.user ? (

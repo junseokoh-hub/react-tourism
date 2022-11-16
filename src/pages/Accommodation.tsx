@@ -2,18 +2,15 @@ import { useCallback, useState } from "react";
 import { useQuery } from "react-query";
 import { areaCode, searchStay } from "../api";
 import SelectBox from "../components/SelectBox/SelectBox";
-import SelectedContent from "../components/SelectedContents/SelectedContent";
+import SelectedContent, {
+  ProvinceType,
+} from "../components/SelectedContents/SelectedContent";
 import { areas } from "../lib/area";
 
 export type AreaCodeType = {
   rnum: number;
   code: string;
   name: string;
-};
-
-type ProvinceType = {
-  contentid: string;
-  title: string;
 };
 
 const Accommodation = () => {
@@ -59,7 +56,7 @@ const Accommodation = () => {
             return (
               <SelectedContent
                 isLoading={provinceLoading}
-                data={prov as ProvinceType}
+                data={prov}
                 key={prov.contentid}
               />
             );
