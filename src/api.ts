@@ -1,9 +1,4 @@
-import axios, {
-  AxiosError,
-  AxiosResponse,
-  AxiosRequestConfig,
-  Axios,
-} from "axios";
+import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 
 const tourismConfig: AxiosRequestConfig = {
   baseURL: "http://apis.data.go.kr/B551011/KorService/",
@@ -117,6 +112,34 @@ export const detailCommon = async (contentId: string) => {
       },
     });
     return item[0];
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
+  }
+};
+
+export const detailInfo = async (contentId: string, contentTypeId: string) => {
+  try {
+    const {
+      data: {
+        response: {
+          body: {
+            items: { item },
+          },
+        },
+      },
+    } = await tourism.get("detailInfo", {
+      params: {
+        contentId,
+        contentTypeId,
+      },
+    });
+    return item;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(

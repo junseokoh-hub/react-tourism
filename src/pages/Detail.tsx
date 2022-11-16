@@ -1,44 +1,24 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { detailCommon } from "../api";
+import { detailCommon, detailInfo } from "../api";
+import { DetailCommonType, DetailInfoType } from "../types/DetailType";
 import Loader from "../utils/Loader";
 
-type DetailCommonType = {
-  contenttypeid: "string";
-  booktour: "string";
-  createdtime: "string";
-  homepage: "string";
-  modifiedtime: "string";
-  tel: "string";
-  telname: "string";
-  title: "string";
-  firstimage: "string";
-  firstimage2: "string";
-  areacode: "string";
-  sigungucode: "string";
-  cat1: "string";
-  cat2: "string";
-  cat3: "string";
-  addr1: "string";
-  addr2: "string";
-  zipcode: "string";
-  mapx: "string";
-  mapy: "string";
-  mlevel: "string";
-  overview: "string";
-  contentid: "string";
-};
-
 const Detail = () => {
-  const { contentId } = useParams();
+  const { contentId, contentTypeId } = useParams();
 
   const { data, isLoading } = useQuery<DetailCommonType>(
     ["accommodation-detail", contentId],
     () => detailCommon(contentId as string),
   );
 
-  console.log(data);
+  const { data: detailInfoData, isLoading: detailInfoLoading } = useQuery<
+    DetailInfoType[]
+  >(["accommodation-detailInfo", contentId], () =>
+    detailInfo(contentId as string, contentTypeId as string),
+  );
 
+  console.log(detailInfoData);
   return (
     <>
       {isLoading && <Loader />}
@@ -54,11 +34,16 @@ const Detail = () => {
             <span>{data?.telname}</span>
             <span>{data?.tel}</span>
             <a href={data?.homepage} target="_blank" rel="noopener noreferrer">
-              {data?.homepage}
+              홈페이지
             </a>
           </div>
         </div>
       )}
+      {!detailInfoLoading &&
+        detailInfoData &&
+        detailInfoData.map((item) => (
+          <p key={item.roomcode}>{item.roomtitle}</p>
+        ))}
     </>
   );
 };

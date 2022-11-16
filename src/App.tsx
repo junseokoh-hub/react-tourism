@@ -46,7 +46,10 @@ const App = () => {
           path: "accommodation",
           element: <Accommodation />,
         },
-        { path: "accommodation/:contentId", element: <Detail /> },
+        {
+          path: "accommodation/:contentId/:contentTypeId",
+          element: <Detail />,
+        },
         {
           path: "login",
           element: !authUser.user ? (

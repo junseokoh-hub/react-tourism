@@ -40,7 +40,7 @@ const SelectedContent = ({ isLoading, data }: SelectedContentProps) => {
       {!isLoading && imageExistence && (
         <li
           className="w-full h-80 space-y-2 flex flex-col text-center cursor-pointer"
-          onClick={() => navigate(`${data.contentid}`)}
+          onClick={() => navigate(`${data.contentid}/${data.contenttypeid}`)}
         >
           <img
             className="block w-full h-3/4"
