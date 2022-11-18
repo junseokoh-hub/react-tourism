@@ -19,6 +19,7 @@ import Root from "./Root";
 import { onState } from "./store/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
+import Shopping from "./pages/Shopping";
 
 const App = () => {
   const authUser = useSelector((state) => state.auth, shallowEqual);
@@ -56,6 +57,11 @@ const App = () => {
         { path: "festival/:contentId/:contentTypeId", element: <Detail /> },
         { path: "restaurant", element: <Restaurant /> },
         { path: "restaurant/:contentId/:contentTypeId", element: <Detail /> },
+        { path: "shopping", element: <Shopping /> },
+        {
+          path: "shopping/:contentId/:contentTypedId",
+          element: <Detail />,
+        },
         {
           path: "login",
           element: !authUser.user ? (

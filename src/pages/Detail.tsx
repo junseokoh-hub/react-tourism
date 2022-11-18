@@ -9,17 +9,19 @@ const Detail = () => {
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
       queryKey: ["accommodation-detailCommon", contentId],
-      queryFn: () => detailCommon(contentId),
+      queryFn: () => detailCommon(contentId as string),
     },
     {
       queryKey: ["accommodation-detailInfo", contentId],
-      queryFn: () => detailInfo(contentId, contentTypeId),
+      queryFn: () => detailInfo(contentId as string, contentTypeId as string),
     },
     {
       queryKey: ["accommodation-detailIntro", contentId],
-      queryFn: () => detailIntro(contentId, contentTypeId),
+      queryFn: () => detailIntro(contentId as string, contentTypeId as string),
     },
   ]);
+
+  console.log(detailInfoData);
 
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
@@ -45,7 +47,7 @@ const Detail = () => {
             <span>{data?.data?.telname}</span>
             <span>{data?.data?.tel}</span>
             <a
-              href={data?.data?.homepage || "javascript:void(0);"}
+              href={data?.data?.homepage || "#"}
               target={data?.data?.homepage && "_blank"}
               rel="noopener noreferrer"
             >

@@ -4,6 +4,8 @@ import {
   DetailCommonType,
   DetailInfoType,
   DetailIntroType,
+  ShoppingDetailInfoType,
+  ShoppingDetailIntroType,
 } from "./types/DetailType";
 
 const tourismConfig: AxiosRequestConfig = {
@@ -71,9 +73,9 @@ export const areaCode = async (code: string) => {
 };
 
 export const areaBasedList = async (
-  areaCode: string | undefined,
-  sigunguCode: string | undefined,
-  contentTypeId: string | undefined,
+  areaCode: string,
+  sigunguCode: string,
+  contentTypeId: string,
 ): Promise<AreaBasedListType[]> => {
   try {
     const {
@@ -104,7 +106,7 @@ export const areaBasedList = async (
 /** Details */
 
 export const detailCommon = async (
-  contentId: string | undefined,
+  contentId: string,
 ): Promise<DetailCommonType> => {
   try {
     const {
@@ -139,9 +141,9 @@ export const detailCommon = async (
 };
 
 export const detailInfo = async (
-  contentId: string | undefined,
-  contentTypeId: string | undefined,
-): Promise<DetailInfoType[]> => {
+  contentId: string,
+  contentTypeId: string,
+): Promise<DetailInfoType[] | ShoppingDetailInfoType[]> => {
   try {
     const {
       data: {
@@ -170,9 +172,9 @@ export const detailInfo = async (
 };
 
 export const detailIntro = async (
-  contentId: string | undefined,
-  contentTypeId: string | undefined,
-): Promise<DetailIntroType[]> => {
+  contentId: string,
+  contentTypeId: string,
+): Promise<DetailIntroType[] | ShoppingDetailIntroType[]> => {
   try {
     const {
       data: {
