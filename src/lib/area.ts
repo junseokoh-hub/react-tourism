@@ -5,6 +5,12 @@ export type AreasType = {
   image?: string;
 };
 
+export type AreaCodeType = {
+  rnum: number;
+  code: string;
+  name: string;
+};
+
 export const areas: AreasType[] = [
   {
     rnum: 1,
