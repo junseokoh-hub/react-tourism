@@ -50,7 +50,7 @@ const FrontBanner = () => {
           </svg>
           <span className="font-semibold">숙소</span>
         </li>
-        <li className="front_btns">
+        <li className="front_btns" onClick={() => navigate("festival")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

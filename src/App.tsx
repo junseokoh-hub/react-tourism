@@ -9,6 +9,7 @@ import {
 import { appAuth } from "./lib/firebaseConfig";
 import Accommodation from "./pages/Accommodation";
 import Detail from "./pages/Detail";
+import Festival from "./pages/Festival";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import Search from "./pages/Search";
@@ -50,6 +51,7 @@ const App = () => {
           path: "accommodation/:contentId/:contentTypeId",
           element: <Detail />,
         },
+        { path: "festival", element: <Festival /> },
         {
           path: "login",
           element: !authUser.user ? (

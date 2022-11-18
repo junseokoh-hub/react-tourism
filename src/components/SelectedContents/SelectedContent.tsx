@@ -1,4 +1,5 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { AreaBasedListType } from "../../types/DetailType";
 
 export type ProvinceType = {
   addr1: string;
@@ -28,23 +29,22 @@ export type ProvinceType = {
 
 type SelectedContentProps = {
   isLoading: boolean;
-  data: ProvinceType;
+  data: ProvinceType | AreaBasedListType;
 };
 
 const SelectedContent = ({ isLoading, data }: SelectedContentProps) => {
   const navigate = useNavigate();
-  const imageExistence = data.firstimage && data.firstimage2;
 
   return (
     <>
-      {!isLoading && imageExistence && (
+      {!isLoading && (
         <li
           className="w-full h-80 space-y-2 flex flex-col text-center cursor-pointer"
           onClick={() => navigate(`${data.contentid}/${data.contenttypeid}`)}
         >
           <img
             className="block w-full h-3/4"
-            src={data.firstimage || data.firstimage2}
+            src={data.firstimage || data.firstimage2 || "./images/noImage.jpg"}
             alt={data.title}
           />
           <h3>{data.title}</h3>

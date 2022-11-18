@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 import {
+  AreaBasedListType,
   DetailCommonType,
   DetailInfoType,
   DetailIntroType,
@@ -69,8 +70,41 @@ export const areaCode = async (code: string) => {
   }
 };
 
+export const areaBasedList = async (
+  areaCode: string | undefined,
+  sigunguCode: string | undefined,
+  contentTypeId: string | undefined,
+): Promise<AreaBasedListType[]> => {
+  try {
+    const {
+      data: {
+        response: {
+          body: { items: item },
+        },
+      },
+    } = await tourism.get("areaBasedList", {
+      params: {
+        areaCode,
+        sigunguCode,
+        contentTypeId,
+      },
+    });
+    return item.item;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
+  }
+};
+
+/** Details */
+
 export const detailCommon = async (
-  contentId: string,
+  contentId: string | undefined,
 ): Promise<DetailCommonType> => {
   try {
     const {
@@ -105,8 +139,8 @@ export const detailCommon = async (
 };
 
 export const detailInfo = async (
-  contentId: string,
-  contentTypeId: string,
+  contentId: string | undefined,
+  contentTypeId: string | undefined,
 ): Promise<DetailInfoType[]> => {
   try {
     const {
@@ -136,8 +170,8 @@ export const detailInfo = async (
 };
 
 export const detailIntro = async (
-  contentId: string,
-  contentTypeId: string,
+  contentId: string | undefined,
+  contentTypeId: string | undefined,
 ): Promise<DetailIntroType[]> => {
   try {
     const {

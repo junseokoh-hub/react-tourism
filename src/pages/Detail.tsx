@@ -9,15 +9,15 @@ const Detail = () => {
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
       queryKey: ["accommodation-detailCommon", contentId],
-      queryFn: () => detailCommon(contentId as string),
+      queryFn: () => detailCommon(contentId),
     },
     {
       queryKey: ["accommodation-detailInfo", contentId],
-      queryFn: () => detailInfo(contentId as string, contentTypeId as string),
+      queryFn: () => detailInfo(contentId, contentTypeId),
     },
     {
       queryKey: ["accommodation-detailIntro", contentId],
-      queryFn: () => detailIntro(contentId as string, contentTypeId as string),
+      queryFn: () => detailIntro(contentId, contentTypeId),
     },
   ]);
 
@@ -33,7 +33,11 @@ const Detail = () => {
         <div className="space-y-4">
           <img
             className="w-48 h-48 block"
-            src={data?.data?.firstimage || data?.data?.firstimage2}
+            src={
+              data?.data?.firstimage ||
+              data?.data?.firstimage2 ||
+              "../../images/noImage.jpg"
+            }
           />
           <h3>{data?.data?.title}</h3>
           <h4>{data?.data?.overview}</h4>
@@ -55,7 +59,7 @@ const Detail = () => {
           <div key={item.roomcode} className="space-y-2">
             <img
               className="w-full h-60 block"
-              src={item.roomimg1 || item.roomimg2}
+              src={item.roomimg1 || item.roomimg2 || "../../images/noImage.jpg"}
               alt={item.roomimg1alt || item.roomimg2alt}
             />
             <p>{item.roomtitle}</p>

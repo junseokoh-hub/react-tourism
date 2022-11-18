@@ -22,17 +22,11 @@ const Accommodation = () => {
     () => areaCode(realm),
   );
 
-  const {
-    isLoading: provinceLoading,
-    data: province,
-    refetch,
-  } = useQuery<ProvinceType[]>(["city", city], () => searchStay(realm, city), {
-    enabled: false,
-  });
+  const { isLoading: provinceLoading, data: province } = useQuery<
+    ProvinceType[]
+  >(["city", city], () => searchStay(realm, city));
 
-  const handleStayHandler = useCallback(() => {
-    refetch();
-  }, [realm, city]);
+  console.log(province);
 
   return (
     <div className="space-x-2">
@@ -43,10 +37,7 @@ const Accommodation = () => {
         setValue={setCity}
         options={data as AreaCodeType[]}
       />
-      <button
-        onClick={handleStayHandler}
-        className="py-2 w-20 rounded-md outline-none select-none border-0 text-white bg-blue-400 font-semibold cursor-pointer hover:bg-blue-600"
-      >
+      <button className="py-2 w-20 rounded-md outline-none select-none border-0 text-white bg-blue-400 font-semibold cursor-pointer hover:bg-blue-600">
         선택
       </button>
       <ul className="mt-10 grid grid-cols-2 gap-2">

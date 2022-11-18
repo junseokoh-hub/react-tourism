@@ -17,7 +17,7 @@ const Slider = ({ sliderId, data }: SliderProps) => {
           <li className="mx-0.5" key={item.rnum}>
             <img
               className="w-[200px] h-48 block rounded-full"
-              src={item.image}
+              src=""
               alt={item.name}
             />
           </li>
