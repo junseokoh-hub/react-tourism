@@ -12,6 +12,7 @@ import Detail from "./pages/Detail";
 import Festival from "./pages/Festival";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
+import Restaurant from "./pages/Restaurant";
 import Search from "./pages/Search";
 import SignupPage from "./pages/SignupPage";
 import Root from "./Root";
@@ -52,6 +53,9 @@ const App = () => {
           element: <Detail />,
         },
         { path: "festival", element: <Festival /> },
+        { path: "festival/:contentId/:contentTypeId", element: <Detail /> },
+        { path: "restaurant", element: <Restaurant /> },
+        { path: "restaurant/:contentId/:contentTypeId", element: <Detail /> },
         {
           path: "login",
           element: !authUser.user ? (

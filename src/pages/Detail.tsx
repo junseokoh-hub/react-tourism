@@ -45,8 +45,8 @@ const Detail = () => {
             <span>{data?.data?.telname}</span>
             <span>{data?.data?.tel}</span>
             <a
-              href={data?.data?.homepage}
-              target="_blank"
+              href={data?.data?.homepage || "javascript:void(0);"}
+              target={data?.data?.homepage && "_blank"}
               rel="noopener noreferrer"
             >
               홈페이지
@@ -54,7 +54,7 @@ const Detail = () => {
           </div>
         </div>
       )}
-      <div className="mt-3 grid grid-cols-1 gap-2 text-center">
+      {/* <div className="mt-3 grid grid-cols-1 gap-2 text-center">
         {detailInfoData.data?.map((item) => (
           <div key={item.roomcode} className="space-y-2">
             <img
@@ -68,7 +68,7 @@ const Detail = () => {
       </div>
       {detailIntroData.data?.map((item) => (
         <div key={item.infocenterlodging}>{item.infocenterlodging}</div>
-      ))}
+      ))} */}
     </>
   );
 };

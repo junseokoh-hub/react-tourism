@@ -6,7 +6,7 @@ import SelectedContent from "../components/SelectedContents/SelectedContent";
 import { areas } from "../lib/area";
 import { AreaCodeType } from "./Accommodation";
 
-const Festival = () => {
+const Restaurant = () => {
   const [realm, setRealm] = useState("1");
   const [city, setCity] = useState("1");
 
@@ -16,8 +16,8 @@ const Festival = () => {
   );
 
   const { data: province, isLoading: provinceLoading } = useQuery(
-    ["festival", realm, city],
-    () => areaBasedList(realm, city, "15"),
+    ["restaurant", realm, city],
+    () => areaBasedList(realm, city, "39"),
   );
 
   if (province) {
@@ -48,4 +48,4 @@ const Festival = () => {
   );
 };
 
-export default Festival;
+export default Restaurant;
