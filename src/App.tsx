@@ -65,7 +65,7 @@ const App = () => {
         },
         { path: "shopping", element: <Shopping /> },
         {
-          path: "shopping/:contentId/:contentTypedId",
+          path: "shopping/:contentId/:contentTypeId",
           element: <Detail contentType={"shopping"} />,
         },
         {

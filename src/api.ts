@@ -1,12 +1,5 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
-import {
-  AreaBasedListType,
-  DetailCommonType,
-  DetailInfoType,
-  DetailIntroType,
-  ShoppingDetailInfoType,
-  ShoppingDetailIntroType,
-} from "./types/DetailType";
+import { AreaBasedListType, DetailCommonType } from "./types/DetailType";
 
 const tourismConfig: AxiosRequestConfig = {
   baseURL: "http://apis.data.go.kr/B551011/KorService/",

@@ -3,6 +3,8 @@ import { useMatch, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../api";
 import AccommodationDetail from "../components/Detail/AccommodationDetail";
 import FestivalDetail from "../components/Detail/FestivalDetail";
+import RestaurantDetail from "../components/Detail/RestaurantDetail";
+import ShoppingDetail from "../components/Detail/ShoppingDetail";
 import { DetailProps } from "../types/DetailType";
 import Loader from "../utils/Loader";
 
@@ -10,6 +12,8 @@ const Detail = ({ contentType }: DetailProps) => {
   const { contentId, contentTypeId } = useParams();
   const accommodationMatch = useMatch("accommodation/*");
   const festivalMatch = useMatch("festival/*");
+  const restaurantMatch = useMatch("restaurant/*");
+  const shoppingMatch = useMatch("shopping/*");
 
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
@@ -29,7 +33,7 @@ const Detail = ({ contentType }: DetailProps) => {
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
-  console.log("rendered");
+  console.log(detailIntroData);
 
   return (
     <>
@@ -67,6 +71,18 @@ const Detail = ({ contentType }: DetailProps) => {
       )}
       {festivalMatch && (
         <FestivalDetail
+          detailInfoData={detailInfoData.data}
+          detailIntroData={detailIntroData.data}
+        />
+      )}
+      {restaurantMatch && (
+        <RestaurantDetail
+          detailInfoData={detailInfoData.data}
+          detailIntroData={detailIntroData.data}
+        />
+      )}
+      {shoppingMatch && (
+        <ShoppingDetail
           detailInfoData={detailInfoData.data}
           detailIntroData={detailIntroData.data}
         />
