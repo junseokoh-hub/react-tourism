@@ -1,10 +1,14 @@
 import { useQueries } from "react-query";
-import { useParams } from "react-router-dom";
+import { useMatch, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../api";
+import AccommodationDetail from "../components/Detail/AccommodationDetail";
+import FestivalDetail from "../components/Detail/FestivalDetail";
 import Loader from "../utils/Loader";
 
 const Detail = () => {
   const { contentId, contentTypeId } = useParams();
+  const accommodationMatch = useMatch("accommodation/*");
+  const festivalMatch = useMatch("festival/*");
 
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
@@ -21,12 +25,10 @@ const Detail = () => {
     },
   ]);
 
-  console.log(detailInfoData);
-
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
-  console.log(detailIntroData.data);
+  // console.log(detailIntroData);
 
   return (
     <>
@@ -56,21 +58,18 @@ const Detail = () => {
           </div>
         </div>
       )}
-      {/* <div className="mt-3 grid grid-cols-1 gap-2 text-center">
-        {detailInfoData.data?.map((item) => (
-          <div key={item.roomcode} className="space-y-2">
-            <img
-              className="w-full h-60 block"
-              src={item.roomimg1 || item.roomimg2 || "../../images/noImage.jpg"}
-              alt={item.roomimg1alt || item.roomimg2alt}
-            />
-            <p>{item.roomtitle}</p>
-          </div>
-        ))}
-      </div>
-      {detailIntroData.data?.map((item) => (
-        <div key={item.infocenterlodging}>{item.infocenterlodging}</div>
-      ))} */}
+      {accommodationMatch && (
+        <AccommodationDetail
+          detailInfoData={detailInfoData.data}
+          detailIntroData={detailIntroData.data}
+        />
+      )}
+      {festivalMatch && (
+        <FestivalDetail
+          detailInfoData={detailInfoData.data}
+          detailIntroData={detailIntroData.data}
+        />
+      )}
     </>
   );
 };

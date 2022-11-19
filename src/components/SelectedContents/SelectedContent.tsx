@@ -44,7 +44,7 @@ const SelectedContent = ({ isLoading, data }: SelectedContentProps) => {
         >
           <img
             className="block w-full h-3/4"
-            src={data.firstimage || data.firstimage2 || "./images/noImage.jpg"}
+            src={data.firstimage || data.firstimage2 || "../images/noImage.jpg"}
             alt={data.title}
           />
           <h3>{data.title}</h3>

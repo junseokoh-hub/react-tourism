@@ -140,10 +140,7 @@ export const detailCommon = async (
   }
 };
 
-export const detailInfo = async (
-  contentId: string,
-  contentTypeId: string,
-): Promise<DetailInfoType[] | ShoppingDetailInfoType[]> => {
+export const detailInfo = async (contentId: string, contentTypeId: string) => {
   try {
     const {
       data: {
@@ -171,10 +168,7 @@ export const detailInfo = async (
   }
 };
 
-export const detailIntro = async (
-  contentId: string,
-  contentTypeId: string,
-): Promise<DetailIntroType[] | ShoppingDetailIntroType[]> => {
+export const detailIntro = async (contentId: string, contentTypeId: string) => {
   try {
     const {
       data: {
