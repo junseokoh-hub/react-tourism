@@ -51,16 +51,22 @@ const App = () => {
         },
         {
           path: "accommodation/:contentId/:contentTypeId",
-          element: <Detail />,
+          element: <Detail contentType={"accommodation"} />,
         },
         { path: "festival", element: <Festival /> },
-        { path: "festival/:contentId/:contentTypeId", element: <Detail /> },
+        {
+          path: "festival/:contentId/:contentTypeId",
+          element: <Detail contentType={"festival"} />,
+        },
         { path: "restaurant", element: <Restaurant /> },
-        { path: "restaurant/:contentId/:contentTypeId", element: <Detail /> },
+        {
+          path: "restaurant/:contentId/:contentTypeId",
+          element: <Detail contentType={"restaurant"} />,
+        },
         { path: "shopping", element: <Shopping /> },
         {
           path: "shopping/:contentId/:contentTypedId",
-          element: <Detail />,
+          element: <Detail contentType={"shopping"} />,
         },
         {
           path: "login",

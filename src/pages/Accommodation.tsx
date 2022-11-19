@@ -1,7 +1,7 @@
 import Posts from "../components/Posts/Posts";
 
 const Accommodation = () => {
-  return <Posts contentTypeId={"32"} />;
+  return <Posts contentType={"accommodation"} contentTypeId={"32"} />;
 };
 
 export default Accommodation;

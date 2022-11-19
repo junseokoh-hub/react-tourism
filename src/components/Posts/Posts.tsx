@@ -6,10 +6,11 @@ import SelectBox from "../SelectBox/SelectBox";
 import SelectedContent from "../SelectedContents/SelectedContent";
 
 type PostsProps = {
+  contentType: "accommodation" | "festival" | "restaurant" | "shopping";
   contentTypeId: string;
 };
 
-const Posts = ({ contentTypeId }: PostsProps) => {
+const Posts = ({ contentType, contentTypeId }: PostsProps) => {
   const [realm, setRealm] = useState("1");
   const [city, setCity] = useState("1");
 
@@ -19,7 +20,7 @@ const Posts = ({ contentTypeId }: PostsProps) => {
   );
 
   const { data: province, isLoading: provinceLoading } = useQuery(
-    ["restaurant", realm, city],
+    [contentType, realm, city],
     () => areaBasedList(realm, city, contentTypeId),
   );
 

@@ -47,6 +47,10 @@ type DetailCommonType = {
   contentid: "string";
 };
 
+export type DetailProps = {
+  contentType: "accommodation" | "festival" | "restaurant" | "shopping";
+};
+
 export type ShoppingDetailInfoType = {
   contentid: string;
   contenttypeid: string;

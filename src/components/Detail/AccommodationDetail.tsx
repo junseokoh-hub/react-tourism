@@ -1,3 +1,4 @@
+import React from "react";
 import {
   AccommodationDetailInfoType,
   AccommodationDetailIntroType,
@@ -33,4 +34,4 @@ const AccommodationDetail = ({
   );
 };
 
-export default AccommodationDetail;
+export default React.memo(AccommodationDetail);

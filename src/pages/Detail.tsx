@@ -3,24 +3,25 @@ import { useMatch, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../api";
 import AccommodationDetail from "../components/Detail/AccommodationDetail";
 import FestivalDetail from "../components/Detail/FestivalDetail";
+import { DetailProps } from "../types/DetailType";
 import Loader from "../utils/Loader";
 
-const Detail = () => {
+const Detail = ({ contentType }: DetailProps) => {
   const { contentId, contentTypeId } = useParams();
   const accommodationMatch = useMatch("accommodation/*");
   const festivalMatch = useMatch("festival/*");
 
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
-      queryKey: ["accommodation-detailCommon", contentId],
+      queryKey: [`${contentType}-detailCommon`, contentId, contentTypeId],
       queryFn: () => detailCommon(contentId as string),
     },
     {
-      queryKey: ["accommodation-detailInfo", contentId],
+      queryKey: [`${contentType}-detailInfo`, contentId, contentTypeId],
       queryFn: () => detailInfo(contentId as string, contentTypeId as string),
     },
     {
-      queryKey: ["accommodation-detailIntro", contentId],
+      queryKey: [`${contentType}-detailIntro`, contentId, contentTypeId],
       queryFn: () => detailIntro(contentId as string, contentTypeId as string),
     },
   ]);
@@ -28,7 +29,7 @@ const Detail = () => {
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
-  // console.log(detailIntroData);
+  console.log("rendered");
 
   return (
     <>
