@@ -6,7 +6,13 @@ import SelectBox from "../SelectBox/SelectBox";
 import SelectedContent from "../SelectedContents/SelectedContent";
 
 type PostsProps = {
-  contentType: "accommodation" | "festival" | "restaurant" | "shopping";
+  contentType:
+    | "accommodation"
+    | "festival"
+    | "restaurant"
+    | "shopping"
+    | "cultural-facilities"
+    | "leisure-sports";
   contentTypeId: string;
 };
 

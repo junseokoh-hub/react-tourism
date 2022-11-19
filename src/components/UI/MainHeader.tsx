@@ -10,6 +10,7 @@ type MainHeaderProps = {
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const homeMatch = useMatch("/");
   const searchMatch = useMatch("search");
   const navigate = useNavigate();
   const authUser = useSelector((state) => state.auth.user);
@@ -32,7 +33,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
       >
         <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">
           <div>
-            {searchMatch ? (
+            {!homeMatch ? (
               <span onClick={() => navigate(-1)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

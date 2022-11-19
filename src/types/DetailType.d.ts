@@ -48,5 +48,11 @@ type DetailCommonType = {
 };
 
 export type DetailProps = {
-  contentType: "accommodation" | "festival" | "restaurant" | "shopping";
+  contentType:
+    | "accommodation"
+    | "festival"
+    | "restaurant"
+    | "shopping"
+    | "cultural-facilities"
+    | "leisure-sports";
 };

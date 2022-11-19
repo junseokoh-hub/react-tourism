@@ -1,8 +1,9 @@
 import { useQueries } from "react-query";
-import { useMatch, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../api";
 import AccommodationDetail from "../components/Detail/AccommodationDetail";
 import FestivalDetail from "../components/Detail/FestivalDetail";
+import LeisureSportsDetail from "../components/Detail/LeisureSportsDetail";
 import RestaurantDetail from "../components/Detail/RestaurantDetail";
 import ShoppingDetail from "../components/Detail/ShoppingDetail";
 import { DetailProps } from "../types/DetailType";
@@ -10,10 +11,11 @@ import Loader from "../utils/Loader";
 
 const Detail = ({ contentType }: DetailProps) => {
   const { contentId, contentTypeId } = useParams();
-  const accommodationMatch = useMatch("accommodation/*");
-  const festivalMatch = useMatch("festival/*");
-  const restaurantMatch = useMatch("restaurant/*");
-  const shoppingMatch = useMatch("shopping/*");
+  const accommodationMatch = contentTypeId === "32";
+  const festivalMatch = contentTypeId === "15";
+  const restaurantMatch = contentTypeId === "39";
+  const shoppingMatch = contentTypeId === "38";
+  const leisureSportsMatch = contentTypeId === "28";
 
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
@@ -83,6 +85,12 @@ const Detail = ({ contentType }: DetailProps) => {
       )}
       {shoppingMatch && (
         <ShoppingDetail
+          detailInfoData={detailInfoData.data}
+          detailIntroData={detailIntroData.data}
+        />
+      )}
+      {leisureSportsMatch && (
+        <LeisureSportsDetail
           detailInfoData={detailInfoData.data}
           detailIntroData={detailIntroData.data}
         />
