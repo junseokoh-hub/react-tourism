@@ -15,7 +15,7 @@ const AccommodationDetail = ({
 }: AccommodationDetailProps) => {
   return (
     <>
-      <div className="mt-3 grid grid-cols-1 gap-2 text-center">
+      <div className="mt-3 grid grid-cols-1 gap-2 text-center md:grid-cols-2">
         {detailInfoData?.map((item) => (
           <div key={item.roomcode} className="space-y-2">
             <img
@@ -23,13 +23,30 @@ const AccommodationDetail = ({
               src={item.roomimg1 || item.roomimg2 || "../../images/noImage.jpg"}
               alt={item.roomimg1alt || item.roomimg2alt}
             />
-            <p>{item.roomtitle}</p>
+            <h3>{item.roomtitle}</h3>
           </div>
         ))}
       </div>
-      {detailIntroData?.map((item) => (
-        <div key={item.infocenterlodging}>{item.infocenterlodging}</div>
-      ))}
+      <details
+        open
+        className="mt-10 border border-solid border-gray-800 rounded-md"
+      >
+        <summary className="font-bold ">세부 내용</summary>
+        <ul className="border-x-0 border-y-0 border-t border-solid border-gray-800">
+          {detailIntroData?.map((item) => (
+            <li key={item.infocenterlodging}>
+              <div>● 연락처 : {item.infocenterlodging}</div>
+              <div>
+                <span>● 체크인 : {item.checkintime} / </span>
+                <span>체크아웃 : {item.checkouttime}</span>
+              </div>
+              <div>● 식당 : {item.foodplace}</div>
+              <div>● 방 종류 : {item.roomtype}</div>
+              <div>● 숙소 구조 : {item.scalelodging}</div>
+            </li>
+          ))}
+        </ul>
+      </details>
     </>
   );
 };

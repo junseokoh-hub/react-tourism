@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
 import Shopping from "./pages/Shopping";
 import LeisureSports from "./pages/LeisureSports";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const authUser = useSelector((state) => state.auth, shallowEqual);
@@ -96,7 +97,7 @@ const App = () => {
           ),
         },
       ],
-      errorElement: <div>Not Found</div>,
+      errorElement: <NotFound />,
     },
   ]);
 

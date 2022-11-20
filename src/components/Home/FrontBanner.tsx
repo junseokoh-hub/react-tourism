@@ -32,7 +32,7 @@ const FrontBanner = () => {
         </svg>
         <span>국내여행 Go</span>
       </div>
-      <ul className="flex justify-around">
+      <ul className="grid grid-cols-3 gap-2 md:flex md:justify-around">
         <li className="front_btns" onClick={() => navigate("accommodation")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ const FrontBanner = () => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-6 h-6 text-pink-500"
           >
             <path
               strokeLinecap="round"
@@ -117,7 +117,7 @@ const FrontBanner = () => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-6 h-6 text-purple-500"
           >
             <path
               strokeLinecap="round"
@@ -135,7 +135,7 @@ const FrontBanner = () => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-6 h-6 text-yellow-500"
           >
             <path
               strokeLinecap="round"
