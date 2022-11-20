@@ -1,0 +1,22 @@
+export type SearchKeywordType = {
+  booktour: "string";
+  cat1: "string";
+  cat2: "string";
+  cat3: "string";
+  contentid: "string";
+  contenttypeid: "string";
+  createdtime: "string";
+  firstimage: "string";
+  readcount: "string";
+  sigungucode: "string";
+  tel: "string";
+  title: "string";
+  addr1: "string";
+  addr2: "string";
+  areacode: "string";
+  mapy: "string";
+  mlevel: "string";
+  modifiedtime: "string";
+  firstimage2: "string";
+  mapx: "string";
+};

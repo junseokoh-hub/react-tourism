@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 import { AreaBasedListType, DetailCommonType } from "./types/DetailType";
+import { SearchKeywordType } from "./types/SearchKeywordType";
 
 const tourismConfig: AxiosRequestConfig = {
   baseURL: "http://apis.data.go.kr/B551011/KorService/",
@@ -82,6 +83,33 @@ export const areaBasedList = async (
         areaCode,
         sigunguCode,
         contentTypeId,
+      },
+    });
+    return item.item;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
+  }
+};
+
+export const searchKeyword = async (
+  keyword: string,
+): Promise<SearchKeywordType[]> => {
+  try {
+    const {
+      data: {
+        response: {
+          body: { items: item },
+        },
+      },
+    } = await tourism.get("searchKeyword", {
+      params: {
+        keyword,
       },
     });
     return item.item;
