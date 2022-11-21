@@ -13,7 +13,8 @@ type PostsProps = {
     | "shopping"
     | "cultural-facilities"
     | "leisure-sports"
-    | "tourist-destination";
+    | "tourist-destination"
+    | "travel-course";
   contentTypeId: string;
 };
 
@@ -31,9 +32,7 @@ const Posts = ({ contentType, contentTypeId }: PostsProps) => {
     () => areaBasedList(realm, city, contentTypeId),
   );
 
-  if (province) {
-    console.log(province);
-  }
+  console.log(province);
 
   return (
     <div className="space-x-2">
@@ -44,17 +43,20 @@ const Posts = ({ contentType, contentTypeId }: PostsProps) => {
         setValue={setCity}
         options={data as AreaCodeType[]}
       />
-      <ul className="mt-10 grid grid-cols-2 gap-2">
-        {province &&
-          province.length > 0 &&
-          province.map((prov) => (
+      {!provinceLoading && province === undefined && (
+        <div className="mt-10 text-center">검색 결과가 없습니다.</div>
+      )}
+      {province && province.length > 0 && (
+        <ul className="mt-10 grid grid-cols-2 gap-2">
+          {province.map((prov) => (
             <SelectedContent
               isLoading={provinceLoading}
               data={prov}
               key={prov.contentid}
             />
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 };

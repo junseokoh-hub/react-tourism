@@ -61,6 +61,9 @@ const Search = () => {
         case "12":
           navigate(`/tourist-destination/${contentId}/12`);
           break;
+        case "25":
+          navigate(`/travel-course/${contentId}/25`);
+          break;
         default:
           return;
       }

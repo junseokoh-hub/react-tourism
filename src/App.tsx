@@ -23,6 +23,7 @@ import Shopping from "./pages/Shopping";
 import LeisureSports from "./pages/LeisureSports";
 import NotFound from "./pages/NotFound";
 import TouristDestination from "./pages/TouristDestination";
+import TravelCourse from "./pages/TravelCourse";
 
 const App = () => {
   const authUser = useSelector((state) => state.auth, shallowEqual);
@@ -85,6 +86,11 @@ const App = () => {
         {
           path: "tourist-destination/:contentId/:contentTypeId",
           element: <Detail contentType={"tourist-destination"} />,
+        },
+        { path: "travel-course", element: <TravelCourse /> },
+        {
+          path: "travel-course/:contentId/:contentTypeId",
+          element: <Detail contentType={"travel-course"} />,
         },
         {
           path: "login",

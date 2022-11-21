@@ -8,6 +8,7 @@ import LeisureSportsDetail from "../components/Detail/LeisureSportsDetail";
 import RestaurantDetail from "../components/Detail/RestaurantDetail";
 import ShoppingDetail from "../components/Detail/ShoppingDetail";
 import TouristDestinationDetail from "../components/Detail/TouristDestinationDetail";
+import TravelCourseDetail from "../components/Detail/TravelCourseDetail";
 import { DetailProps } from "../types/DetailType";
 import Loader from "../utils/Loader";
 
@@ -20,6 +21,7 @@ const Detail = ({ contentType }: DetailProps) => {
   const leisureSportsMatch = contentTypeId === "28";
   const culturalFacilitiesMatch = contentTypeId === "14";
   const touristDestinationMatch = contentTypeId === "12";
+  const travelCourseMatch = contentTypeId === "25";
 
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
@@ -107,6 +109,12 @@ const Detail = ({ contentType }: DetailProps) => {
       )}
       {touristDestinationMatch && (
         <TouristDestinationDetail
+          detailInfoData={detailInfoData.data}
+          detailIntroData={detailIntroData.data}
+        />
+      )}
+      {travelCourseMatch && (
+        <TravelCourseDetail
           detailInfoData={detailInfoData.data}
           detailIntroData={detailIntroData.data}
         />
