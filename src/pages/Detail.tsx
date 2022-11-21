@@ -2,6 +2,7 @@ import { useQueries } from "react-query";
 import { useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../api";
 import AccommodationDetail from "../components/Detail/AccommodationDetail";
+import CulturalFacilitiesDetail from "../components/Detail/CulturalFacilitiesDetail";
 import FestivalDetail from "../components/Detail/FestivalDetail";
 import LeisureSportsDetail from "../components/Detail/LeisureSportsDetail";
 import RestaurantDetail from "../components/Detail/RestaurantDetail";
@@ -16,6 +17,7 @@ const Detail = ({ contentType }: DetailProps) => {
   const restaurantMatch = contentTypeId === "39";
   const shoppingMatch = contentTypeId === "38";
   const leisureSportsMatch = contentTypeId === "28";
+  const culturalFacilitiesMatch = contentTypeId === "14";
 
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
@@ -85,6 +87,12 @@ const Detail = ({ contentType }: DetailProps) => {
       )}
       {shoppingMatch && (
         <ShoppingDetail
+          detailInfoData={detailInfoData.data}
+          detailIntroData={detailIntroData.data}
+        />
+      )}
+      {culturalFacilitiesMatch && (
+        <CulturalFacilitiesDetail
           detailInfoData={detailInfoData.data}
           detailIntroData={detailIntroData.data}
         />
