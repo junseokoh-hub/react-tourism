@@ -27,22 +27,19 @@ const AccommodationDetail = ({
           </div>
         ))}
       </div>
-      <details
-        open
-        className="mt-10 border border-solid border-gray-800 rounded-md"
-      >
-        <summary className="font-bold ">세부 내용</summary>
-        <ul className="border-x-0 border-y-0 border-t border-solid border-gray-800">
+      <details open className="mt-10">
+        <summary className="font-bold cursor-pointer">⁕ 세부 내용</summary>
+        <ul className="border border-solid border-gray-800 rounded-sm">
           {detailIntroData?.map((item) => (
             <li key={item.infocenterlodging}>
-              <div>● 연락처 : {item.infocenterlodging}</div>
+              <div>• 연락처 : {item.infocenterlodging}</div>
               <div>
-                <span>● 체크인 : {item.checkintime} / </span>
+                <span>• 체크인 : {item.checkintime} / </span>
                 <span>체크아웃 : {item.checkouttime}</span>
               </div>
-              <div>● 식당 : {item.foodplace}</div>
-              <div>● 방 종류 : {item.roomtype}</div>
-              <div>● 숙소 구조 : {item.scalelodging}</div>
+              <div>• 식당 : {item.foodplace}</div>
+              <div>• 방 종류 : {item.roomtype}</div>
+              <div>• 숙소 구조 : {item.scalelodging}</div>
             </li>
           ))}
         </ul>

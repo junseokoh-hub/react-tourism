@@ -12,7 +12,8 @@ type PostsProps = {
     | "restaurant"
     | "shopping"
     | "cultural-facilities"
-    | "leisure-sports";
+    | "leisure-sports"
+    | "tourist-destination";
   contentTypeId: string;
 };
 

@@ -17,7 +17,7 @@ const RestaurantDetail = ({
     <article className="space-y-10">
       <ul>
         {detailInfoData?.map((item) => (
-          <li key={item.fldgubun} className="flex flex-col">
+          <li key={item.serialnum} className="flex flex-col">
             <span>{item.infoname}</span>
             <span>{item.infotext}</span>
           </li>

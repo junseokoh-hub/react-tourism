@@ -2,17 +2,13 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { isMetaProperty } from "typescript";
 import { searchKeyword } from "../api";
 
 const Search = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const params = useSearchParams();
+
   const searchSubmitHandler = handleSubmit((data) => {
     if (data) {
       navigate(`?keyword=${data.search}`);
@@ -39,6 +35,8 @@ const Search = () => {
     },
   };
 
+  console.log(data);
+
   const navigationHandler = useCallback(
     (contentId: string, contentTypeId: string) => {
       switch (contentTypeId) {
@@ -59,6 +57,9 @@ const Search = () => {
           break;
         case "28":
           navigate(`/leisure-sports/${contentId}/28`);
+          break;
+        case "12":
+          navigate(`/tourist-destination/${contentId}/12`);
           break;
         default:
           return;

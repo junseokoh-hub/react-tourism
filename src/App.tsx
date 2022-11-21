@@ -22,6 +22,7 @@ import Loader from "./utils/Loader";
 import Shopping from "./pages/Shopping";
 import LeisureSports from "./pages/LeisureSports";
 import NotFound from "./pages/NotFound";
+import TouristDestination from "./pages/TouristDestination";
 
 const App = () => {
   const authUser = useSelector((state) => state.auth, shallowEqual);
@@ -79,6 +80,11 @@ const App = () => {
         {
           path: "leisure-sports/:contentId/:contentTypeId",
           element: <Detail contentType={"leisure-sports"} />,
+        },
+        { path: "tourist-destination", element: <TouristDestination /> },
+        {
+          path: "tourist-destination/:contentId/:contentTypeId",
+          element: <Detail contentType={"tourist-destination"} />,
         },
         {
           path: "login",

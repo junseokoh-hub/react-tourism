@@ -54,5 +54,6 @@ export type DetailProps = {
     | "restaurant"
     | "shopping"
     | "cultural-facilities"
-    | "leisure-sports";
+    | "leisure-sports"
+    | "tourist-destination";
 };
