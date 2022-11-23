@@ -1,9 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { areaBasedList, areaCode } from "../../api";
 import { AreaCodeType, areas } from "../../lib/area";
-import SelectBox from "../SelectBox/SelectBox";
-import SelectedContent from "../SelectedContents/SelectedContent";
+
+const SelectBox = React.lazy(() => import("../SelectBox/SelectBox"));
+const SelectedContent = React.lazy(
+  () => import("../SelectedContents/SelectedContent"),
+);
 
 type PostsProps = {
   contentType:

@@ -1,6 +1,8 @@
-import Slider from "../UI/Slider";
+import React from "react";
 import { areas } from "../../lib/area";
 import { categories } from "../../lib/category";
+
+const Slider = React.lazy(() => import("../UI/Slider"));
 
 const HomeSliders = () => {
   return (

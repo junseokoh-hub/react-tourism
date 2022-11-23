@@ -1,8 +1,9 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useSelector } from "../../store/hooks";
-import Modal from "../Modal/Modal";
-import SideMenu from "./SideMenu";
+
+const Modal = React.lazy(() => import("../Modal/Modal"));
+const SideMenu = React.lazy(() => import("./SideMenu"));
 
 type MainHeaderProps = {
   isView: boolean;
@@ -11,7 +12,6 @@ type MainHeaderProps = {
 const MainHeader = ({ isView }: MainHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const homeMatch = useMatch("/");
-  const searchMatch = useMatch("search");
   const navigate = useNavigate();
   const authUser = useSelector((state) => state.auth.user);
 
@@ -32,8 +32,8 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         } transition-shadow duration-500 ease-in-out`}
       >
         <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">
-          <div>
-            {!homeMatch ? (
+          {!homeMatch && (
+            <div>
               <span onClick={() => navigate(-1)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -50,11 +50,12 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
                   />
                 </svg>
               </span>
-            ) : (
-              <Link to="/" className="text-2xl">
-                Tourism
-              </Link>
-            )}
+            </div>
+          )}
+          <div>
+            <Link to="/" className="text-2xl">
+              Tourism
+            </Link>
           </div>
           <div className="space-x-3 flex items-center">
             <Link to="/search">

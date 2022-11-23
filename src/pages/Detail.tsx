@@ -41,7 +41,7 @@ const Detail = ({ contentType }: DetailProps) => {
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
-  console.log(detailIntroData);
+  console.log(data);
 
   return (
     <>
@@ -49,7 +49,7 @@ const Detail = ({ contentType }: DetailProps) => {
       {!isLoading && (
         <div className="space-y-4">
           <img
-            className="w-48 h-48 block"
+            className="w-96 h-96 block rounded-md"
             src={
               data?.data?.firstimage ||
               data?.data?.firstimage2 ||
@@ -69,55 +69,55 @@ const Detail = ({ contentType }: DetailProps) => {
               홈페이지
             </a>
           </div>
+          {accommodationMatch && (
+            <AccommodationDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
+          {festivalMatch && (
+            <FestivalDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
+          {restaurantMatch && (
+            <RestaurantDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
+          {shoppingMatch && (
+            <ShoppingDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
+          {culturalFacilitiesMatch && (
+            <CulturalFacilitiesDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
+          {leisureSportsMatch && (
+            <LeisureSportsDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
+          {touristDestinationMatch && (
+            <TouristDestinationDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
+          {travelCourseMatch && (
+            <TravelCourseDetail
+              detailInfoData={detailInfoData.data}
+              detailIntroData={detailIntroData.data}
+            />
+          )}
         </div>
-      )}
-      {accommodationMatch && (
-        <AccommodationDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
-      )}
-      {festivalMatch && (
-        <FestivalDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
-      )}
-      {restaurantMatch && (
-        <RestaurantDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
-      )}
-      {shoppingMatch && (
-        <ShoppingDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
-      )}
-      {culturalFacilitiesMatch && (
-        <CulturalFacilitiesDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
-      )}
-      {leisureSportsMatch && (
-        <LeisureSportsDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
-      )}
-      {touristDestinationMatch && (
-        <TouristDestinationDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
-      )}
-      {travelCourseMatch && (
-        <TravelCourseDetail
-          detailInfoData={detailInfoData.data}
-          detailIntroData={detailIntroData.data}
-        />
       )}
     </>
   );

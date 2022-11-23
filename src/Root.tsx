@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
-import MainHeader from "./components/UI/MainHeader";
-import Footer from "./components/Layout/Footer";
-import Layout from "./components/Layout/Layout";
+
+const MainHeader = React.lazy(() => import("./components/UI/MainHeader"));
+const Footer = React.lazy(() => import("./components/Layout/Footer"));
+const Layout = React.lazy(() => import("./components/Layout/Layout"));
 
 const Root = () => {
   const [isView, setIsView] = useState(false);

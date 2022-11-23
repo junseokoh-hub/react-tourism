@@ -1,5 +1,5 @@
+import React, { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
 import { shallowEqual } from "react-redux";
 import {
   createBrowserRouter,
@@ -7,23 +7,26 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { appAuth } from "./lib/firebaseConfig";
-import Accommodation from "./pages/Accommodation";
-import Detail from "./pages/Detail";
-import Festival from "./pages/Festival";
-import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage";
-import Restaurant from "./pages/Restaurant";
-import Search from "./pages/Search";
-import SignupPage from "./pages/SignupPage";
-import Root from "./Root";
 import { onState } from "./store/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
-import Shopping from "./pages/Shopping";
-import LeisureSports from "./pages/LeisureSports";
-import NotFound from "./pages/NotFound";
-import TouristDestination from "./pages/TouristDestination";
-import TravelCourse from "./pages/TravelCourse";
+
+const Root = React.lazy(() => import("./Root"));
+const Home = React.lazy(() => import("./pages/Home"));
+const Accommodation = React.lazy(() => import("./pages/Accommodation"));
+const Shopping = React.lazy(() => import("./pages/Shopping"));
+const Festival = React.lazy(() => import("./pages/Festival"));
+const Detail = React.lazy(() => import("./pages/Detail"));
+const LeisureSports = React.lazy(() => import("./pages/LeisureSports"));
+const SignupPage = React.lazy(() => import("./pages/SignupPage"));
+const Search = React.lazy(() => import("./pages/Search"));
+const Restaurant = React.lazy(() => import("./pages/Restaurant"));
+const LoginPage = React.lazy(() => import("./pages/LoginPage"));
+const TravelCourse = React.lazy(() => import("./pages/TravelCourse"));
+const TouristDestination = React.lazy(
+  () => import("./pages/TouristDestination"),
+);
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
   const authUser = useSelector((state) => state.auth, shallowEqual);

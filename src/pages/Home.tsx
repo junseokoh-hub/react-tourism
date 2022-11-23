@@ -1,5 +1,7 @@
-import FrontBanner from "../components/Home/FrontBanner";
-import HomeSliders from "../components/Home/HomeSliders";
+import React from "react";
+
+const FrontBanner = React.lazy(() => import("../components/Home/FrontBanner"));
+const HomeSliders = React.lazy(() => import("../components/Home/HomeSliders"));
 
 const Home = () => {
   return (

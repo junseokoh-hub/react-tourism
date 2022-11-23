@@ -43,12 +43,12 @@ const SelectedContent = ({ isLoading, data }: SelectedContentProps) => {
           onClick={() => navigate(`${data.contentid}/${data.contenttypeid}`)}
         >
           <img
-            className="block w-full h-3/4"
+            className="block w-full h-3/4 rounded-md"
             src={data.firstimage || data.firstimage2 || "../images/noImage.jpg"}
             alt={data.title}
           />
           <h3>{data.title}</h3>
-          <h4>{data.addr1}</h4>
+          <h5>{data.addr1}</h5>
         </li>
       )}
     </>

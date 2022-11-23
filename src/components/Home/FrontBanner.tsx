@@ -32,7 +32,7 @@ const FrontBanner = () => {
         </svg>
         <span>국내여행 Go</span>
       </div>
-      <ul className="grid grid-cols-3 gap-2 md:flex md:justify-around">
+      <ul className="grid grid-cols-4 gap-2 text-sm md:text-base">
         <li className="front_btns" onClick={() => navigate("accommodation")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
