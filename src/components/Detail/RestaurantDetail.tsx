@@ -12,7 +12,6 @@ const RestaurantDetail = ({
   detailInfoData,
   detailIntroData,
 }: RestaurantDetailProps) => {
-  console.log(detailIntroData);
   return (
     <article className="space-y-10">
       <ul>

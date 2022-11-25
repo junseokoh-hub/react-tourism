@@ -3,7 +3,7 @@ import { AreaBasedListType, DetailCommonType } from "./types/DetailType";
 import { SearchKeywordType } from "./types/SearchKeywordType";
 
 const tourismConfig: AxiosRequestConfig = {
-  baseURL: "http://apis.data.go.kr/B551011/KorService/",
+  baseURL: "https://apis.data.go.kr/B551011/KorService/",
   params: {
     serviceKey: import.meta.env.VITE_TOUR_KEY,
     _type: "json",

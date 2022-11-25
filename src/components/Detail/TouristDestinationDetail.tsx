@@ -1,3 +1,4 @@
+import React from "react";
 import {
   TouristDestinationDetailInfoType,
   TouristDestinationDetailIntroType,
@@ -12,8 +13,6 @@ const TouristDestinationDetail = ({
   detailInfoData,
   detailIntroData,
 }: TouristDestinationDetailProps) => {
-  console.log(detailInfoData);
-
   return (
     <article className="mt-10 space-y-10">
       <div className="space-y-3">
@@ -42,4 +41,4 @@ const TouristDestinationDetail = ({
   );
 };
 
-export default TouristDestinationDetail;
+export default React.memo(TouristDestinationDetail);

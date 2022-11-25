@@ -12,7 +12,6 @@ const CulturalFacilitiesDetail = ({
   detailInfoData,
   detailIntroData,
 }: CulturalFacilitiesDetailProps) => {
-  console.log(detailInfoData);
   return (
     <article className="space-y-10">
       <ul>

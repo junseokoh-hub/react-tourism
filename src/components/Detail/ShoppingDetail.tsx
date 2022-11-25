@@ -12,7 +12,6 @@ const ShoppingDetail = ({
   detailInfoData,
   detailIntroData,
 }: ShoppingDetailProps) => {
-  console.log(detailIntroData);
   return (
     <article className="space-y-10">
       <ul>

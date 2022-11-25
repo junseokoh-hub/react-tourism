@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { shallowEqual } from "react-redux";
 import {
@@ -42,7 +42,13 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: authUser.isAuthReady ? <Root /> : <Loader />,
+      element: authUser.isAuthReady ? (
+        <Suspense fallback={<Loader />}>
+          <Root />
+        </Suspense>
+      ) : (
+        <Loader />
+      ),
       children: [
         {
           path: "",

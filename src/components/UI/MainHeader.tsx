@@ -53,12 +53,12 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             </div>
           )}
           <div>
-            <Link to="/" className="text-2xl">
+            <Link to="/" className="text-2xl" aria-label="home-link">
               Tourism
             </Link>
           </div>
           <div className="space-x-3 flex items-center">
-            <Link to="/search">
+            <Link to="/search" aria-label="search-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

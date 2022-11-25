@@ -19,7 +19,7 @@ const AccommodationDetail = ({
         {detailInfoData?.map((item) => (
           <div key={item.roomcode} className="space-y-2">
             <img
-              className="w-full h-60 block"
+              className="w-full h-60 block rounded-md"
               src={item.roomimg1 || item.roomimg2 || "../../images/noImage.jpg"}
               alt={item.roomimg1alt || item.roomimg2alt}
             />

@@ -35,8 +35,6 @@ const Posts = ({ contentType, contentTypeId }: PostsProps) => {
     () => areaBasedList(realm, city, contentTypeId),
   );
 
-  console.log(province);
-
   return (
     <div className="space-x-2">
       <SelectBox value={realm} setValue={setRealm} options={areas} />

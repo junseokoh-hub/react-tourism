@@ -38,10 +38,10 @@ const Detail = ({ contentType }: DetailProps) => {
     },
   ]);
 
+  console.log(data);
+
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
-
-  console.log(data);
 
   return (
     <>
@@ -49,12 +49,16 @@ const Detail = ({ contentType }: DetailProps) => {
       {!isLoading && (
         <div className="space-y-4">
           <img
-            className="w-96 h-96 block rounded-md"
+            className="w-[699px] h-[466px] block rounded-md"
             src={
-              data?.data?.firstimage ||
-              data?.data?.firstimage2 ||
-              "../../images/noImage.jpg"
+              data?.data?.firstimage || data?.data?.firstimage2
+                ? `https://${
+                    data?.data?.firstimage.slice(7) ||
+                    data?.data?.firstimage2.slice(7)
+                  }`
+                : "../../images/noImage.jpg"
             }
+            alt={data?.data?.title}
           />
           <h3>{data?.data?.title}</h3>
           <h4>{data?.data?.overview}</h4>
