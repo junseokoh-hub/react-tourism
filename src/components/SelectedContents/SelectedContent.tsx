@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { AreaBasedListType } from "../../types/DetailType";
+import Loader from "../../utils/Loader";
 
 export type ProvinceType = {
   addr1: string;
@@ -28,30 +29,25 @@ export type ProvinceType = {
 };
 
 type SelectedContentProps = {
-  isLoading: boolean;
   data: ProvinceType | AreaBasedListType;
 };
 
-const SelectedContent = ({ isLoading, data }: SelectedContentProps) => {
+const SelectedContent = ({ data }: SelectedContentProps) => {
   const navigate = useNavigate();
 
   return (
-    <>
-      {!isLoading && (
-        <li
-          className="w-full h-80 space-y-2 flex flex-col text-center cursor-pointer"
-          onClick={() => navigate(`${data.contentid}/${data.contenttypeid}`)}
-        >
-          <img
-            className="block w-full h-3/4 rounded-md"
-            src={data.firstimage || data.firstimage2 || "../images/noImage.jpg"}
-            alt={data.title}
-          />
-          <h3>{data.title}</h3>
-          <h5>{data.addr1}</h5>
-        </li>
-      )}
-    </>
+    <li
+      className="w-full h-80 space-y-2 flex flex-col text-center cursor-pointer"
+      onClick={() => navigate(`${data.contentid}/${data.contenttypeid}`)}
+    >
+      <img
+        className="block w-full h-3/4 rounded-md"
+        src={data.firstimage || data.firstimage2 || "../images/noImage.jpg"}
+        alt={data.title}
+      />
+      <h3>{data.title}</h3>
+      <h5>{data.addr1}</h5>
+    </li>
   );
 };
 

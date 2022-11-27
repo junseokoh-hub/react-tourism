@@ -74,8 +74,9 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
                 />
               </svg>
             </Link>
-            {!authUser && <Link to="login">Login</Link>}
-            {authUser && (
+            {!authUser ? (
+              <Link to="login">Login</Link>
+            ) : (
               <span onClick={() => setIsMenuOpen((prev) => !prev)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

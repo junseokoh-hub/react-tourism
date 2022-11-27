@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { areaBasedList, areaCode } from "../../api";
 import { AreaCodeType, areas } from "../../lib/area";
+import Loader from "../../utils/Loader";
 
 const SelectBox = React.lazy(() => import("../SelectBox/SelectBox"));
 const SelectedContent = React.lazy(
@@ -44,20 +45,18 @@ const Posts = ({ contentType, contentTypeId }: PostsProps) => {
         setValue={setCity}
         options={data as AreaCodeType[]}
       />
-      {!provinceLoading && province === undefined && (
+      {!provinceLoading && province === undefined ? (
         <div className="mt-10 text-center">검색 결과가 없습니다.</div>
-      )}
-      {province && province.length > 0 && (
+      ) : (
         <ul className="mt-10 grid grid-cols-2 gap-2">
-          {province.map((prov) => (
-            <SelectedContent
-              isLoading={provinceLoading}
-              data={prov}
-              key={prov.contentid}
-            />
-          ))}
+          {province &&
+            province.length > 0 &&
+            province.map((prov) => (
+              <SelectedContent data={prov} key={prov.contentid} />
+            ))}
         </ul>
       )}
+      {provinceLoading && <Loader />}
     </div>
   );
 };

@@ -6,9 +6,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <main className="py-20 px-3 min-h-screen max-w-3xl bg-white md:mx-auto md:shadow-2xl">
-      {children}
-    </main>
+    <section className="py-20 px-3 min-h-screen bg-white">{children}</section>
   );
 };
 

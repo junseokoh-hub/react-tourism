@@ -20,7 +20,13 @@ const AccommodationDetail = ({
           <div key={item.roomcode} className="space-y-2">
             <img
               className="w-full h-60 block rounded-md"
-              src={item.roomimg1 || item.roomimg2 || "../../images/noImage.jpg"}
+              src={
+                item.roomimg1 || item.roomimg2
+                  ? `https://${
+                      item.roomimg1.slice(7) || item.roomimg2.slice(7)
+                    }`
+                  : "../../images/noImage.jpg"
+              }
               alt={item.roomimg1alt || item.roomimg2alt}
             />
             <h3>{item.roomtitle}</h3>

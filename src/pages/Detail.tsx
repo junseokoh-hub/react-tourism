@@ -38,8 +38,6 @@ const Detail = ({ contentType }: DetailProps) => {
     },
   ]);
 
-  console.log(data);
-
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
@@ -61,7 +59,7 @@ const Detail = ({ contentType }: DetailProps) => {
             alt={data?.data?.title}
           />
           <h3>{data?.data?.title}</h3>
-          <h4>{data?.data?.overview}</h4>
+          <p className="leading-10">{data?.data?.overview}</p>
           <div>
             <span>{data?.data?.telname}</span>
             <span>{data?.data?.tel}</span>

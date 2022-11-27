@@ -28,9 +28,12 @@ const Root = () => {
     <>
       <MainHeader isView={isView} />
       <div ref={targetRef} />
-      <Layout>
-        <Outlet />
-      </Layout>
+      <main className="max-w-3xl md:mx-auto md:shadow-2xl">
+        <Layout>
+          <Outlet />
+        </Layout>
+        <section className="w-full min-h-[300px] bg-[lightgray] "></section>
+      </main>
       <Footer />
     </>
   );
