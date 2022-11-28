@@ -1,29 +1,26 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
-import { useSelector } from "../../store/hooks";
-
-const Modal = React.lazy(() => import("../Modal/Modal"));
-const SideMenu = React.lazy(() => import("./SideMenu"));
+import { useDispatch, useSelector } from "../../store/hooks";
+import { onClose, onOpen } from "../../store/menuSlice";
+import Modal from "../Modal/Modal";
+import SideMenu from "./SideMenu";
 
 type MainHeaderProps = {
   isView: boolean;
 };
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const homeMatch = useMatch("/");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
   const authUser = useSelector((state) => state.auth.user);
-
-  const closeModal = useCallback(() => {
-    setIsMenuOpen(false);
-  }, []);
 
   return (
     <>
       {isMenuOpen && (
-        <Modal closeModal={closeModal}>
-          <SideMenu closeModal={closeModal} />
+        <Modal closeModal={() => dispatch(onClose())}>
+          <SideMenu closeModal={() => dispatch(onClose())} />
         </Modal>
       )}
       <header
@@ -77,7 +74,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             {!authUser ? (
               <Link to="login">Login</Link>
             ) : (
-              <span onClick={() => setIsMenuOpen((prev) => !prev)}>
+              <span onClick={() => dispatch(onOpen())}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -92,7 +92,7 @@ const Search = () => {
               }
             >
               <img
-                className="w-full h-80"
+                className="w-full h-80 rounded-md"
                 src={
                   item.firstimage || item.firstimage2 || "../images/noImage.jpg"
                 }

@@ -1,9 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
+import Modal from "./components/Modal/Modal";
+import SideMenu from "./components/UI/SideMenu";
+import { useDispatch, useSelector } from "./store/hooks";
+import { onClose } from "./store/menuSlice";
 
 const MainHeader = React.lazy(() => import("./components/UI/MainHeader"));
-const Footer = React.lazy(() => import("./components/Layout/Footer"));
+const LowerNavigation = React.lazy(
+  () => import("./components/Layout/LowerNavigation"),
+);
 const Layout = React.lazy(() => import("./components/Layout/Layout"));
+const Footer = React.lazy(() => import("./components/Layout/Footer"));
 
 const Root = () => {
   const [isView, setIsView] = useState(false);
@@ -28,13 +35,13 @@ const Root = () => {
     <>
       <MainHeader isView={isView} />
       <div ref={targetRef} />
-      <main className="max-w-3xl md:mx-auto md:shadow-2xl">
+      <main className="max-w-3xl relative md:mx-auto md:shadow-2xl">
         <Layout>
           <Outlet />
         </Layout>
-        <section className="w-full min-h-[300px] bg-[lightgray] "></section>
+        <Footer />
       </main>
-      <Footer />
+      <LowerNavigation />
     </>
   );
 };

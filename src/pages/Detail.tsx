@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQueries } from "react-query";
 import { useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../api";
@@ -63,13 +64,14 @@ const Detail = ({ contentType }: DetailProps) => {
           <div>
             <span>{data?.data?.telname}</span>
             <span>{data?.data?.tel}</span>
-            <a
+            <div id="homepage"></div>
+            {/* <a
               href={data?.data?.homepage || "#"}
               target={data?.data?.homepage && "_blank"}
               rel="noopener noreferrer"
             >
               홈페이지
-            </a>
+            </a> */}
           </div>
           {accommodationMatch && (
             <AccommodationDetail
