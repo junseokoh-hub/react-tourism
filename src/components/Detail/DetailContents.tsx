@@ -1,7 +1,7 @@
 import React from "react";
 import { useQueries } from "react-query";
 import { useParams } from "react-router-dom";
-import { detailInfo, detailIntro } from "../../api";
+import { detailInfo, detailIntro } from "../../api/tourismApi";
 import { DetailProps } from "../../types/DetailType";
 import AccommodationDetail from "./AccommodationDetail";
 import CulturalFacilitiesDetail from "./CulturalFacilitiesDetail";

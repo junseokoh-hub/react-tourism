@@ -26,6 +26,7 @@ const TravelCourse = React.lazy(() => import("./pages/TravelCourse"));
 const TouristDestination = React.lazy(
   () => import("./pages/TouristDestination"),
 );
+const Camping = React.lazy(() => import("./pages/Camping"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
@@ -101,6 +102,7 @@ const App = () => {
           path: "travel-course/:contentId/:contentTypeId",
           element: <Detail contentType={"travel-course"} />,
         },
+        { path: "camping", element: <Camping /> },
         {
           path: "login",
           element: !authUser.user ? (

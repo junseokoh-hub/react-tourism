@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useQueries } from "react-query";
 import { useParams } from "react-router-dom";
-import { detailCommon, detailInfo, detailIntro } from "../api";
+import { detailCommon, detailInfo, detailIntro } from "../api/tourismApi";
 import AccommodationDetail from "../components/Detail/AccommodationDetail";
 import CulturalFacilitiesDetail from "../components/Detail/CulturalFacilitiesDetail";
 import FestivalDetail from "../components/Detail/FestivalDetail";
@@ -72,6 +72,9 @@ const Detail = ({ contentType }: DetailProps) => {
             >
               홈페이지
             </a> */}
+            <div
+              dangerouslySetInnerHTML={{ __html: data?.data?.homepage || "#" }}
+            ></div>
           </div>
           {accommodationMatch && (
             <AccommodationDetail

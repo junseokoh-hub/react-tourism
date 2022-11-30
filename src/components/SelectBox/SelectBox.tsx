@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useCallback } from "react";
-import { AreaCodeType } from "../../pages/Accommodation";
+import { useMatch } from "react-router-dom";
+import { AreaCodeType } from "../../lib/area";
 
 type SelectBoxProps = {
   isLoading?: boolean;
@@ -9,6 +10,8 @@ type SelectBoxProps = {
 };
 
 const SelectBox = ({ isLoading, value, setValue, options }: SelectBoxProps) => {
+  const campingMatch = useMatch("camping");
+
   const changeSelectHandler = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       if (setValue) {
@@ -27,7 +30,10 @@ const SelectBox = ({ isLoading, value, setValue, options }: SelectBoxProps) => {
       {!isLoading &&
         options &&
         options.map((option) => (
-          <option key={option.code} value={option.code}>
+          <option
+            key={option.code}
+            value={!campingMatch ? option.code : option.name}
+          >
             {option.name}
           </option>
         ))}

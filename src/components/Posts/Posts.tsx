@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { areaBasedList, areaCode } from "../../api";
+import { areaBasedList, areaCode } from "../../api/tourismApi";
 import { AreaCodeType, areas } from "../../lib/area";
 import Loader from "../../utils/Loader";
 

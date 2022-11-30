@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { searchKeyword } from "../api";
+import { searchKeyword } from "../api/tourismApi";
 
 const Search = () => {
   const { register, handleSubmit } = useForm();
