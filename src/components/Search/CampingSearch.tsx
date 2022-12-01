@@ -22,7 +22,7 @@ const CampingSearch = () => {
         <Loader />
       ) : (
         <ul className="mt-10 md:grid md:grid-cols-2 md:gap-2">
-          {camps?.items?.item.map((camp: any) => (
+          {camps?.items?.item?.map((camp) => (
             <li key={camp.contentId} className="text-center cursor-pointer">
               <img
                 src={camp.firstImageUrl || "../images/noImage.jpg"}
@@ -33,6 +33,9 @@ const CampingSearch = () => {
             </li>
           ))}
         </ul>
+      )}
+      {camps?.items?.item === undefined && !isLoading && (
+        <div className="text-center font-bold">검색 결과가 없습니다.</div>
       )}
     </article>
   );

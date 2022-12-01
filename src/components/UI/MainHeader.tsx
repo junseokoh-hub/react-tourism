@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Link, useMatch, useNavigate } from "react-router-dom";
+import { Link, NavLink, useMatch, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onClose, onOpen } from "../../store/menuSlice";
 import Modal from "../Modal/Modal";
@@ -99,13 +99,34 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
           <nav className="mt-3 max-w-3xl md:mx-auto">
             <ul className="py-6 flex space-x-3">
               <li>
-                <Link to="search/domestic">국내여행</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-blue-900" : "font-normal"
+                  }
+                  to="search/domestic"
+                >
+                  국내여행
+                </NavLink>
               </li>
               <li>
-                <Link to="search/camping">캠핑</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-blue-900" : "font-normal"
+                  }
+                  to="search/camping"
+                >
+                  캠핑
+                </NavLink>
               </li>
               <li>
-                <Link to="search/data">데이터</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-blue-900" : "font-normal"
+                  }
+                  to="search/data"
+                >
+                  데이터
+                </NavLink>
               </li>
             </ul>
             <SearchBox />

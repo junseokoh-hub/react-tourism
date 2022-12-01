@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
@@ -24,6 +25,9 @@ const LoginPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>로그인</title>
+      </Helmet>
       <form
         className="mt-20 mx-auto space-y-6 w-80 h-96 flex flex-col justify-center items-center rounded-md shadow-2xl"
         onSubmit={submitHandler}

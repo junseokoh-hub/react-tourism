@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
 import { areaBasedList, areaCode } from "../../api/tourismApi";
 import { AreaCodeType, areas } from "../../lib/area";
@@ -37,27 +38,32 @@ const Posts = ({ contentType, contentTypeId }: PostsProps) => {
   );
 
   return (
-    <div className="space-x-2">
-      <SelectBox value={realm} setValue={setRealm} options={areas} />
-      <SelectBox
-        isLoading={isLoading}
-        value={city}
-        setValue={setCity}
-        options={data as AreaCodeType[]}
-      />
-      {!provinceLoading && province === undefined ? (
-        <div className="mt-10 text-center">검색 결과가 없습니다.</div>
-      ) : (
-        <ul className="mt-10 grid grid-cols-2 gap-2">
-          {province &&
-            province.length > 0 &&
-            province.map((prov) => (
-              <SelectedContent data={prov} key={prov.contentid} />
-            ))}
-        </ul>
-      )}
-      {provinceLoading && <Loader />}
-    </div>
+    <>
+      <Helmet>
+        <title>{contentType}</title>
+      </Helmet>
+      <div className="space-x-2">
+        <SelectBox value={realm} setValue={setRealm} options={areas} />
+        <SelectBox
+          isLoading={isLoading}
+          value={city}
+          setValue={setCity}
+          options={data as AreaCodeType[]}
+        />
+        {!provinceLoading && province === undefined ? (
+          <div className="mt-10 text-center">검색 결과가 없습니다.</div>
+        ) : (
+          <ul className="mt-10 grid grid-cols-2 gap-2">
+            {province &&
+              province.length > 0 &&
+              province.map((prov) => (
+                <SelectedContent data={prov} key={prov.contentid} />
+              ))}
+          </ul>
+        )}
+        {provinceLoading && <Loader />}
+      </div>
+    </>
   );
 };
 

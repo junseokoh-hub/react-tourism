@@ -10,8 +10,7 @@ import { appAuth } from "./lib/firebaseConfig";
 import { onState } from "./store/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
-import DomesticSearch from "./components/Search/DomesticSearch";
-import CampingSearch from "./components/Search/CampingSearch";
+import { HelmetProvider } from "react-helmet-async";
 
 const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -22,6 +21,13 @@ const Detail = React.lazy(() => import("./pages/Detail"));
 const LeisureSports = React.lazy(() => import("./pages/LeisureSports"));
 const SignupPage = React.lazy(() => import("./pages/SignupPage"));
 const Search = React.lazy(() => import("./pages/Search"));
+const DomesticSearch = React.lazy(
+  () => import("./components/Search/DomesticSearch"),
+);
+const CampingSearch = React.lazy(
+  () => import("./components/Search/CampingSearch"),
+);
+const DataSearch = React.lazy(() => import("./components/Search/DataSearch"));
 const Restaurant = React.lazy(() => import("./pages/Restaurant"));
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
 const TravelCourse = React.lazy(() => import("./pages/TravelCourse"));
@@ -47,7 +53,9 @@ const App = () => {
       path: "/",
       element: authUser.isAuthReady ? (
         <Suspense fallback={<Loader />}>
-          <Root />
+          <HelmetProvider>
+            <Root />
+          </HelmetProvider>
         </Suspense>
       ) : (
         <Loader />
@@ -63,7 +71,7 @@ const App = () => {
           children: [
             { path: "domestic", element: <DomesticSearch /> },
             { path: "camping", element: <CampingSearch /> },
-            // { path: "data" },
+            { path: "data", element: <DataSearch /> },
           ],
         },
         {
