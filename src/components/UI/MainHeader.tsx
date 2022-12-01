@@ -3,6 +3,7 @@ import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onClose, onOpen } from "../../store/menuSlice";
 import Modal from "../Modal/Modal";
+import SearchBox from "../Search/SearchBox";
 import SideMenu from "./SideMenu";
 
 type MainHeaderProps = {
@@ -11,6 +12,7 @@ type MainHeaderProps = {
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
   const homeMatch = useMatch("/");
+  const searchMatch = useMatch("search");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
@@ -24,14 +26,14 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         </Modal>
       )}
       <header
-        className={`py-5 space-x-3 fixed top-0 left-0 right-0 bg-white font-bold z-50 ${
+        className={`py-5 fixed top-0 left-0 right-0 bg-white font-bold z-50 ${
           !isView ? "shadow-xl" : "shadow-sm"
         } transition-shadow duration-500 ease-in-out`}
       >
         <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">
           {!homeMatch && (
             <div>
-              <span onClick={() => navigate(-1)}>
+              <span onClick={() => navigate("/")}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -93,6 +95,16 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             )}
           </div>
         </nav>
+        {searchMatch && (
+          <nav className="mt-3 max-w-3xl md:mx-auto">
+            <ul className="py-6 flex space-x-3">
+              <li>국내여행</li>
+              <li>캠핑</li>
+              <li>데이터</li>
+            </ul>
+            <SearchBox />
+          </nav>
+        )}
       </header>
     </>
   );

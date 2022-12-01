@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { searchKeyword } from "../api/tourismApi";
+import Loader from "../utils/Loader";
 
 const Search = () => {
   const { register, handleSubmit } = useForm();
@@ -73,15 +74,8 @@ const Search = () => {
 
   return (
     <section>
-      <form onSubmit={searchSubmitHandler} className="text-center">
-        <input
-          type="text"
-          placeholder="입력해 주세요!"
-          {...register("search", searchValidation)}
-          className="pl-2 w-1/2 h-10 outline-none border-0 shadow-[0px_5px_10px_rgba(0,0,0,0.1)]"
-        />
-      </form>
-      {params[0].get("keyword") && (
+      {isLoading && <Loader />}
+      {params[0].get("keyword") && !isLoading && (
         <article className="mt-10 md:grid md:grid-cols-2 md:gap-2">
           {data?.map((item) => (
             <div

@@ -60,21 +60,17 @@ const Detail = ({ contentType }: DetailProps) => {
             alt={data?.data?.title}
           />
           <h3>{data?.data?.title}</h3>
-          <p className="leading-10">{data?.data?.overview}</p>
+          <p
+            className="leading-5"
+            dangerouslySetInnerHTML={{ __html: data?.data?.overview as string }}
+          ></p>
           <div>
             <span>{data?.data?.telname}</span>
             <span>{data?.data?.tel}</span>
             <div id="homepage"></div>
-            {/* <a
-              href={data?.data?.homepage || "#"}
-              target={data?.data?.homepage && "_blank"}
-              rel="noopener noreferrer"
-            >
-              홈페이지
-            </a> */}
             <div
               dangerouslySetInnerHTML={{ __html: data?.data?.homepage || "#" }}
-            ></div>
+            />
           </div>
           {accommodationMatch && (
             <AccommodationDetail
