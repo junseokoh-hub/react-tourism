@@ -32,3 +32,26 @@ export const basedList = async () => {
     throw new Error(errorResponse as any);
   }
 };
+
+export const searchList = async (keyword: string) => {
+  try {
+    const {
+      data: {
+        response: { body },
+      },
+    } = await camping.get("searchList", {
+      params: {
+        keyword,
+      },
+    });
+    return body;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
+  }
+};

@@ -1,11 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
   const { register, handleSubmit } = useForm();
-
+  const navigate = useNavigate();
   const searchSubmitHandler = handleSubmit((data) => {
     if (data) {
+      navigate(`?keyword=${data.search}`);
     } else if (!data) return;
   });
 

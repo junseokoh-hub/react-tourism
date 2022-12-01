@@ -10,6 +10,8 @@ import { appAuth } from "./lib/firebaseConfig";
 import { onState } from "./store/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
+import DomesticSearch from "./components/Search/DomesticSearch";
+import CampingSearch from "./components/Search/CampingSearch";
 
 const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -58,6 +60,11 @@ const App = () => {
         {
           path: "search",
           element: <Search />,
+          children: [
+            { path: "domestic", element: <DomesticSearch /> },
+            { path: "camping", element: <CampingSearch /> },
+            // { path: "data" },
+          ],
         },
         {
           path: "accommodation",

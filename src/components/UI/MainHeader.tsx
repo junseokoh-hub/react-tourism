@@ -12,7 +12,7 @@ type MainHeaderProps = {
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
   const homeMatch = useMatch("/");
-  const searchMatch = useMatch("search");
+  const searchMatch = useMatch("search/*");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
@@ -57,7 +57,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             </Link>
           </div>
           <div className="space-x-3 flex items-center">
-            <Link to="/search" aria-label="search-link">
+            <Link to="/search/domestic" aria-label="search-link">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -98,9 +98,15 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         {searchMatch && (
           <nav className="mt-3 max-w-3xl md:mx-auto">
             <ul className="py-6 flex space-x-3">
-              <li>국내여행</li>
-              <li>캠핑</li>
-              <li>데이터</li>
+              <li>
+                <Link to="search/domestic">국내여행</Link>
+              </li>
+              <li>
+                <Link to="search/camping">캠핑</Link>
+              </li>
+              <li>
+                <Link to="search/data">데이터</Link>
+              </li>
             </ul>
             <SearchBox />
           </nav>
