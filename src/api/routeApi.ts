@@ -7,20 +7,23 @@ const routeConfig: AxiosRequestConfig = {
     _type: "json",
     MobileOS: "WIN",
     MobileApp: "Tourism",
-    numOfRows: "100",
-    pageNo: "1",
+    numOfRows: "20",
   },
 };
 
 const route = axios.create(routeConfig);
 
-export const routeList = async () => {
+export const routeList = async (page: string) => {
   try {
     const {
       data: {
         response: { body },
       },
-    } = await route.get("routeList");
+    } = await route.get("routeList", {
+      params: {
+        pageNo: page,
+      },
+    });
     return body;
   } catch (error) {
     if (axios.isAxiosError(error)) {

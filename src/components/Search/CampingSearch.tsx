@@ -14,8 +14,6 @@ const CampingSearch = () => {
     },
   );
 
-  console.log(camps?.items?.item);
-
   return (
     <article>
       {isLoading ? (

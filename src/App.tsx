@@ -11,6 +11,7 @@ import { onState } from "./store/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
 import { HelmetProvider } from "react-helmet-async";
+import Route from "./pages/Route";
 
 const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -118,6 +119,7 @@ const App = () => {
           element: <Detail contentType={"travel-course"} />,
         },
         { path: "camping", element: <Camping /> },
+        { path: "route", element: <Route /> },
         {
           path: "login",
           element: !authUser.user ? (

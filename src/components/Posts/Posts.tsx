@@ -11,6 +11,15 @@ const SelectedContent = React.lazy(
 );
 
 type PostsProps = {
+  title:
+    | "숙박"
+    | "문화시설"
+    | "축제"
+    | "레포츠"
+    | "음식점"
+    | "쇼핑"
+    | "관광지"
+    | "여행코스";
   contentType:
     | "accommodation"
     | "festival"
@@ -23,7 +32,7 @@ type PostsProps = {
   contentTypeId: string;
 };
 
-const Posts = ({ contentType, contentTypeId }: PostsProps) => {
+const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
   const [realm, setRealm] = useState("1");
   const [city, setCity] = useState("1");
 
@@ -40,7 +49,7 @@ const Posts = ({ contentType, contentTypeId }: PostsProps) => {
   return (
     <>
       <Helmet>
-        <title>{contentType}</title>
+        <title>{title}</title>
       </Helmet>
       <div className="space-x-2">
         <SelectBox value={realm} setValue={setRealm} options={areas} />

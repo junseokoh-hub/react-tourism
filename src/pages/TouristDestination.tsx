@@ -1,7 +1,13 @@
 import Posts from "../components/Posts/Posts";
 
 const TouristDestination = () => {
-  return <Posts contentType={"tourist-destination"} contentTypeId={"12"} />;
+  return (
+    <Posts
+      title={"관광지"}
+      contentType={"tourist-destination"}
+      contentTypeId={"12"}
+    />
+  );
 };
 
 export default TouristDestination;

@@ -6,9 +6,9 @@ import { courseList, routeList } from "../../api/routeApi";
 const HomeSliders = () => {
   // const { data } = useQuery("courseList", courseList);
   // const { data } = useQuery("routeList", routeList);
-  const { data } = useQuery("camping_basedList", basedList);
-
-  console.log(data);
+  const { data } = useQuery("camping_basedList", basedList, {
+    enabled: false,
+  });
 
   return (
     <section className="pt-10 space-y-10">

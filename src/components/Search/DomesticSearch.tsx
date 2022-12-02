@@ -79,6 +79,9 @@ const DomesticSearch = () => {
             ))}
         </ul>
       )}
+      {doms === undefined && !isLoading && (
+        <div className="text-center font-bold">검색 결과가 없습니다.</div>
+      )}
     </article>
   );
 };
