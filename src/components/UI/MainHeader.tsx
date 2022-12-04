@@ -33,7 +33,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">
           {!homeMatch && (
             <div>
-              <span onClick={() => navigate("/")}>
+              <span onClick={() => navigate(-1)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

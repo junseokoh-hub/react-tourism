@@ -1,5 +1,48 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
+type RouteListType = {
+  numOfRows: number;
+  pageNo: number;
+  totalCount: number;
+  items: {
+    item: {
+      routeIdx: string;
+      themeNm: string;
+      linemsg: string;
+      themedescs: string;
+      brdDiv: string;
+      createdtime: string;
+      modifiedtime: string;
+    }[];
+  };
+};
+
+type CourseListType = {
+  totalCount: number;
+  numOfRows: number;
+  pageNo: number;
+  items: {
+    item: {
+      createdtime: string;
+      modifiedtime: string;
+      sigun: string;
+      brdDiv: string;
+      gpxpath: string;
+      travelerinfo: string;
+      crsTourInfo: string;
+      crsSummary: string;
+      routeIdx: string;
+      crsIdx: string;
+      crsKorNm: string;
+      crsDstnc: string;
+      crsTotlRqrmHour: string;
+      crsLevel: string;
+      crsCycle: string;
+      crsContents: string;
+    }[];
+  };
+};
+
 const routeConfig: AxiosRequestConfig = {
   baseURL: "https://apis.data.go.kr/B551011/Durunubi/",
   params: {
@@ -13,7 +56,7 @@ const routeConfig: AxiosRequestConfig = {
 
 const route = axios.create(routeConfig);
 
-export const routeList = async (page: string) => {
+export const routeList = async (page: string): Promise<RouteListType> => {
   try {
     const {
       data: {
@@ -36,13 +79,17 @@ export const routeList = async (page: string) => {
   }
 };
 
-export const courseList = async () => {
+export const courseList = async (routeIdx: string): Promise<CourseListType> => {
   try {
     const {
       data: {
         response: { body },
       },
-    } = await route.get("courseList");
+    } = await route.get("courseList", {
+      params: {
+        routeIdx,
+      },
+    });
     return body;
   } catch (error) {
     if (axios.isAxiosError(error)) {

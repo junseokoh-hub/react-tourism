@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
 import { HelmetProvider } from "react-helmet-async";
 import Route from "./pages/Route";
+import Course from "./pages/Course";
 
 const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -120,6 +121,7 @@ const App = () => {
         },
         { path: "camping", element: <Camping /> },
         { path: "route", element: <Route /> },
+        { path: "route/:routeIdx", element: <Course /> },
         {
           path: "login",
           element: !authUser.user ? (
