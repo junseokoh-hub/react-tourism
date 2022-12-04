@@ -7,11 +7,23 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useEffect } from "react";
+import type { ChartOptions } from "chart.js";
+import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { useQuery } from "react-query";
-import { metVistior } from "../../api/bigDataApi";
+import { MetVisitorType, metVistior } from "../../api/bigDataApi";
 import Loader from "../../utils/Loader";
+
+type DataType = {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: string[];
+    backgroundColor: string;
+    borderColor: string;
+    borderWidth: number;
+  }[];
+};
 
 ChartJS.register(
   BarElement,
@@ -22,41 +34,40 @@ ChartJS.register(
   Legend,
 );
 
-const BarChart = () => {
-  const { data: chart, isLoading } = useQuery("metroData", () =>
-    metVistior("20211010", "20211010"),
+const BarChart = ({ date }: { date: string }) => {
+  const { data: chart, isLoading } = useQuery(["metroData", date], () =>
+    metVistior(date, date),
   );
 
-  function SlicedChart() {
+  console.log(chart);
+
+  function SlicedChart(): Array<MetVisitorType[]> {
     const result = [];
-    for (let i = 0; i < chart?.length!!; i += 3) {
-      result.push(chart?.slice(i, i + 3));
+    if (chart) {
+      for (let i = 0; i < chart?.length!; i += 3) {
+        result.push(chart?.slice(i, i + 3));
+      }
     }
     return result;
   }
 
   useEffect(() => {
     SlicedChart();
-  }, [SlicedChart]);
+  }, [SlicedChart, date]);
 
-  let data = {
-    labels:
-      SlicedChart()?.length > 0 && SlicedChart()?.map((x: any) => x[0].areaNm),
+  let data: DataType = {
+    labels: SlicedChart()?.map((item) => item[0].areaNm),
     datasets: [
       {
         label: "현지인",
-        data:
-          SlicedChart()?.length > 0 &&
-          SlicedChart()?.map((x: any) => x[0].touNum),
+        data: SlicedChart()?.map((item) => item[0].touNum),
         backgroundColor: "teal",
         borderColor: "teal",
         borderWidth: 1,
       },
       {
         label: "외지인",
-        data:
-          SlicedChart()?.length > 0 &&
-          SlicedChart()?.map((x: any) => x[1].touNum),
+        data: SlicedChart()?.map((item) => item[1].touNum),
         backgroundColor: "red",
         borderColor: "red",
         borderWidth: 1,
@@ -64,44 +75,45 @@ const BarChart = () => {
     ],
   };
 
-  let options = {
+  let options: ChartOptions<"bar"> = {
     responsive: false,
     maintainAspectRatio: false,
     scales: {
       y: {
         ticks: {
-          stepSize: 2000000,
+          stepSize: 500000,
         },
       },
     },
     plugins: {
       legend: {
         position: "top",
-        labels: {
-          fontSize: 25,
-        },
+        labels: {},
       },
       title: {
         display: true,
-        text: "About Products",
+        text: "광역지자체 지역 방문자 수 (단위: 명)",
       },
     },
   };
 
   return (
-    <section>
+    <>
       {isLoading ? (
         <Loader />
-      ) : (
+      ) : !isLoading && chart ? (
         <Bar
+          className="mx-auto"
           width={700}
           height={400}
-          data={data as any}
-          options={options as any}
+          data={data}
+          options={options}
         />
+      ) : (
+        <div>결과가 없습니다.</div>
       )}
-    </section>
+    </>
   );
 };
 
-export default BarChart;
+export default React.memo(BarChart);

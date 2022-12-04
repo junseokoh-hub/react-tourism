@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import VisitorData from "../components/Home/VisitorData";
 
@@ -8,7 +7,6 @@ const FrontBanner = React.lazy(() => import("../components/Home/FrontBanner"));
 const HomeSliders = React.lazy(() => import("../components/Home/HomeSliders"));
 
 const Home = () => {
-  console.log("rendering");
   return (
     <>
       <Helmet>

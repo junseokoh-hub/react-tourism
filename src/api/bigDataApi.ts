@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
-type MetVisitorType = {
+export type MetVisitorType = {
   touNum: "string";
   baseYmd: "string";
   areaCode: "string";
