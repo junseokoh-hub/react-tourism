@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useQueries } from "react-query";
 import { useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../api/tourismApi";

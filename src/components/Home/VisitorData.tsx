@@ -2,26 +2,32 @@ import { useRef, useState } from "react";
 import BarChart from "./BarChart";
 
 const VisitorData = () => {
-  // const [date, setDate] = useState("2021-10-10");
   const [date, setDate] = useState(false);
   const dateRef = useRef<HTMLInputElement | null>(null);
-  // console.log(date.split("-").join(""));
-
-  console.log("date");
 
   return (
-    <section className="min-h-[400px] flex flex-col">
-      <div>
-        <input
-          className="w-28"
-          type="date"
-          ref={dateRef}
-          // value={date}
-          // onChange={(e) => setDate(e.target.value)}
-        />
-        <button onClick={() => setDate((prev) => !prev)}>검색</button>
-      </div>
-      <BarChart date={dateRef.current?.value.split("-").join("") as string} />
+    <section className="min-h-[400px] space-y-4">
+      <h3>얼마나 많은 사람들이 지역을 방문할까?</h3>
+      <article className="max-h-[400px] space-y-6 flex flex-col">
+        <div className="space-x-3">
+          <label className="font-semibold" htmlFor="date">
+            날짜 :
+          </label>
+          <input
+            id="date"
+            className="py-1 px-2 border rounded-md font-semibold font-mono"
+            type="date"
+            ref={dateRef}
+          />
+          <button
+            className="py-1 px-6 border-0 text-white font-semibold bg-teal-400 rounded-md transition-colors cursor-pointer hover:bg-teal-700"
+            onClick={() => setDate((prev) => !prev)}
+          >
+            검색
+          </button>
+        </div>
+        <BarChart date={dateRef.current?.value.split("-").join("") as string} />
+      </article>
     </section>
   );
 };

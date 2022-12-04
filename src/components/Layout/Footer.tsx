@@ -16,6 +16,7 @@ const Footer = () => {
             href="https://www.facebook.com"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -29,6 +30,7 @@ const Footer = () => {
             href="https://www.twitter.com"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Twitter"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,6 +44,7 @@ const Footer = () => {
             href="https://www.instagram.com"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +58,7 @@ const Footer = () => {
             href="https://www.blogger.com"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Blogger"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

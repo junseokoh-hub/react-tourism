@@ -35,11 +35,13 @@ ChartJS.register(
 );
 
 const BarChart = ({ date }: { date: string }) => {
-  const { data: chart, isLoading } = useQuery(["metroData", date], () =>
-    metVistior(date, date),
+  const { data: chart, isLoading } = useQuery(
+    ["metroData", date],
+    () => metVistior(date, date),
+    {
+      retry: false,
+    },
   );
-
-  console.log(chart);
 
   function SlicedChart(): Array<MetVisitorType[]> {
     const result = [];
@@ -76,7 +78,6 @@ const BarChart = ({ date }: { date: string }) => {
   };
 
   let options: ChartOptions<"bar"> = {
-    responsive: false,
     maintainAspectRatio: false,
     scales: {
       y: {
@@ -99,18 +100,10 @@ const BarChart = ({ date }: { date: string }) => {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && !chart ? (
         <Loader />
-      ) : !isLoading && chart ? (
-        <Bar
-          className="mx-auto"
-          width={700}
-          height={400}
-          data={data}
-          options={options}
-        />
       ) : (
-        <div>결과가 없습니다.</div>
+        <Bar width={700} height={400} data={data} options={options} />
       )}
     </>
   );

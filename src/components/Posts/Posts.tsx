@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { useQuery } from "react-query";
 import { areaBasedList, areaCode } from "../../api/tourismApi";
 import { AreaCodeType, areas } from "../../lib/area";
+import SEOMeta from "../../SEOMeta";
 import Loader from "../../utils/Loader";
 
 const SelectBox = React.lazy(() => import("../SelectBox/SelectBox"));
@@ -48,9 +48,10 @@ const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
+      <SEOMeta
+        title={title}
+        content={`어느 ${title}을 들르시고 싶은 지 확인해 보세요.`}
+      />
       <div className="space-x-2">
         <SelectBox value={realm} setValue={setRealm} options={areas} />
         <SelectBox
