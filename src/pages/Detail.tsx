@@ -10,6 +10,7 @@ import ShoppingDetail from "../components/Detail/ShoppingDetail";
 import TouristDestinationDetail from "../components/Detail/TouristDestinationDetail";
 import TravelCourseDetail from "../components/Detail/TravelCourseDetail";
 import { DetailProps } from "../types/DetailType";
+import KakaoMap from "../utils/KakaoMap";
 import Loader from "../utils/Loader";
 
 const Detail = ({ contentType }: DetailProps) => {
@@ -69,6 +70,10 @@ const Detail = ({ contentType }: DetailProps) => {
             <div id="homepage"></div>
             <div
               dangerouslySetInnerHTML={{ __html: data?.data?.homepage || "#" }}
+            />
+            <KakaoMap
+              latitude={Number(data?.data?.mapy)}
+              longitude={Number(data?.data?.mapx)}
             />
           </div>
           {accommodationMatch && (

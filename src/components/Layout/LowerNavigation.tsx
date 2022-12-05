@@ -8,7 +8,7 @@ const LowerNavigation = () => {
   const navigate = useNavigate();
 
   return (
-    <aside className="py-5 fixed bottom-0 left-0 right-0 bg-white shadow-2xl">
+    <aside className="py-5 fixed bottom-0 left-0 right-0 bg-white shadow-2xl dark:bg-black dark:text-white dark:shadow-[0px_0px_1px_rgba(255,255,255,0.5)]">
       <nav className="px-5 flex justify-around max-w-3xl md:mx-auto">
         <span
           className="flex items-center cursor-pointer"

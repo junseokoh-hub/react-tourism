@@ -10,7 +10,7 @@ const FrontBanner = () => {
         다양한 국내여행, <br />
         서울부터 제주까지!
       </div>
-      <div className="mx-auto py-2 space-x-2 w-1/2 flex justify-center bg-blue-200 rounded-md font-semibold">
+      <div className="mx-auto py-2 space-x-2 w-1/2 flex justify-center bg-blue-200 rounded-md font-semibold dark:bg-cyan-900">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -33,7 +33,10 @@ const FrontBanner = () => {
         <span>국내여행 Go</span>
       </div>
       <ul className="grid grid-cols-4 gap-2 text-sm md:text-base">
-        <li className="front_btns" onClick={() => navigate("accommodation")}>
+        <li
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
+          onClick={() => navigate("accommodation")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -50,7 +53,10 @@ const FrontBanner = () => {
           </svg>
           <span className="font-semibold">숙소</span>
         </li>
-        <li className="front_btns" onClick={() => navigate("festival")}>
+        <li
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
+          onClick={() => navigate("festival")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -72,7 +78,10 @@ const FrontBanner = () => {
           </svg>
           <span className="font-semibold">행사</span>
         </li>
-        <li className="front_btns" onClick={() => navigate("restaurant")}>
+        <li
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
+          onClick={() => navigate("restaurant")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -89,7 +98,10 @@ const FrontBanner = () => {
           </svg>
           <span className="font-semibold">음식</span>
         </li>
-        <li className="front_btns" onClick={() => navigate("shopping")}>
+        <li
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
+          onClick={() => navigate("shopping")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -104,11 +116,10 @@ const FrontBanner = () => {
               d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
             />
           </svg>
-
           <span className="font-semibold">쇼핑</span>
         </li>
         <li
-          className="front_btns"
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
           onClick={() => navigate("cultural-facilities")}
         >
           <svg
@@ -125,10 +136,12 @@ const FrontBanner = () => {
               d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"
             />
           </svg>
-
           <span className="font-semibold">문화 시설</span>
         </li>
-        <li className="front_btns" onClick={() => navigate("leisure-sports")}>
+        <li
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
+          onClick={() => navigate("leisure-sports")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -147,7 +160,7 @@ const FrontBanner = () => {
           <span className="font-semibold">레포츠</span>
         </li>
         <li
-          className="front_btns"
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
           onClick={() => navigate("tourist-destination")}
         >
           <svg
@@ -166,7 +179,10 @@ const FrontBanner = () => {
           </svg>
           <span className="font-semibold">관광지</span>
         </li>
-        <li className="front_btns" onClick={() => navigate("travel-course")}>
+        <li
+          className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
+          onClick={() => navigate("travel-course")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

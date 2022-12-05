@@ -16,31 +16,6 @@ const tourismConfig: AxiosRequestConfig = {
 
 const tourism = axios.create(tourismConfig);
 
-export const searchStay = async (areaCode: string, sigunguCode: string) => {
-  try {
-    const {
-      data: {
-        response: {
-          body: {
-            items: { item },
-          },
-        },
-      },
-    } = await tourism.get("searchStay", {
-      params: { areaCode, sigunguCode },
-    });
-    return item;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw new Error(
-        (error.response as AxiosResponse<{ message: string }>).data.message,
-      );
-    }
-    const errorResponse = (error as AxiosError<{ message: string }>).response;
-    throw new Error(errorResponse as any);
-  }
-};
-
 export const areaCode = async (code: string) => {
   try {
     const {

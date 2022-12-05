@@ -1,8 +1,8 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import VisitorData from "../components/Home/VisitorData";
 import SEOMeta from "../SEOMeta";
+import KakaoMap from "../utils/KakaoMap";
 
 const FrontBanner = React.lazy(() => import("../components/Home/FrontBanner"));
 const HomeSliders = React.lazy(() => import("../components/Home/HomeSliders"));
@@ -17,8 +17,11 @@ const Home = () => {
       <section className="space-y-8 divide-y-2">
         <FrontBanner />
         <HomeSliders />
-        <Link to="route">Route</Link>
+        <Link to="route" className="dark:text-white">
+          Route
+        </Link>
         <VisitorData />
+        <KakaoMap latitude={37.50963893461533} longitude={127.05797153552354} />
       </section>
     </>
   );
