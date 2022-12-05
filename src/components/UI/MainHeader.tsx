@@ -55,9 +55,9 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
           !isView ? "shadow-xl" : "shadow-sm"
         } transition-shadow duration-500 ease-in-out dark:bg-black`}
       >
-        <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">
+        <nav className="px-5 flex items-center max-w-3xl md:mx-auto">
           {!homeMatch && (
-            <div>
+            <div className="w-1/3">
               <span onClick={() => navigate(-1)} className="dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,11 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               </span>
             </div>
           )}
-          <div>
+          <div
+            className={`${!homeMatch ? "w-1/3" : "w-1/2"} flex ${
+              !homeMatch ? "justify-center" : "justify-start"
+            }`}
+          >
             <Link
               to="/"
               className="text-2xl dark:text-white"
@@ -85,7 +89,11 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               Tourism
             </Link>
           </div>
-          <div className="space-x-3 flex items-center">
+          <div
+            className={`${
+              !homeMatch ? "w-1/3" : "w-1/2"
+            } space-x-3 flex justify-end items-center`}
+          >
             <Link
               to="/search/domestic"
               aria-label="search-link"
@@ -106,38 +114,13 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
                 />
               </svg>
             </Link>
-            {!authUser ? (
-              <Link to="login" className="dark:text-white">
-                Login
-              </Link>
-            ) : (
-              <span
-                onClick={() => dispatch(onOpen())}
-                className="dark:text-white"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6 block"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-              </span>
-            )}
             <div
               onClick={toggleDarkMode}
-              className={`p-1 w-20 h-10 flex items-center rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)] cursor-pointer`}
+              className={`p-1 w-16 h-10 flex items-center rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)] cursor-pointer`}
             >
               <div
                 className={`w-9 h-9 rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] ${
-                  !dark ? "translate-x-0" : "translate-x-9"
+                  !dark ? "translate-x-0" : "translate-x-5"
                 } transition-all dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)]`}
               ></div>
             </div>

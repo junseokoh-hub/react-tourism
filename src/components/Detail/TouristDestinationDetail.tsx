@@ -19,20 +19,18 @@ const TouristDestinationDetail = ({
         <ul>
           {detailInfoData?.map((item) => (
             <li key={item.serialnum}>
-              <h3>
-                {item.infoname} : {item.infotext}
-              </h3>
+              <p dangerouslySetInnerHTML={{ __html: item.infotext }} />
             </li>
           ))}
         </ul>
         <ul>
           {detailIntroData?.map((item) => (
             <li key={item.contentid}>
-              <h3>펫 : {item.chkpet}</h3>
-              <h3>카드 : {item.chkcreditcard}</h3>
-              <h3>유모차 : {item.chkbabycarriage}</h3>
-              {item.expagerange && <h3>아이 : {item.expagerange}</h3>}
-              <h3>주차 : {item.parking}</h3>
+              <h4>펫 : {item.chkpet}</h4>
+              <h4>카드 : {item.chkcreditcard}</h4>
+              <h4>유모차 : {item.chkbabycarriage}</h4>
+              {item.expagerange && <h4>아이 : {item.expagerange}</h4>}
+              <h4>주차 : {item.parking}</h4>
             </li>
           ))}
         </ul>

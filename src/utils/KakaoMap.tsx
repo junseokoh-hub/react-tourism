@@ -50,4 +50,4 @@ const KakaoMap = ({ latitude, longitude }: KakaoMapProps) => {
   );
 };
 
-export default KakaoMap;
+export default React.memo(KakaoMap);
