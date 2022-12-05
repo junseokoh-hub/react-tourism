@@ -11,7 +11,8 @@ type MainHeaderProps = {
 };
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
-  const [dark, setDark] = useState("다크 모드");
+  const [dark, setDark] = useState(false);
+  // const [toggle, setToggle] = useState(false);
   const homeMatch = useMatch("/");
   const searchMatch = useMatch("search/*");
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
   useEffect(() => {
     if (userTheme === "dark" || (!userTheme && systemTheme)) {
       document.documentElement.classList.add("dark");
-      setDark("라이트모드");
+      setDark(true);
       return;
     }
   }, []);
@@ -34,10 +35,12 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
     if (document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
+      setDark(false);
       return;
     }
     document.documentElement.classList.add("dark");
     localStorage.setItem("theme", "dark");
+    setDark(true);
   }, []);
 
   return (
@@ -128,7 +131,16 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
                 </svg>
               </span>
             )}
-            <button onClick={toggleDarkMode}>{dark}</button>
+            <div
+              onClick={toggleDarkMode}
+              className={`p-1 w-20 h-10 flex items-center rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)] cursor-pointer`}
+            >
+              <div
+                className={`w-9 h-9 rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] ${
+                  !dark ? "translate-x-0" : "translate-x-9"
+                } transition-all dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)]`}
+              ></div>
+            </div>
           </div>
         </nav>
         {searchMatch && (
