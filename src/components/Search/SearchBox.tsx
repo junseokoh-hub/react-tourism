@@ -25,7 +25,7 @@ const SearchBox = () => {
         type="text"
         placeholder="입력해 주세요!"
         {...register("search", searchValidation)}
-        className="px-2 w-full h-14 outline-none border-0 rounded-md shadow-[0px_5px_10px_rgba(0,0,0,0.1)]"
+        className="px-2 w-full h-14 outline-none border-0 rounded-md shadow-[0px_5px_10px_rgba(0,0,0,0.1)] dark:bg-black dark:placeholder:text-white dark:text-white dark:shadow-[rgba(255,255,255,0.4)] "
       />
     </form>
   );

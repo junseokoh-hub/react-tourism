@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, NavLink, useMatch, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onClose, onOpen } from "../../store/menuSlice";
@@ -11,12 +11,34 @@ type MainHeaderProps = {
 };
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
+  const [dark, setDark] = useState("다크 모드");
   const homeMatch = useMatch("/");
   const searchMatch = useMatch("search/*");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
   const authUser = useSelector((state) => state.auth.user);
+
+  const userTheme = localStorage.getItem("theme");
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  useEffect(() => {
+    if (userTheme === "dark" || (!userTheme && systemTheme)) {
+      document.documentElement.classList.add("dark");
+      setDark("라이트모드");
+      return;
+    }
+  }, []);
+
+  const toggleDarkMode = useCallback(() => {
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      return;
+    }
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }, []);
 
   return (
     <>
@@ -28,12 +50,12 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
       <header
         className={`py-5 fixed top-0 left-0 right-0 bg-white font-bold z-50 ${
           !isView ? "shadow-xl" : "shadow-sm"
-        } transition-shadow duration-500 ease-in-out`}
+        } transition-shadow duration-500 ease-in-out dark:bg-black`}
       >
         <nav className="px-5 flex justify-between items-center max-w-3xl md:mx-auto">
           {!homeMatch && (
             <div>
-              <span onClick={() => navigate(-1)}>
+              <span onClick={() => navigate(-1)} className="dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -52,12 +74,20 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             </div>
           )}
           <div>
-            <Link to="/" className="text-2xl" aria-label="home-link">
+            <Link
+              to="/"
+              className="text-2xl dark:text-white"
+              aria-label="home-link"
+            >
               Tourism
             </Link>
           </div>
           <div className="space-x-3 flex items-center">
-            <Link to="/search/domestic" aria-label="search-link">
+            <Link
+              to="/search/domestic"
+              aria-label="search-link"
+              className="dark:text-white"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -74,9 +104,14 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               </svg>
             </Link>
             {!authUser ? (
-              <Link to="login">Login</Link>
+              <Link to="login" className="dark:text-white">
+                Login
+              </Link>
             ) : (
-              <span onClick={() => dispatch(onOpen())}>
+              <span
+                onClick={() => dispatch(onOpen())}
+                className="dark:text-white"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -93,6 +128,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
                 </svg>
               </span>
             )}
+            <button onClick={toggleDarkMode}>{dark}</button>
           </div>
         </nav>
         {searchMatch && (
@@ -101,7 +137,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               <li>
                 <NavLink
                   className={({ isActive }) =>
-                    isActive ? "text-blue-900" : "font-normal"
+                    isActive ? "text-blue-900" : "dark:text-white"
                   }
                   to="search/domestic"
                 >
@@ -111,7 +147,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               <li>
                 <NavLink
                   className={({ isActive }) =>
-                    isActive ? "text-blue-900" : "font-normal"
+                    isActive ? "text-blue-900" : "dark:text-white"
                   }
                   to="search/camping"
                 >
@@ -121,7 +157,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               <li>
                 <NavLink
                   className={({ isActive }) =>
-                    isActive ? "text-blue-900" : "font-normal"
+                    isActive ? "text-blue-900" : "dark:text-white"
                   }
                   to="search/data"
                 >

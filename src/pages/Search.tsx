@@ -13,7 +13,7 @@ const Search = () => {
   return (
     <>
       <SEOMeta title={"검색"} content={"여행 정보에 대해 검색해보세요."} />
-      <section className={`${searchMatch} && mt-[180px]`}>
+      <section className={`${searchMatch} && mt-[180px] dark:text-white`}>
         {domesticMatch && <DomesticSearch />}
         {campingMatch && <CampingSearch />}
         {dataMatch && <DataSearch />}

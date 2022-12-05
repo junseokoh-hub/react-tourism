@@ -6,7 +6,7 @@ const VisitorData = () => {
   const dateRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <section className="min-h-[400px] space-y-4">
+    <section className="min-h-[400px] space-y-4 dark:text-white">
       <h3>얼마나 많은 사람들이 지역을 방문할까?</h3>
       <article className="max-h-[400px] space-y-6 flex flex-col">
         <div className="space-x-3">

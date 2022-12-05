@@ -103,7 +103,13 @@ const BarChart = ({ date }: { date: string }) => {
       {isLoading && !chart ? (
         <Loader />
       ) : (
-        <Bar width={700} height={400} data={data} options={options} />
+        <Bar
+          width={700}
+          height={400}
+          data={data}
+          options={options}
+          className="dark:shadow-sm dark:shadow-[rgba(255,255,255,0.4)]"
+        />
       )}
     </>
   );

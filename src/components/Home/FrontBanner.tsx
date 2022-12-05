@@ -5,7 +5,7 @@ const FrontBanner = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-8 dark:text-white">
       <div className="text-3xl font-bold leading-10">
         다양한 국내여행, <br />
         서울부터 제주까지!

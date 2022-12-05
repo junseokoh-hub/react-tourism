@@ -45,7 +45,7 @@ const Detail = ({ contentType }: DetailProps) => {
     <>
       {isLoading && <Loader />}
       {!isLoading && (
-        <div className="space-y-4">
+        <div className="space-y-4 dark:text-white">
           <img
             className="w-[699px] h-[466px] block rounded-md"
             src={

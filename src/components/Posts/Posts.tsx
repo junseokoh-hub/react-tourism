@@ -63,7 +63,7 @@ const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
         {!provinceLoading && province === undefined ? (
           <div className="mt-10 text-center">검색 결과가 없습니다.</div>
         ) : (
-          <ul className="mt-10 grid grid-cols-2 gap-2">
+          <ul className="mt-10 grid grid-cols-2 gap-2 dark:text-white">
             {province &&
               province.length > 0 &&
               province.map((prov) => (
