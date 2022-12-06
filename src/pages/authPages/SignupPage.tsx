@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { useSignup } from "../hooks/useSignup";
+import { useSignup } from "../../hooks/useSignup";
 
 export type AuthType = {
   email: string;

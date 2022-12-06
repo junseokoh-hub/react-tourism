@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Modal from "./components/Modal/Modal";
-import SideMenu from "./components/UI/SideMenu";
-import { useDispatch, useSelector } from "./store/hooks";
-import { onClose } from "./store/menuSlice";
 
 const MainHeader = React.lazy(() => import("./components/UI/MainHeader"));
 const LowerNavigation = React.lazy(

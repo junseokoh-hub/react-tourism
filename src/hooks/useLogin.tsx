@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { appAuth } from "../lib/firebaseConfig";
-import { onLogin } from "../store/authSlice";
+import { onLogin } from "../store/slices/authSlice";
 import { useDispatch } from "../store/hooks";
 
 export const useLogin = () => {

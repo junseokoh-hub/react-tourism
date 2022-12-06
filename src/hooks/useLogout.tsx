@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useState } from "react";
 import { appAuth } from "../lib/firebaseConfig";
-import { onLogout } from "../store/authSlice";
+import { onLogout } from "../store/slices/authSlice";
 import { useDispatch } from "../store/hooks";
 
 export const useLogout = () => {

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "../../store/hooks";
-import { onOpen } from "../../store/menuSlice";
+import { onOpen } from "../../store/slices/menuSlice";
 
 const LowerNavigation = () => {
   const authUser = useSelector((state) => state.auth.user);

@@ -1,5 +1,5 @@
 import { Link, Outlet, useMatch } from "react-router-dom";
-import SEOMeta from "../SEOMeta";
+import SEOMeta from "../../SEOMeta";
 
 const Camping = () => {
   const mapMatch = useMatch("camping/map-search");
@@ -15,7 +15,7 @@ const Camping = () => {
         <nav className="flex">
           <Link
             to="input-search"
-            className="py-3 px-1 w-1/2 block text-lg text-center"
+            className="py-3 px-1 w-1/2 block text-lg text-center dark:text-white"
           >
             검색으로 찾기
             {inputMatch && (
@@ -24,7 +24,7 @@ const Camping = () => {
           </Link>
           <Link
             to="map-search"
-            className="py-3 w-1/2 block text-lg text-center"
+            className="py-3 w-1/2 block text-lg text-center dark:text-white"
           >
             지도로 찾기
             {mapMatch && (

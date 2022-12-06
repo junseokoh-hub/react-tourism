@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import authSlice from "./authSlice";
-import campingSlice from "./campingSlice";
-import menuSlice from "./menuSlice";
+import authSlice from "./slices/authSlice";
+import campingSlice from "./slices/campingSlice";
+import menuSlice from "./slices/menuSlice";
 
 export const rootReducer = combineReducers({
   auth: authSlice,

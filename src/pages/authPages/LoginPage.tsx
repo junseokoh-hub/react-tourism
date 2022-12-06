@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "../hooks/useLogin";
+import { useLogin } from "../../hooks/useLogin";
 import { AuthType } from "./SignupPage";
 
 const LoginPage = () => {

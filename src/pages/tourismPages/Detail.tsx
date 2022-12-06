@@ -1,17 +1,17 @@
 import { useQueries } from "react-query";
 import { useParams } from "react-router-dom";
-import { detailCommon, detailInfo, detailIntro } from "../api/tourismApi";
-import AccommodationDetail from "../components/Detail/AccommodationDetail";
-import CulturalFacilitiesDetail from "../components/Detail/CulturalFacilitiesDetail";
-import FestivalDetail from "../components/Detail/FestivalDetail";
-import LeisureSportsDetail from "../components/Detail/LeisureSportsDetail";
-import RestaurantDetail from "../components/Detail/RestaurantDetail";
-import ShoppingDetail from "../components/Detail/ShoppingDetail";
-import TouristDestinationDetail from "../components/Detail/TouristDestinationDetail";
-import TravelCourseDetail from "../components/Detail/TravelCourseDetail";
-import { DetailProps } from "../types/DetailType";
-import KakaoMap from "../utils/KakaoMap";
-import Loader from "../utils/Loader";
+import { detailCommon, detailInfo, detailIntro } from "../../api/tourismApi";
+import AccommodationDetail from "../../components/Detail/AccommodationDetail";
+import CulturalFacilitiesDetail from "../../components/Detail/CulturalFacilitiesDetail";
+import FestivalDetail from "../../components/Detail/FestivalDetail";
+import LeisureSportsDetail from "../../components/Detail/LeisureSportsDetail";
+import RestaurantDetail from "../../components/Detail/RestaurantDetail";
+import ShoppingDetail from "../../components/Detail/ShoppingDetail";
+import TouristDestinationDetail from "../../components/Detail/TouristDestinationDetail";
+import TravelCourseDetail from "../../components/Detail/TravelCourseDetail";
+import { DetailProps } from "../../types/DetailType";
+import KakaoMap from "../../utils/KakaoMap";
+import Loader from "../../utils/Loader";
 
 const Detail = ({ contentType }: DetailProps) => {
   const { contentId, contentTypeId } = useParams();

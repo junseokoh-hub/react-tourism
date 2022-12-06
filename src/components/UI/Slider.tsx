@@ -1,9 +1,9 @@
 import React from "react";
-import { AreasType } from "../../lib/area";
+import { AreaCodeType } from "../../lib/area";
 
 type SliderProps = {
   sliderId: string;
-  data: AreasType[];
+  data: AreaCodeType[];
 };
 
 const Slider = ({ sliderId, data }: SliderProps) => {

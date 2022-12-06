@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { appAuth } from "../lib/firebaseConfig";
-import { onLogin } from "../store/authSlice";
+import { onLogin } from "../store/slices/authSlice";
 import { useDispatch } from "../store/hooks";
 
 export const useSignup = () => {

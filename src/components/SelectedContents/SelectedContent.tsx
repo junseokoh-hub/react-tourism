@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { AreaBasedListType } from "../../types/DetailType";
-import Loader from "../../utils/Loader";
 
 export type ProvinceType = {
   addr1: string;

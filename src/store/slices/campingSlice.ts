@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LocationBasedListType } from "../api/campingApi";
+import { LocationBasedListType } from "../../api/campingApi";
 
 type InitialType = {
   camping: LocationBasedListType[];

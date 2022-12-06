@@ -12,13 +12,11 @@ type MainHeaderProps = {
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
   const [dark, setDark] = useState(false);
-  // const [toggle, setToggle] = useState(false);
   const homeMatch = useMatch("/");
   const searchMatch = useMatch("search/*");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
-  const authUser = useSelector((state) => state.auth.user);
 
   const userTheme = localStorage.getItem("theme");
   const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -116,10 +114,10 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             </Link>
             <div
               onClick={toggleDarkMode}
-              className={`p-1 w-16 h-10 flex items-center rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)] cursor-pointer`}
+              className={`p-1 w-16 h-8 flex items-center rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)] cursor-pointer`}
             >
               <div
-                className={`w-9 h-9 rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] ${
+                className={`w-7 h-7 rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] ${
                   !dark ? "translate-x-0" : "translate-x-5"
                 } transition-all dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)]`}
               ></div>

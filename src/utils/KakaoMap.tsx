@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useMatch } from "react-router-dom";
 import { locationBasedList } from "../api/campingApi";
-import { onGetData } from "../store/campingSlice";
+import { onGetData } from "../store/slices/campingSlice";
 import { useDispatch, useSelector } from "../store/hooks";
 
 declare global {
@@ -82,7 +82,6 @@ const KakaoMap = ({ latitude, longitude }: KakaoMapProps) => {
               };
               array.push(position);
             }
-            console.log(array);
             dispatch(onGetData(data));
             let imageSrc =
               "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";

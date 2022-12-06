@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { appAuth } from "./lib/firebaseConfig";
-import { onState } from "./store/authSlice";
+import { onState } from "./store/slices/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
 import { HelmetProvider } from "react-helmet-async";
@@ -16,12 +16,16 @@ import Course from "./pages/Course";
 
 const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
-const Accommodation = React.lazy(() => import("./pages/Accommodation"));
-const Shopping = React.lazy(() => import("./pages/Shopping"));
-const Festival = React.lazy(() => import("./pages/Festival"));
-const Detail = React.lazy(() => import("./pages/Detail"));
-const LeisureSports = React.lazy(() => import("./pages/LeisureSports"));
-const SignupPage = React.lazy(() => import("./pages/SignupPage"));
+const Accommodation = React.lazy(
+  () => import("./pages/tourismPages/Accommodation"),
+);
+const Shopping = React.lazy(() => import("./pages/tourismPages/Shopping"));
+const Festival = React.lazy(() => import("./pages/tourismPages/Festival"));
+const Detail = React.lazy(() => import("./pages/tourismPages/Detail"));
+const LeisureSports = React.lazy(
+  () => import("./pages/tourismPages/LeisureSports"),
+);
+const SignupPage = React.lazy(() => import("./pages/authPages/SignupPage"));
 const Search = React.lazy(() => import("./pages/Search"));
 const DomesticSearch = React.lazy(
   () => import("./components/Search/DomesticSearch"),
@@ -30,16 +34,20 @@ const CampingSearch = React.lazy(
   () => import("./components/Search/CampingSearch"),
 );
 const DataSearch = React.lazy(() => import("./components/Search/DataSearch"));
-const Restaurant = React.lazy(() => import("./pages/Restaurant"));
-const LoginPage = React.lazy(() => import("./pages/LoginPage"));
-const TravelCourse = React.lazy(() => import("./pages/TravelCourse"));
-const TouristDestination = React.lazy(
-  () => import("./pages/TouristDestination"),
+const Restaurant = React.lazy(() => import("./pages/tourismPages/Restaurant"));
+const LoginPage = React.lazy(() => import("./pages/authPages/LoginPage"));
+const TravelCourse = React.lazy(
+  () => import("./pages/tourismPages/TravelCourse"),
 );
-const Camping = React.lazy(() => import("./pages/Camping"));
-const CampingMapSearch = React.lazy(() => import("./pages/CampingMapSearch"));
+const TouristDestination = React.lazy(
+  () => import("./pages/tourismPages/TouristDestination"),
+);
+const Camping = React.lazy(() => import("./pages/campingPages/Camping"));
+const CampingMapSearch = React.lazy(
+  () => import("./pages/campingPages/CampingMapSearch"),
+);
 const CampingInputSearch = React.lazy(
-  () => import("./pages/CampingInputSearch"),
+  () => import("./pages/campingPages/CampingInputSearch"),
 );
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 

@@ -1,4 +1,4 @@
-import Posts from "../components/Posts/Posts";
+import Posts from "../../components/Posts/Posts";
 
 const Shopping = () => {
   return <Posts title={"쇼핑"} contentType={"shopping"} contentTypeId={"38"} />;
