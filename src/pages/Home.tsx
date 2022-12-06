@@ -21,7 +21,7 @@ const Home = () => {
           Route
         </Link>
         <VisitorData />
-        <KakaoMap latitude={37.50963893461533} longitude={127.05797153552354} />
+        <KakaoMap latitude={37.5666805} longitude={126.9784147} />
       </section>
     </>
   );

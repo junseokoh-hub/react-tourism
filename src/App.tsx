@@ -37,6 +37,10 @@ const TouristDestination = React.lazy(
   () => import("./pages/TouristDestination"),
 );
 const Camping = React.lazy(() => import("./pages/Camping"));
+const CampingMapSearch = React.lazy(() => import("./pages/CampingMapSearch"));
+const CampingInputSearch = React.lazy(
+  () => import("./pages/CampingInputSearch"),
+);
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
@@ -119,7 +123,17 @@ const App = () => {
           path: "travel-course/:contentId/:contentTypeId",
           element: <Detail contentType={"travel-course"} />,
         },
-        { path: "camping", element: <Camping /> },
+        {
+          path: "camping",
+          element: <Camping />,
+          children: [
+            {
+              path: "map-search",
+              element: <CampingMapSearch />,
+            },
+            { path: "input-search", element: <CampingInputSearch /> },
+          ],
+        },
         { path: "route", element: <Route /> },
         { path: "route/:routeIdx", element: <Course /> },
         {

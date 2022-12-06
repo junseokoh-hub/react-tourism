@@ -13,7 +13,7 @@ const Course = () => {
   console.log(courses?.items.item);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 dark:text-white transition-colors">
       {isLoading ? (
         <Loader />
       ) : (

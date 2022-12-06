@@ -17,7 +17,7 @@ const Camping = () => {
   // console.log(data?.items?.item.map((camp: any) => camp.doNm));
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col dark:text-white">
       <SelectBox value={value} setValue={setValue} options={areas} />
 
       {isLoading ? (

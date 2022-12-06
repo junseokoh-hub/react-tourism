@@ -61,7 +61,9 @@ const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
           options={data as AreaCodeType[]}
         />
         {!provinceLoading && province === undefined ? (
-          <div className="mt-10 text-center">검색 결과가 없습니다.</div>
+          <div className="mt-10 text-center dark:text-white">
+            검색 결과가 없습니다.
+          </div>
         ) : (
           <ul className="mt-10 grid grid-cols-2 gap-2 dark:text-white">
             {province &&

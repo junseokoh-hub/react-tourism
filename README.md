@@ -1,3 +1,3 @@
 # Tourism
 
-React/Typescript/Tailwind
+React/Typescript/Tailwind/Redux-Toolkit
