@@ -93,7 +93,7 @@ type SearchListType = {
   totalCount: number;
 };
 
-type LocationBasedListType = {
+export type LocationBasedListType = {
   caravAcmpnyAt: string;
   toiletCo: string;
   swrmCo: string;
@@ -250,7 +250,7 @@ export const locationBasedList = async (
       params: {
         mapX,
         mapY,
-        radius: "10000",
+        radius: "5000",
       },
     });
     return item;

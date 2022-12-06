@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useMatch } from "react-router-dom";
 import { locationBasedList } from "../api/campingApi";
+import { onGetData } from "../store/campingSlice";
+import { useDispatch, useSelector } from "../store/hooks";
 
 declare global {
   interface Window {
@@ -15,7 +17,10 @@ type KakaoMapProps = {
 
 const KakaoMap = ({ latitude, longitude }: KakaoMapProps) => {
   const homeMatch = useMatch("/");
+  const dispatch = useDispatch();
+
   let timer: any = 0;
+
   useEffect(() => {
     const mapScript = document.createElement("script");
     mapScript.defer = true;
@@ -29,49 +34,35 @@ const KakaoMap = ({ latitude, longitude }: KakaoMapProps) => {
         const container = document.getElementById("map");
         const options = {
           center: new window.kakao.maps.LatLng(latitude, longitude),
-          level: 5,
+          level: 8,
         };
         const map = new window.kakao.maps.Map(container, options);
-        const markerPosition = new window.kakao.maps.LatLng(
-          latitude,
-          longitude,
-        );
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-        });
-        marker.setMap(map);
+        // const markerPosition = new window.kakao.maps.LatLng(
+        //   latitude,
+        //   longitude,
+        // );
+        // const marker = new window.kakao.maps.Marker({
+        //   position: markerPosition,
+        // });
+        // marker.setMap(map);
 
-        let content = `<div class="p-1 bg-teal-500 -translate-y-16 rounded-lg">Hello, World!</div>`;
-        let position = markerPosition;
+        // let content = `<div class="p-1 bg-teal-500 -translate-y-16 rounded-lg">Hello, World!</div>`;
+        // let position = new window.kakao.maps.LatLng(latitude, longitude);
 
-        let customOverlay = new window.kakao.maps.CustomOverlay({
-          position,
-          content,
-        });
-
-        customOverlay.setMap(map);
-
-        // let iwContent = `<div class="w-full bg-teal-500">Hello, World</div>`;
-        // let iwRemovable = true;
-
-        // const infowindow = new window.kakao.maps.InfoWindow({
-        //   content: iwContent,
-        //   removable: iwRemovable,
+        // let customOverlay = new window.kakao.maps.CustomOverlay({
+        //   position,
+        //   content,
         // });
 
-        // window.kakao.maps.event.addListener(marker, "click", () => {
-        //   infowindow.open(map, marker);
-        // });
+        // customOverlay.setMap(map);
 
-        if (!homeMatch) {
+        if (homeMatch) {
           map.setDraggable(false);
           map.setZoomable(false);
         }
 
         window.kakao.maps.event.addListener(map, "idle", () => {
           let latlng = map.getCenter();
-          let message = `<p>중심좌표의 경도는 ${latlng}입니다.`;
-          let result = document.getElementById("result");
           if (timer) {
             clearTimeout(timer);
           }
@@ -80,10 +71,33 @@ const KakaoMap = ({ latitude, longitude }: KakaoMapProps) => {
               latlng.getLng(),
               latlng.getLat(),
             );
-            console.log(data);
-            if (result) {
-              result.innerHTML = message;
-              console.log("rendering");
+            const array = [];
+            for (let i = 0; i < data.length; i++) {
+              const position = {
+                title: data[i].facltNm,
+                latlng: new window.kakao.maps.LatLng(
+                  data[i].mapY,
+                  data[i].mapX,
+                ),
+              };
+              array.push(position);
+            }
+            console.log(array);
+            dispatch(onGetData(data));
+            let imageSrc =
+              "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+            for (let i = 0; i < array.length; i++) {
+              let imageSize = new window.kakao.maps.Size(24, 35);
+              let markerImage = new window.kakao.maps.MarkerImage(
+                imageSrc,
+                imageSize,
+              );
+              let marker = new window.kakao.maps.Marker({
+                map,
+                position: array[i].latlng,
+                title: array[i].title,
+                image: markerImage,
+              });
             }
           }, 1000);
         });
