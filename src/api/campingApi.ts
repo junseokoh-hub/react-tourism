@@ -184,8 +184,6 @@ const campingConfig: AxiosRequestConfig = {
     _type: "json",
     MobileOS: "WIN",
     MobileApp: "Tourism",
-    numOfRows: "100",
-    pageNo: "1",
   },
 };
 
@@ -197,7 +195,9 @@ export const basedList = async () => {
       data: {
         response: { body },
       },
-    } = await camping.get("basedList");
+    } = await camping.get("basedList", {
+      params: { numOfRows: 100, pageNo: 1 },
+    });
     return body;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -210,7 +210,10 @@ export const basedList = async () => {
   }
 };
 
-export const searchList = async (keyword: string): Promise<SearchListType> => {
+export const searchList = async (
+  keyword: string,
+  pageNo: number,
+): Promise<SearchListType> => {
   try {
     const {
       data: {
@@ -219,8 +222,11 @@ export const searchList = async (keyword: string): Promise<SearchListType> => {
     } = await camping.get("searchList", {
       params: {
         keyword,
+        numOfRows: 100,
+        pageNo,
       },
     });
+
     return body;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -248,6 +254,8 @@ export const locationBasedList = async (
       },
     } = await camping.get("locationBasedList", {
       params: {
+        numOfRows: 100,
+        page: 1,
         mapX,
         mapY,
         radius: "5000",

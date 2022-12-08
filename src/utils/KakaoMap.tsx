@@ -13,10 +13,12 @@ declare global {
 type KakaoMapProps = {
   latitude: number;
   longitude: number;
+  infoWindow?: string;
 };
 
-const KakaoMap = ({ latitude, longitude }: KakaoMapProps) => {
+const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
   const homeMatch = useMatch("/");
+  const campingMatch = useMatch("camping/*");
   const dispatch = useDispatch();
 
   let timer: any = 0;
@@ -37,69 +39,71 @@ const KakaoMap = ({ latitude, longitude }: KakaoMapProps) => {
           level: 8,
         };
         const map = new window.kakao.maps.Map(container, options);
-        // const markerPosition = new window.kakao.maps.LatLng(
-        //   latitude,
-        //   longitude,
-        // );
-        // const marker = new window.kakao.maps.Marker({
-        //   position: markerPosition,
-        // });
-        // marker.setMap(map);
+        const markerPosition = new window.kakao.maps.LatLng(
+          latitude,
+          longitude,
+        );
+        const marker = new window.kakao.maps.Marker({
+          position: markerPosition,
+        });
+        marker.setMap(map);
 
-        // let content = `<div class="p-1 bg-teal-500 -translate-y-16 rounded-lg">Hello, World!</div>`;
-        // let position = new window.kakao.maps.LatLng(latitude, longitude);
+        let content = `<div class="p-1 bg-white -translate-y-16 rounded-lg">${infoWindow}</div>`;
+        let position = new window.kakao.maps.LatLng(latitude, longitude);
 
-        // let customOverlay = new window.kakao.maps.CustomOverlay({
-        //   position,
-        //   content,
-        // });
+        let customOverlay = new window.kakao.maps.CustomOverlay({
+          position,
+          content,
+        });
 
-        // customOverlay.setMap(map);
+        customOverlay.setMap(map);
 
         if (homeMatch) {
           map.setDraggable(false);
           map.setZoomable(false);
         }
 
-        window.kakao.maps.event.addListener(map, "idle", () => {
-          let latlng = map.getCenter();
-          if (timer) {
-            clearTimeout(timer);
-          }
-          timer = setTimeout(async () => {
-            const data = await locationBasedList(
-              latlng.getLng(),
-              latlng.getLat(),
-            );
-            const array = [];
-            for (let i = 0; i < data.length; i++) {
-              const position = {
-                title: data[i].facltNm,
-                latlng: new window.kakao.maps.LatLng(
-                  data[i].mapY,
-                  data[i].mapX,
-                ),
-              };
-              array.push(position);
+        if (campingMatch) {
+          window.kakao.maps.event.addListener(map, "idle", () => {
+            let latlng = map.getCenter();
+            if (timer) {
+              clearTimeout(timer);
             }
-            dispatch(onGetData(data));
-            let imageSrc =
-              "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-            for (let i = 0; i < array.length; i++) {
-              let imageSize = new window.kakao.maps.Size(24, 35);
-              let markerImage = new window.kakao.maps.MarkerImage(
-                imageSrc,
-                imageSize,
+            timer = setTimeout(async () => {
+              const data = await locationBasedList(
+                latlng.getLng(),
+                latlng.getLat(),
               );
-              let marker = new window.kakao.maps.Marker({
-                map,
-                position: array[i].latlng,
-                title: array[i].title,
-                image: markerImage,
-              });
-            }
-          }, 1000);
-        });
+              const array = [];
+              for (let i = 0; i < data?.length; i++) {
+                const position = {
+                  title: data[i].facltNm,
+                  latlng: new window.kakao.maps.LatLng(
+                    data[i].mapY,
+                    data[i].mapX,
+                  ),
+                };
+                array.push(position);
+              }
+              dispatch(onGetData(data));
+              let imageSrc =
+                "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+              for (let i = 0; i < array.length; i++) {
+                let imageSize = new window.kakao.maps.Size(24, 35);
+                let markerImage = new window.kakao.maps.MarkerImage(
+                  imageSrc,
+                  imageSize,
+                );
+                let marker = new window.kakao.maps.Marker({
+                  map,
+                  position: array[i].latlng,
+                  title: array[i].title,
+                  image: markerImage,
+                });
+              }
+            }, 1000);
+          });
+        }
       });
     };
     mapScript.addEventListener("load", onLoadKakaoMap);

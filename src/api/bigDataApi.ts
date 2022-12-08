@@ -18,8 +18,8 @@ const bigDataConfig: AxiosRequestConfig = {
     _type: "json",
     MobileOS: "WIN",
     MobileApp: "Tourism",
-    numOfRows: "100",
-    pageNo: "1",
+    numOfRows: 100,
+    pageNo: 1,
   },
 };
 

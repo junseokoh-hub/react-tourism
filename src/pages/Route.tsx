@@ -14,7 +14,7 @@ const Route = () => {
     data: routes,
     isLoading,
     isFetching,
-  } = useQuery(["route", currentPage], () => routeList(String(currentPage)), {
+  } = useQuery(["route", currentPage], () => routeList(currentPage), {
     keepPreviousData: true,
   });
 
@@ -25,9 +25,7 @@ const Route = () => {
   useEffect(() => {
     if (currentPage < maxPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["route", nextPage], () =>
-        routeList(String(nextPage)),
-      );
+      queryClient.prefetchQuery(["route", nextPage], () => routeList(nextPage));
     }
   }, [currentPage, queryClient]);
 

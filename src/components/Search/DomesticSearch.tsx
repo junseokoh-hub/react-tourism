@@ -11,7 +11,11 @@ const DomesticSearch = () => {
 
   const { isLoading, data: doms } = useQuery(
     ["search-domestic", keyword],
-    () => searchKeyword(keyword as string),
+    () => {
+      if (keyword) {
+        return searchKeyword(keyword);
+      }
+    },
     {
       enabled: !!keyword,
     },

@@ -12,7 +12,7 @@ const Camping = () => {
         content={"캠핑을 떠나고 싶으시다면 검색해보아요"}
       />
       <section>
-        <nav className="flex">
+        <nav className="flex shadow-md rounded-md">
           <Link
             to="input-search"
             className="py-3 px-1 w-1/2 block text-lg text-center dark:text-white"
@@ -32,7 +32,9 @@ const Camping = () => {
             )}
           </Link>
         </nav>
-        <Outlet />
+        <article className="mt-10">
+          <Outlet />
+        </article>
       </section>
     </>
   );

@@ -7,7 +7,7 @@ const CampingMapSearch = () => {
   console.log(camps);
 
   return (
-    <article>
+    <>
       <KakaoMap latitude={37.5666805} longitude={126.9784147} />
       <ul>
         {camps ? (
@@ -20,7 +20,7 @@ const CampingMapSearch = () => {
           <li>검색 결과가 없습니다.</li>
         )}
       </ul>
-    </article>
+    </>
   );
 };
 

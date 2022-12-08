@@ -27,15 +27,27 @@ const Detail = ({ contentType }: DetailProps) => {
   const [data, detailInfoData, detailIntroData] = useQueries([
     {
       queryKey: [`${contentType}-detailCommon`, contentId, contentTypeId],
-      queryFn: () => detailCommon(contentId as string),
+      queryFn: () => {
+        if (contentId) {
+          return detailCommon(contentId);
+        }
+      },
     },
     {
       queryKey: [`${contentType}-detailInfo`, contentId, contentTypeId],
-      queryFn: () => detailInfo(contentId as string, contentTypeId as string),
+      queryFn: () => {
+        if (contentId && contentTypeId) {
+          return detailInfo(contentId, contentTypeId);
+        }
+      },
     },
     {
       queryKey: [`${contentType}-detailIntro`, contentId, contentTypeId],
-      queryFn: () => detailIntro(contentId as string, contentTypeId as string),
+      queryFn: () => {
+        if (contentId && contentTypeId) {
+          return detailIntro(contentId, contentTypeId);
+        }
+      },
     },
   ]);
 
@@ -74,6 +86,7 @@ const Detail = ({ contentType }: DetailProps) => {
             <KakaoMap
               latitude={Number(data?.data?.mapy)}
               longitude={Number(data?.data?.mapx)}
+              infoWindow={data?.data?.addr1}
             />
           </div>
           {accommodationMatch && (

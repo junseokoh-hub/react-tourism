@@ -25,6 +25,10 @@ type DataType = {
   }[];
 };
 
+type BarChartProps = {
+  date: string;
+};
+
 ChartJS.register(
   BarElement,
   CategoryScale,
@@ -34,12 +38,13 @@ ChartJS.register(
   Legend,
 );
 
-const BarChart = ({ date }: { date: string }) => {
+const BarChart = ({ date }: BarChartProps) => {
   const { data: chart, isLoading } = useQuery(
     ["metroData", date],
     () => metVistior(date, date),
     {
       retry: false,
+      enabled: !!date,
     },
   );
 

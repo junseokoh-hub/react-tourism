@@ -50,13 +50,13 @@ const routeConfig: AxiosRequestConfig = {
     _type: "json",
     MobileOS: "WIN",
     MobileApp: "Tourism",
-    numOfRows: "20",
+    numOfRows: 20,
   },
 };
 
 const route = axios.create(routeConfig);
 
-export const routeList = async (page: string): Promise<RouteListType> => {
+export const routeList = async (page: number): Promise<RouteListType> => {
   try {
     const {
       data: {
@@ -88,6 +88,7 @@ export const courseList = async (routeIdx: string): Promise<CourseListType> => {
     } = await route.get("courseList", {
       params: {
         routeIdx,
+        pageNo: 1,
       },
     });
     return body;
