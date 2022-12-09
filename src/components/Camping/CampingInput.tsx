@@ -61,9 +61,9 @@ const CampingInput = () => {
             <CampingSearchedContent key={camp.contentId} camp={camp} />
           )),
         )}
-        {isFetching && <Loader />}
-        <div ref={targetRef} />
       </ul>
+      {isFetching && <Loader />}
+      <div ref={targetRef} />
     </>
   );
 };

@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { Link, Outlet, useMatch } from "react-router-dom";
 import SEOMeta from "../../SEOMeta";
 
 const Camping = () => {
   const mapMatch = useMatch("camping/map-search");
   const inputMatch = useMatch("camping/input-search");
+
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, []);
 
   return (
     <>

@@ -36,8 +36,8 @@ details {
 }
 
 .swiper {
-  width: 320px;
-  height: 320px;
+  width: 50vw;
+  height: 50vh;
 }
 
 .swiper-slide {
@@ -48,4 +48,5 @@ details {
   font-size: 22px;
   font-weight: bold;
   color: #fff;
+  cursor: grab;
 }

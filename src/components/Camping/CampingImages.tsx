@@ -4,6 +4,7 @@ import { imageList } from "../../api/campingApi";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import { EffectCards } from "swiper";
+import Loader from "../../utils/Loader";
 
 type CampingImagesProps = {
   isMenuOpen: boolean;
@@ -19,21 +20,27 @@ const CampingImages = ({ isMenuOpen, contentId }: CampingImagesProps) => {
     },
   );
 
-  console.log(data);
-
   return (
     <div className="flex fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100px]">
-      <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]}>
-        {data?.map((img) => (
-          <SwiperSlide key={img.serialnum}>
-            <img
-              src={img.imageUrl || "../images/noImage.jpg"}
-              alt={contentId}
-              className="w-full h-full block"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {isLoading ? (
+        <Loader />
+      ) : data ? (
+        <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]}>
+          {data?.map((img) => (
+            <SwiperSlide key={img.serialnum}>
+              <img
+                src={img.imageUrl || "../images/noImage.jpg"}
+                alt={contentId}
+                className="w-full h-full block"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <div className="text-3xl text-orange-500 font-bold">
+          이미지가 없습니다.
+        </div>
+      )}
     </div>
   );
 };
