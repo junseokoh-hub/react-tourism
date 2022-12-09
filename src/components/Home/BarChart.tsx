@@ -26,7 +26,7 @@ type DataType = {
 };
 
 type BarChartProps = {
-  date: string;
+  date: string | null;
 };
 
 ChartJS.register(
@@ -41,7 +41,11 @@ ChartJS.register(
 const BarChart = ({ date }: BarChartProps) => {
   const { data: chart, isLoading } = useQuery(
     ["metroData", date],
-    () => metVistior(date, date),
+    () => {
+      if (date) {
+        return metVistior(date, date);
+      }
+    },
     {
       retry: false,
       enabled: !!date,
@@ -51,7 +55,7 @@ const BarChart = ({ date }: BarChartProps) => {
   function SlicedChart(): Array<MetVisitorType[]> {
     const result = [];
     if (chart) {
-      for (let i = 0; i < chart?.length!; i += 3) {
+      for (let i = 0; i < chart?.length; i += 3) {
         result.push(chart?.slice(i, i + 3));
       }
     }

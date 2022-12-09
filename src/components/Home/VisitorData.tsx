@@ -26,7 +26,9 @@ const VisitorData = () => {
             검색
           </button>
         </div>
-        <BarChart date={dateRef.current?.value.split("-").join("") as string} />
+        <BarChart
+          date={dateRef.current && dateRef.current?.value.split("-").join("")}
+        />
       </article>
     </section>
   );

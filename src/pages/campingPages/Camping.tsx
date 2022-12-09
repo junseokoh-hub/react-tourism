@@ -12,14 +12,14 @@ const Camping = () => {
         content={"캠핑을 떠나고 싶으시다면 검색해보아요"}
       />
       <section>
-        <nav className="flex shadow-md rounded-md">
+        <nav className="flex shadow-md rounded-md dark:shadow-[0px_0px_3px_rgba(255,255,255,0.5)]">
           <Link
             to="input-search"
             className="py-3 px-1 w-1/2 block text-lg text-center dark:text-white"
           >
             검색으로 찾기
             {inputMatch && (
-              <div className="mt-2 mx-auto w-1/2 h-1 bg-orange-500 rounded-md" />
+              <div className="mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500 " />
             )}
           </Link>
           <Link
@@ -28,7 +28,7 @@ const Camping = () => {
           >
             지도로 찾기
             {mapMatch && (
-              <div className="mt-2 mx-auto w-1/2 h-1 bg-orange-500 rounded-md" />
+              <div className="mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500" />
             )}
           </Link>
         </nav>

@@ -39,26 +39,26 @@ const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
           level: 8,
         };
         const map = new window.kakao.maps.Map(container, options);
-        const markerPosition = new window.kakao.maps.LatLng(
-          latitude,
-          longitude,
-        );
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-        });
-        marker.setMap(map);
+        if (!campingMatch) {
+          const markerPosition = new window.kakao.maps.LatLng(
+            latitude,
+            longitude,
+          );
+          const marker = new window.kakao.maps.Marker({
+            position: markerPosition,
+          });
+          marker.setMap(map);
 
-        let content = `<div class="p-1 bg-white -translate-y-16 rounded-lg">${infoWindow}</div>`;
-        let position = new window.kakao.maps.LatLng(latitude, longitude);
+          let content = `<div class="p-1 bg-white -translate-y-16 rounded-lg">${infoWindow}</div>`;
+          let position = new window.kakao.maps.LatLng(latitude, longitude);
 
-        let customOverlay = new window.kakao.maps.CustomOverlay({
-          position,
-          content,
-        });
+          let customOverlay = new window.kakao.maps.CustomOverlay({
+            position,
+            content,
+          });
 
-        customOverlay.setMap(map);
+          customOverlay.setMap(map);
 
-        if (homeMatch) {
           map.setDraggable(false);
           map.setZoomable(false);
         }
@@ -113,7 +113,7 @@ const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
 
   return (
     <>
-      <div id="map" className="mx-auto w-[500px] h-[500px] rounded-md"></div>
+      <div id="map" className="mx-auto w-2/3 h-[500px] rounded-md"></div>
       <div id="result" className="dark:text-white"></div>
     </>
   );

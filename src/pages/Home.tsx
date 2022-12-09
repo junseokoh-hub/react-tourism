@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import VisitorData from "../components/Home/VisitorData";
 import SEOMeta from "../SEOMeta";
-import KakaoMap from "../utils/KakaoMap";
 
 const FrontBanner = React.lazy(() => import("../components/Home/FrontBanner"));
 const HomeSliders = React.lazy(() => import("../components/Home/HomeSliders"));

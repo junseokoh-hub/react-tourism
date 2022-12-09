@@ -41,7 +41,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
         !isView ? "shadow-xl" : "shadow-sm"
       } transition-shadow duration-500 ease-in-out dark:bg-black`}
     >
-      <nav className="px-5 flex items-center max-w-3xl md:mx-auto">
+      <nav className="px-5 flex items-center md:max-w-3xl md:mx-auto">
         {!homeMatch && (
           <div className="w-1/3">
             <span onClick={() => navigate(-1)} className="dark:text-white">

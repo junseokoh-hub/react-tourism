@@ -30,10 +30,7 @@ const Search = React.lazy(() => import("./pages/Search"));
 const DomesticSearch = React.lazy(
   () => import("./components/Search/DomesticSearch"),
 );
-const CampingSearch = React.lazy(
-  () => import("./components/Search/CampingSearch"),
-);
-const DataSearch = React.lazy(() => import("./components/Search/DataSearch"));
+
 const Restaurant = React.lazy(() => import("./pages/tourismPages/Restaurant"));
 const LoginPage = React.lazy(() => import("./pages/authPages/LoginPage"));
 const TravelCourse = React.lazy(
@@ -82,11 +79,7 @@ const App = () => {
         {
           path: "search",
           element: <Search />,
-          children: [
-            { path: "domestic", element: <DomesticSearch /> },
-            { path: "camping", element: <CampingSearch /> },
-            { path: "data", element: <DataSearch /> },
-          ],
+          children: [{ path: "domestic", element: <DomesticSearch /> }],
         },
         {
           path: "accommodation",

@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
-type SearchedContentType = {
+export type SearchedContentType = {
   addr1: string;
   addr2: string;
   allar: string;
@@ -84,7 +84,7 @@ type SearchedContentType = {
   zipcode: string;
 };
 
-type SearchListType = {
+export type SearchListType = {
   items: {
     item: SearchedContentType[];
   };
@@ -222,7 +222,7 @@ export const searchList = async (
     } = await camping.get("searchList", {
       params: {
         keyword,
-        numOfRows: 100,
+        numOfRows: 50,
         pageNo,
       },
     });
@@ -255,10 +255,41 @@ export const locationBasedList = async (
     } = await camping.get("locationBasedList", {
       params: {
         numOfRows: 100,
-        page: 1,
+        pageNo: 1,
         mapX,
         mapY,
         radius: "5000",
+      },
+    });
+    return item;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        (error.response as AxiosResponse<{ message: string }>).data.message,
+      );
+    }
+    const errorResponse = (error as AxiosError<{ message: string }>).response;
+    throw new Error(errorResponse as any);
+  }
+};
+
+export const imageList = async (
+  contentId: string,
+): Promise<LocationBasedListType[]> => {
+  try {
+    const {
+      data: {
+        response: {
+          body: {
+            items: { item },
+          },
+        },
+      },
+    } = await camping.get("imageList", {
+      params: {
+        numOfRows: 5,
+        pageNo: 1,
+        contentId,
       },
     });
     return item;

@@ -6,15 +6,16 @@ export const useObserve = () => {
 
   useEffect(() => {
     const io = new IntersectionObserver((entries) => {
-      if (targetRef.current && entries[0].isIntersecting) {
-        io.unobserve(targetRef.current);
-        setIsView(true);
-      }
+      setIsView(entries[0].isIntersecting);
     });
 
     if (targetRef.current) {
       io.observe(targetRef.current);
     }
+
+    return () => {
+      io.disconnect();
+    };
   }, []);
 
   return { targetRef, isView };

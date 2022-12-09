@@ -27,11 +27,12 @@ const Root = () => {
     };
   }, []);
 
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
   return (
     <>
       <MainHeader isView={isView} />
       <div ref={targetRef} />
-      <main className="max-w-3xl relative md:mx-auto md:shadow-2xl">
+      <main className="w-full md:mx-auto md:max-w-3xl md:shadow-2xl">
         <Layout>
           <Outlet />
         </Layout>
