@@ -34,3 +34,18 @@ details {
 .front_btns {
   @apply py-2 px-5 space-y-0.5 rounded-md flex flex-col items-center cursor-pointer hover:shadow-md;
 }
+
+.swiper {
+  width: 320px;
+  height: 320px;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}

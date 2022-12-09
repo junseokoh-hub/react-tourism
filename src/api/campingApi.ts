@@ -177,6 +177,14 @@ export type LocationBasedListType = {
   modifiedtime: string;
 };
 
+type ImageListType = {
+  contentId: string;
+  createdtime: string;
+  imageUrl: string;
+  modifiedtime: "2022-08-01 23:17:51";
+  serialnum: string;
+};
+
 const campingConfig: AxiosRequestConfig = {
   baseURL: "https://apis.data.go.kr/B551011/GoCamping/",
   params: {
@@ -275,7 +283,7 @@ export const locationBasedList = async (
 
 export const imageList = async (
   contentId: string,
-): Promise<LocationBasedListType[]> => {
+): Promise<ImageListType[]> => {
   try {
     const {
       data: {
