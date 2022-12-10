@@ -9,6 +9,8 @@ const CampingIndicator = React.lazy(
 );
 
 const Home = () => {
+  console.log("rendering");
+
   return (
     <>
       <SEOMeta

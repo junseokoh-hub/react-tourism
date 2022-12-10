@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SearchedContentType } from "../../api/campingApi";
-import { useDispatch, useSelector } from "../../store/hooks";
+import { useDispatch } from "../../store/hooks";
 import { onOpen } from "../../store/slices/menuSlice";
 
 type CampingSearchedContentProps = {
@@ -10,7 +10,6 @@ type CampingSearchedContentProps = {
 
 const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
   const dispatch = useDispatch();
-  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
   const navigate = useNavigate();
   const params = useSearchParams();
   const keyword = params[0].get("keyword");

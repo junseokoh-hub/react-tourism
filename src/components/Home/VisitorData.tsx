@@ -1,9 +1,20 @@
-import { useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 import BarChart from "./BarChart";
 
 const VisitorData = () => {
-  const [date, setDate] = useState(false);
-  const dateRef = useRef<HTMLInputElement | null>(null);
+  const now = new Date();
+  const prevMonth = new Date(now.setMonth(now.getMonth() - 1));
+  const initialValue = prevMonth.toISOString().slice(0, 10);
+  const [date, setDate] = useState(initialValue);
+
+  const splitedDate = date.split("-").join("");
+
+  const dateChangeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setDate(e.target.value);
+    },
+    [],
+  );
 
   return (
     <section className="min-h-[400px] space-y-4 dark:text-white">
@@ -17,18 +28,14 @@ const VisitorData = () => {
             id="date"
             className="py-1 px-2 border rounded-md font-semibold font-mono"
             type="date"
-            ref={dateRef}
+            value={date}
+            onChange={dateChangeHandler}
           />
-          <button
-            className="py-1 px-6 border-0 text-white font-semibold bg-teal-400 rounded-md transition-colors cursor-pointer hover:bg-teal-700"
-            onClick={() => setDate((prev) => !prev)}
-          >
+          <button className="py-1 px-6 border-0 text-white font-semibold bg-teal-400 rounded-md transition-colors cursor-pointer hover:bg-teal-700">
             검색
           </button>
         </div>
-        <BarChart
-          date={dateRef.current && dateRef.current?.value.split("-").join("")}
-        />
+        <BarChart date={splitedDate} />
       </article>
     </section>
   );
