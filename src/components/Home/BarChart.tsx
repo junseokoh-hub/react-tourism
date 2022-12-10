@@ -13,6 +13,7 @@ import { Bar } from "react-chartjs-2";
 import { useQuery } from "react-query";
 import { MetVisitorType, metVistior } from "../../api/bigDataApi";
 import Loader from "../../utils/Loader";
+import { useSelector } from "../../store/hooks";
 
 type DataType = {
   labels: string[];
@@ -39,6 +40,7 @@ ChartJS.register(
 );
 
 const BarChart = ({ date }: BarChartProps) => {
+  const isDark = useSelector((state) => state.dark.isDark);
   const { data: chart, isLoading } = useQuery(
     ["metroData", date],
     () => {
@@ -90,9 +92,15 @@ const BarChart = ({ date }: BarChartProps) => {
   let options: ChartOptions<"bar"> = {
     maintainAspectRatio: false,
     scales: {
+      x: {
+        ticks: {
+          color: isDark ? "white" : "",
+        },
+      },
       y: {
         ticks: {
           stepSize: 500000,
+          color: isDark ? "white" : "",
         },
       },
     },

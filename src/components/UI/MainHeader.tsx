@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, NavLink, useMatch, useNavigate } from "react-router-dom";
-// import SearchBox from "../Search/SearchBox";
+import { useSelector } from "../../store/hooks";
+import { setDark } from "../../store/slices/darkSlice";
 
 const SearchBox = React.lazy(() => import("../Search/SearchBox"));
 
@@ -9,7 +11,8 @@ type MainHeaderProps = {
 };
 
 const MainHeader = ({ isView }: MainHeaderProps) => {
-  const [dark, setDark] = useState(false);
+  const dispatch = useDispatch();
+  const isDark = useSelector((state) => state.dark.isDark);
   const homeMatch = useMatch("/");
   const searchMatch = useMatch("search/*");
   const navigate = useNavigate();
@@ -20,7 +23,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
   useEffect(() => {
     if (userTheme === "dark" || (!userTheme && systemTheme)) {
       document.documentElement.classList.add("dark");
-      setDark(true);
+      dispatch(setDark(true));
       return;
     }
   }, []);
@@ -29,12 +32,12 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
     if (document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
-      setDark(false);
+      dispatch(setDark(false));
       return;
     }
     document.documentElement.classList.add("dark");
     localStorage.setItem("theme", "dark");
-    setDark(true);
+    dispatch(setDark(true));
   }, []);
 
   return (
@@ -108,7 +111,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
           >
             <div
               className={`w-7 h-7 rounded-full shadow-[0px_0px_5px_rgba(0,0,0,0.2)] ${
-                !dark ? "translate-x-0" : "translate-x-[27px]"
+                !isDark ? "translate-x-0" : "translate-x-[27px]"
               } transition-all dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)]`}
             ></div>
           </div>
