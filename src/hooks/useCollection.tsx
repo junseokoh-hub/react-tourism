@@ -7,33 +7,36 @@ import {
   where,
   WhereFilterOp,
 } from "firebase/firestore";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { appFireStore } from "../lib/firebaseConfig";
 
-export const useCollection = (transaction:any, myQuery: [string | FieldPath, WhereFilterOp, any]) => {
+export const useCollection = (
+  transaction: any,
+  myQuery: [string, "==", string],
+) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   useEffect(() => {
-    let q;
+    let q: any;
     if (myQuery) {
       q = query(
         collection(appFireStore, transaction),
-        where(...myQuery),
+        where("uid", "==", myQuery),
         orderBy("createdTime", "desc"),
       );
     }
     const unsubscribe = onSnapshot(
       myQuery ? q : collection(appFireStore, transaction),
-      (snapshot:any) => {
-        let result:any = [];
-        snapshot.docs.forEach((doc:any) => {
+      (snapshot: any) => {
+        let result: any = [];
+        snapshot.docs.forEach((doc: any) => {
           result.push({ ...doc.data(), id: doc.id });
         });
 
         setDocuments(result);
         setError(null);
       },
-      (error:any) => {
+      (error: any) => {
         setError(error.message);
       },
     );
@@ -42,3 +45,4 @@ export const useCollection = (transaction:any, myQuery: [string | FieldPath, Whe
   }, [collection, transaction]);
 
   return { documents, error };
+};

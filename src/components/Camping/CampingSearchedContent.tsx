@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SearchedContentType } from "../../api/campingApi";
 import { useDispatch } from "../../store/hooks";
@@ -9,6 +9,7 @@ type CampingSearchedContentProps = {
 };
 
 const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
+  const [isPreferred, setIsPreferred] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useSearchParams();
@@ -26,7 +27,7 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
   return (
     <li
       key={camp.contentId}
-      className="p-2 flex border border-solid border-blue-100 bg-blue-100 rounded-md dark:bg-orange-500 dark:border-orange-500 dark:text-white"
+      className="p-2 flex border border-solid border-blue-100 bg-blue-100 rounded-md select-none dark:bg-orange-500 dark:border-orange-500 dark:text-white"
     >
       <img
         src={camp.firstImageUrl || "../images/noImage.jpg"}
@@ -34,7 +35,7 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
         className="w-1/3 h-1/2 block"
         onClick={onClick}
       />
-      <ul className="px-2 w-full flex flex-col justify-between">
+      <ul className="px-2 w-full flex flex-col justify-between relative">
         <li>이름 : {camp.facltNm}</li>
         <li>주소 : {camp.addr1 || camp.addr2 || ""}</li>
         <li>
@@ -48,6 +49,25 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
           </a>
         </li>
         <li>전화번호 : {camp.tel}</li>
+        <li
+          className="absolute right-0 bottom-0"
+          onClick={() => setIsPreferred((prev) => !prev)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={`w-6 h-6 ${isPreferred ? "fill-red-500" : ""}`}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+            />
+          </svg>
+        </li>
       </ul>
     </li>
   );

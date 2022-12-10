@@ -11,7 +11,7 @@ const Footer = () => {
       >
         Tourism
       </span>
-      <ul className="space-x-3 flex divide-x divide-y-0 divide-solid divide-black">
+      <ul className="space-x-3 flex divide-x divide-y-0 divide-solid divide-black dark:divide-white">
         <li>이용약관</li>
         <li className="pl-3">개인정보처리방침</li>
         <li className="pl-3">고객센터</li>

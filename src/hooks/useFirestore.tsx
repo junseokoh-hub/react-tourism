@@ -59,12 +59,13 @@ export const useFirestore = (transaction: string) => {
   const colRef = collection(appFireStore, transaction);
 
   const addDocument = useCallback(
-    async (doc: string[]) => {
+    async (doc: { uid: string; title: string; overview: string }) => {
       dispatch({ type: "isLoading" });
       try {
         const createdTime = timestamp.fromDate(new Date());
         const docRef = await addDoc(colRef, { ...doc, createdTime });
         console.log(docRef);
+        dispatch({ type: "addDoc", payload: docRef });
       } catch (error: any) {
         if (error instanceof Error) {
           dispatch({ type: "error", payload: error.message });
