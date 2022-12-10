@@ -18,9 +18,7 @@ const Route = () => {
     keepPreviousData: true,
   });
 
-  const maxPage = Math.ceil(
-    (routes?.totalCount as number) / (routes?.numOfRows as number),
-  );
+  const maxPage = Math.ceil((routes?.totalCount as number) / 20);
 
   useEffect(() => {
     if (currentPage < maxPage) {
@@ -58,7 +56,7 @@ const Route = () => {
         <span className="text-teal-700 font-bold text-lg">{currentPage}</span>
         <button
           className="py-2 px-3 bg-white text-teal-500 border border-solid border-teal-500 rounded-md cursor-pointer hover:text-white hover:bg-teal-500 transition-colors dark:bg-teal-500 dark:text-white dark:hover:bg-teal-800 dark:hover:border-teal-800"
-          disabled={currentPage >= maxPage}
+          disabled={currentPage === maxPage}
           onClick={() => setCurrentPage((prev) => prev + 1)}
         >
           next

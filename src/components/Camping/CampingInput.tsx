@@ -1,22 +1,15 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { searchList } from "../../api/campingApi";
 import { useObserve } from "../../hooks/useObserve";
-import { useDispatch, useSelector } from "../../store/hooks";
-import { onClose } from "../../store/slices/menuSlice";
 import Loader from "../../utils/Loader";
-import Modal from "../Modal/Modal";
-import CampingImages from "./CampingImages";
 import CampingSearchedContent from "./CampingSearchedContent";
 
 const CampingInput = () => {
   const { targetRef, isView } = useObserve();
   const params = useSearchParams();
   const keyword = params[0].get("keyword");
-  const contentId = params[0].get("id");
-  const dispatch = useDispatch();
-  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
 
   const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery(
     ["camping_search_input", keyword],
@@ -44,17 +37,8 @@ const CampingInput = () => {
     }
   }, [isView]);
 
-  const closeModal = useCallback(() => {
-    dispatch(onClose());
-  }, []);
-
   return (
     <>
-      {isMenuOpen && contentId && (
-        <Modal closeModal={closeModal}>
-          <CampingImages isMenuOpen={isMenuOpen} contentId={contentId} />
-        </Modal>
-      )}
       <ul className="py-10 space-y-10 dark:text-white">
         {data?.pages.map((item) =>
           item?.items.item.map((camp) => (

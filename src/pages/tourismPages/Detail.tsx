@@ -60,7 +60,7 @@ const Detail = ({ contentType }: DetailProps) => {
       {!isLoading && (
         <div className="space-y-4 dark:text-white">
           <img
-            className="mx-auto w-[699px] h-[466px] block rounded-md"
+            className="mx-auto w-full h-[466px] block rounded-md"
             src={
               data?.data?.firstimage || data?.data?.firstimage2
                 ? `https://${
@@ -86,7 +86,9 @@ const Detail = ({ contentType }: DetailProps) => {
             <KakaoMap
               latitude={Number(data?.data?.mapy)}
               longitude={Number(data?.data?.mapx)}
-              infoWindow={data?.data?.addr1}
+              infoWindow={
+                data?.data?.addr1 || data?.data?.addr2 || data?.data?.title
+              }
             />
           </div>
           {accommodationMatch && (

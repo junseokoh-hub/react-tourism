@@ -49,7 +49,7 @@ const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
           });
           marker.setMap(map);
 
-          let content = `<div class="p-1 bg-white -translate-y-16 rounded-lg">${infoWindow}</div>`;
+          let content = `<div class="p-1 bg-white text-black -translate-y-16 rounded-lg">${infoWindow}</div>`;
           let position = new window.kakao.maps.LatLng(latitude, longitude);
 
           let customOverlay = new window.kakao.maps.CustomOverlay({

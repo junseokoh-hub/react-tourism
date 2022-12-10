@@ -1,10 +1,22 @@
-import { useEffect } from "react";
-import { Link, Outlet, useMatch } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+import { Link, Outlet, useMatch, useSearchParams } from "react-router-dom";
+import CampingImages from "../../components/Camping/CampingImages";
+import Modal from "../../components/Modal/Modal";
 import SEOMeta from "../../SEOMeta";
+import { useDispatch, useSelector } from "../../store/hooks";
+import { onClose } from "../../store/slices/menuSlice";
 
 const Camping = () => {
   const mapMatch = useMatch("camping/map-search");
   const inputMatch = useMatch("camping/input-search");
+  const params = useSearchParams();
+  const contentId = params[0].get("id");
+  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
+  const dispatch = useDispatch();
+
+  const closeModal = useCallback(() => {
+    dispatch(onClose());
+  }, []);
 
   useEffect(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -16,6 +28,11 @@ const Camping = () => {
         title={"캠핑 검색"}
         content={"캠핑을 떠나고 싶으시다면 검색해보아요"}
       />
+      {isMenuOpen && contentId && (
+        <Modal closeModal={closeModal}>
+          <CampingImages isMenuOpen={isMenuOpen} contentId={contentId} />
+        </Modal>
+      )}
       <section>
         <nav className="flex shadow-md rounded-md dark:shadow-[0px_0px_3px_rgba(255,255,255,0.5)]">
           <Link

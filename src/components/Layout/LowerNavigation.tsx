@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "../../store/hooks";
-import { onOpen } from "../../store/slices/menuSlice";
+import { useSelector } from "../../store/hooks";
 
 const LowerNavigation = () => {
   const authUser = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
@@ -74,7 +72,7 @@ const LowerNavigation = () => {
         <span
           className="flex items-center cursor-pointer"
           onClick={() => {
-            !authUser ? navigate("login") : dispatch(onOpen());
+            !authUser && navigate("login");
           }}
         >
           <svg

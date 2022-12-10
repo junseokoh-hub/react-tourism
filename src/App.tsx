@@ -11,8 +11,6 @@ import { onState } from "./store/slices/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
 import { HelmetProvider } from "react-helmet-async";
-import Route from "./pages/Route";
-import Course from "./pages/Course";
 
 const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -46,6 +44,8 @@ const CampingMapSearch = React.lazy(
 const CampingInputSearch = React.lazy(
   () => import("./pages/campingPages/CampingInputSearch"),
 );
+const Route = React.lazy(() => import("./pages/Route"));
+const Course = React.lazy(() => import("./pages/Course"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {

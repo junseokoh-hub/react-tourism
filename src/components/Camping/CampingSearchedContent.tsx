@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SearchedContentType } from "../../api/campingApi";
-import { useDispatch } from "../../store/hooks";
+import { useDispatch, useSelector } from "../../store/hooks";
 import { onOpen } from "../../store/slices/menuSlice";
 
 type CampingSearchedContentProps = {
@@ -10,19 +10,24 @@ type CampingSearchedContentProps = {
 
 const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
   const dispatch = useDispatch();
+  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
   const navigate = useNavigate();
   const params = useSearchParams();
   const keyword = params[0].get("keyword");
 
   const onClick = useCallback(() => {
-    navigate(`?keyword=${keyword}&id=${camp.contentId}`);
+    if (keyword) {
+      navigate(`?keyword=${keyword}&id=${camp.contentId}`);
+    } else {
+      navigate(`?keyword="지도검색"&id=${camp.contentId}`);
+    }
     dispatch(onOpen());
   }, []);
 
   return (
     <li
       key={camp.contentId}
-      className="p-2 flex border border-solid broder-blue-500 dark:border-orange-500"
+      className="p-2 flex border border-solid border-blue-100 bg-blue-100 rounded-md dark:bg-orange-500 dark:border-orange-500 dark:text-white"
     >
       <img
         src={camp.firstImageUrl || "../images/noImage.jpg"}

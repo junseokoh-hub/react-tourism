@@ -11,6 +11,9 @@ const CampingIndicator = () => {
             src={"../images/camping1.jpg"}
             alt={"camping"}
           />
+          <span className="block font-semibold text-center dark:text-white dark:hover:text-orange-500">
+            직접 검색
+          </span>
         </Link>
         <Link className="w-1/2 block" to="camping/map-search">
           <img
@@ -18,6 +21,9 @@ const CampingIndicator = () => {
             src={"../images/camping2.jpg"}
             alt={"camping"}
           />
+          <span className="block font-semibold text-center dark:text-white dark:hover:text-orange-500">
+            지도로 검색
+          </span>
         </Link>
       </div>
     </section>

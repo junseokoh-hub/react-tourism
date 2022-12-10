@@ -86,6 +86,7 @@ const BarChart = ({ date }: BarChartProps) => {
     ],
   };
 
+  let delayed: any;
   let options: ChartOptions<"bar"> = {
     maintainAspectRatio: false,
     scales: {
@@ -95,7 +96,27 @@ const BarChart = ({ date }: BarChartProps) => {
         },
       },
     },
+    hover: {
+      mode: "index",
+      intersect: false,
+    },
+    animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === "data" && context.mode === "default" && !delayed) {
+          delay = context.dataIndex * 300 + context.datasetIndex * 100;
+        }
+        return delay;
+      },
+    },
     plugins: {
+      tooltip: {
+        mode: "index",
+        intersect: false,
+      },
       legend: {
         position: "top",
         labels: {},

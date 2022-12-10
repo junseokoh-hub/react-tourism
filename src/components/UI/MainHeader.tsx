@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, NavLink, useMatch, useNavigate } from "react-router-dom";
-import SearchBox from "../Search/SearchBox";
+// import SearchBox from "../Search/SearchBox";
+
+const SearchBox = React.lazy(() => import("../Search/SearchBox"));
 
 type MainHeaderProps = {
   isView: boolean;

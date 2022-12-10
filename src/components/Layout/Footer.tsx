@@ -5,11 +5,13 @@ const Footer = () => {
   return (
     <section className="p-4 w-full min-h-[300px] bg-[lightgray] dark:bg-slate-900">
       <ul className="space-y-5">
-        <li
-          onClick={() => navigate("/")}
-          className="font-extrabold text-2xl italic text-gray-600 cursor-pointer dark:fill-white"
-        >
-          Tourism
+        <li>
+          <span
+            className="font-extrabold text-2xl italic text-gray-600 cursor-pointer transition-colors dark:hover:text-orange-500"
+            onClick={() => navigate("/")}
+          >
+            Tourism
+          </span>
         </li>
         <li className="space-x-5">
           <a
