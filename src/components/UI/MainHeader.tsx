@@ -44,7 +44,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
     <header
       className={`py-5 fixed top-0 left-0 right-0 bg-white font-bold z-50 ${
         !isView ? "shadow-xl" : "shadow-sm"
-      } transition-shadow duration-500 ease-in-out dark:bg-black`}
+      } transition-all ease-in-out dark:bg-black`}
     >
       <nav className="px-5 flex items-center md:max-w-3xl md:mx-auto">
         {!homeMatch && (

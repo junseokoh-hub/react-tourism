@@ -46,6 +46,9 @@ const CampingInputSearch = React.lazy(
 );
 const Route = React.lazy(() => import("./pages/Route"));
 const Course = React.lazy(() => import("./pages/Course"));
+const MyPage = React.lazy(() => import("./pages/UserPages/MyPage"));
+const MySchedule = React.lazy(() => import("./pages/UserPages/MySchedule"));
+const MyPreference = React.lazy(() => import("./pages/UserPages/MyPreference"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
@@ -137,6 +140,9 @@ const App = () => {
         },
         { path: "route", element: <Route /> },
         { path: "route/:routeIdx", element: <Course /> },
+        { path: "myPreference", element: <MyPreference /> },
+        { path: "mySchedule", element: <MySchedule /> },
+        { path: "myPage", element: <MyPage /> },
         {
           path: "login",
           element: !authUser.user ? (
