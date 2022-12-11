@@ -1,3 +1,4 @@
+import React from "react";
 import {
   LeisureSportsDetailInfoType,
   LeisureSportsDetailIntroType,
@@ -35,4 +36,4 @@ const LeisureSportsDetail = ({
   );
 };
 
-export default LeisureSportsDetail;
+export default React.memo(LeisureSportsDetail);

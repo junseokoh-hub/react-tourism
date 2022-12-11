@@ -1,3 +1,4 @@
+import React from "react";
 import {
   RestaurantDetailInfoType,
   RestaurantDetailIntroType,
@@ -34,4 +35,4 @@ const RestaurantDetail = ({
   );
 };
 
-export default RestaurantDetail;
+export default React.memo(RestaurantDetail);

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FestivalDetailInfoType,
   FestivalDetailIntroType,
@@ -35,4 +36,4 @@ const FestivalDetail = ({
   );
 };
 
-export default FestivalDetail;
+export default React.memo(FestivalDetail);

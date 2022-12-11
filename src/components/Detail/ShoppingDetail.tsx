@@ -1,3 +1,4 @@
+import React from "react";
 import {
   ShoppingDetailInfoType,
   ShoppingDetailIntroType,
@@ -29,4 +30,4 @@ const ShoppingDetail = ({
   );
 };
 
-export default ShoppingDetail;
+export default React.memo(ShoppingDetail);

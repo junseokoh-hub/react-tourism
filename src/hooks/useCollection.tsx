@@ -10,11 +10,22 @@ import {
 import { useEffect, useState } from "react";
 import { appFireStore } from "../lib/firebaseConfig";
 
+type DocumentsType = {
+  createdTime: {
+    nanoseconds: number;
+    seconds: number;
+  };
+  id: string;
+  overview: string;
+  title: string;
+  uid: string;
+};
+
 export const useCollection = (
   transaction: any,
-  myQuery: [string, "==", string],
+  myQuery?: [string, "==", string],
 ) => {
-  const [documents, setDocuments] = useState(null);
+  const [documents, setDocuments] = useState<DocumentsType[] | null>(null);
   const [error, setError] = useState(null);
   useEffect(() => {
     let q: any;

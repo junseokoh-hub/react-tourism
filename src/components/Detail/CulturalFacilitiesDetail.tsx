@@ -1,3 +1,4 @@
+import React from "react";
 import {
   CulturalFacilitiesDetailInfoType,
   CulturalFacilitiesDetailIntroType,
@@ -39,4 +40,4 @@ const CulturalFacilitiesDetail = ({
   );
 };
 
-export default CulturalFacilitiesDetail;
+export default React.memo(CulturalFacilitiesDetail);

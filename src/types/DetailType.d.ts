@@ -21,7 +21,7 @@ export type AreaBasedListType = {
   modifiedtime: "string";
 };
 
-type DetailCommonType = {
+export type DetailCommonType = {
   contenttypeid: "string";
   booktour: "string";
   createdtime: "string";
