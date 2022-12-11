@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { appFireStore } from "../lib/firebaseConfig";
 
-type DocumentsType = {
+export type DocumentsType = {
   createdTime: {
     nanoseconds: number;
     seconds: number;
@@ -22,14 +22,12 @@ type DocumentsType = {
   addr: string;
   tel: string;
   image: string;
+  contentType: string;
   contentId: string;
   contentTypeId: string;
 };
 
-export const useCollection = (
-  transaction: any,
-  myQuery?: [string, "==", string],
-) => {
+export const useCollection = (transaction: any, myQuery?: string) => {
   const [documents, setDocuments] = useState<DocumentsType[] | null>(null);
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -38,7 +36,6 @@ export const useCollection = (
       q = query(
         collection(appFireStore, transaction),
         where("uid", "==", myQuery),
-        orderBy("createdTime", "desc"),
       );
     }
     const unsubscribe = onSnapshot(

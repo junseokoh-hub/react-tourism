@@ -16,6 +16,7 @@ type DocType = {
   overview: string;
   addr: string;
   tel: string;
+  contentType: string;
   contentId: string | undefined;
   contentTypeId: string | undefined;
 };

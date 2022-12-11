@@ -62,6 +62,8 @@ const App = () => {
     return unsubscribe;
   }, []);
 
+  console.log(authUser.user);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -140,9 +142,18 @@ const App = () => {
         },
         { path: "route", element: <Route /> },
         { path: "route/:routeIdx", element: <Course /> },
-        { path: "myPreference", element: <MyPreference /> },
-        { path: "mySchedule", element: <MySchedule /> },
-        { path: "myPage", element: <MyPage /> },
+        {
+          path: "myPreference",
+          element: authUser.user ? <MyPreference /> : <Navigate to="/login" />,
+        },
+        {
+          path: "mySchedule",
+          element: authUser.user ? <MySchedule /> : <Navigate to="/login" />,
+        },
+        {
+          path: "myPage",
+          element: authUser.user ? <MyPage /> : <Navigate to="/login" />,
+        },
         {
           path: "login",
           element: !authUser.user ? (

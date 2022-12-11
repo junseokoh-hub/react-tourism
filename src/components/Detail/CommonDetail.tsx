@@ -15,7 +15,12 @@ const CommonDetail = ({ data }: CommonDetailProps) => {
   const authUser = useSelector((state) => state.auth.user);
   const { contentId, contentTypeId } = useParams();
   const { addDocument, deleteDocument } = useFirestore("preference");
-  const { documents } = useCollection("preference");
+  const { documents } = useCollection("preference", authUser?.uid);
+
+  const contentType = window.location.href.slice(22).split("/")[0];
+
+  console.log(documents);
+
   const filtered =
     documents && documents.filter((doc) => doc.title === data?.title);
   useEffect(() => {
@@ -44,6 +49,7 @@ const CommonDetail = ({ data }: CommonDetailProps) => {
             tel,
             contentId,
             contentTypeId,
+            contentType,
             uid: authUser.uid,
           });
           setIsPreferred(true);
