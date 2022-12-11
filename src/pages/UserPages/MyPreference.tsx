@@ -7,8 +7,6 @@ const MyPreference = () => {
   const authUser = useSelector((state) => state.auth.user);
   const { documents: likes } = useCollection("preference", authUser?.uid);
 
-  console.log(likes);
-
   return (
     <>
       <SEOMeta title={"나의 선호"} content={"내가 선호하는 여행지"} />

@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SearchedContentType } from "../../api/campingApi";
-import { useDispatch } from "../../store/hooks";
+import { useCollection } from "../../hooks/useCollection";
+import { useDispatch, useSelector } from "../../store/hooks";
 import { onOpen } from "../../store/slices/menuSlice";
 
 type CampingSearchedContentProps = {
@@ -12,8 +13,10 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
   const [isPreferred, setIsPreferred] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authUser = useSelector((state) => state.auth.user);
   const params = useSearchParams();
   const keyword = params[0].get("keyword");
+  const { documents } = useCollection("preference", authUser?.uid);
 
   const onClick = useCallback(() => {
     if (keyword) {

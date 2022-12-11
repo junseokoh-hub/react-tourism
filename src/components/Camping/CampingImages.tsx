@@ -37,7 +37,7 @@ const CampingImages = ({ isMenuOpen, contentId }: CampingImagesProps) => {
           ))}
         </Swiper>
       ) : (
-        <div className="text-3xl text-orange-500 font-bold">
+        <div className="text-3xl text-orange-500 font-bold dark:text-white">
           이미지가 없습니다.
         </div>
       )}

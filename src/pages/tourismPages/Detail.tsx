@@ -61,7 +61,7 @@ const Detail = ({ contentType }: DetailProps) => {
         <Loader />
       ) : (
         <article className="space-y-4 dark:text-white">
-          <CommonDetail data={data?.data} />
+          <CommonDetail data={data?.data} contentType={contentType} />
           {accommodationMatch && (
             <AccommodationDetail
               detailInfoData={detailInfoData.data}

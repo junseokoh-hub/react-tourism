@@ -13,7 +13,6 @@ const LeisureSportsDetail = ({
   detailInfoData,
   detailIntroData,
 }: LeisureSportsDetailProps) => {
-  console.log(detailIntroData);
   return (
     <article className="mt-10 space-y-10">
       <ul className="space-y-3">

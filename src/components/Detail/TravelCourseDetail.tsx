@@ -13,7 +13,6 @@ const TravelCourseDetail = ({
   detailInfoData,
   detailIntroData,
 }: TravelCourseDetailProps) => {
-  console.log(detailInfoData);
   return (
     <article className="mt-10 space-y-10">
       <div className="space-y-3">

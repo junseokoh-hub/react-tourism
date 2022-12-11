@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useSelector } from "../../store/hooks";
@@ -8,18 +8,16 @@ import KakaoMap from "../../utils/KakaoMap";
 
 type CommonDetailProps = {
   data: DetailCommonType | undefined;
+  contentType: string;
 };
 
-const CommonDetail = ({ data }: CommonDetailProps) => {
+const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
   const [isPreferred, setIsPreferred] = useState(false);
   const authUser = useSelector((state) => state.auth.user);
   const { contentId, contentTypeId } = useParams();
+  const navigate = useNavigate();
   const { addDocument, deleteDocument } = useFirestore("preference");
   const { documents } = useCollection("preference", authUser?.uid);
-
-  const contentType = window.location.href.slice(22).split("/")[0];
-
-  console.log(documents);
 
   const filtered =
     documents && documents.filter((doc) => doc.title === data?.title);
@@ -56,6 +54,14 @@ const CommonDetail = ({ data }: CommonDetailProps) => {
         } else {
           deleteDocument(filtered[0].id);
           setIsPreferred(false);
+        }
+      } else {
+        if (
+          window.confirm(
+            `로그인 하셔야 이용하실 수 있습니다. 로그인 하시겠습니까?`,
+          )
+        ) {
+          navigate("/login");
         }
       }
     },
@@ -131,4 +137,4 @@ const CommonDetail = ({ data }: CommonDetailProps) => {
   );
 };
 
-export default CommonDetail;
+export default React.memo(CommonDetail);

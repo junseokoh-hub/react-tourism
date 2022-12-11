@@ -26,14 +26,14 @@ const CampingIndicator = ({ sliderId }: CampingIndicatorProps) => {
       </div>
       <ul
         id={sliderId}
-        className="flex overflow-x-hidden transition-all scroll-smooth"
+        className="mx-auto w-[70vw] flex overflow-x-hidden transition-all scroll-smooth"
       >
         <li
           className="relative cursor-pointer"
           onClick={() => navigate("camping/input-search")}
         >
           <img
-            className="w-[725px] h-[400px] block rounded-md"
+            className="h-[400px] block rounded-md"
             src={"../images/camping1.jpg"}
             alt={"camping"}
           />
@@ -46,7 +46,7 @@ const CampingIndicator = ({ sliderId }: CampingIndicatorProps) => {
           onClick={() => navigate("camping/map-search")}
         >
           <img
-            className="w-[725px] h-[400px] block rounded-md"
+            className="h-[400px] block rounded-md"
             src={"../images/camping2.jpg"}
             alt={"camping"}
           />

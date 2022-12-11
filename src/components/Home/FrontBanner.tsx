@@ -10,7 +10,7 @@ const FrontBanner = () => {
         다양한 국내여행, <br />
         서울부터 제주까지!
       </div>
-      <div className="mx-auto py-2 space-x-2 w-1/2 flex justify-center bg-blue-200 rounded-md font-semibold dark:bg-cyan-900">
+      <div className="mx-auto py-2 space-x-2 w-1/2 flex justify-center bg-blue-200 rounded-md font-semibold dark:bg-orange-600">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

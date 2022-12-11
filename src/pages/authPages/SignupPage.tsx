@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useSignup } from "../../hooks/useSignup";
+import SEOMeta from "../../SEOMeta";
 
 export type AuthType = {
   email: string;
@@ -47,13 +49,15 @@ const SignupPage = () => {
     },
   };
 
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, []);
+
   return (
     <>
-      <Helmet>
-        <title>회원가입</title>
-      </Helmet>
+      <SEOMeta title="회원가입" content="회원가입하기" />
       <form
-        className="mt-10 mx-auto space-y-4 w-[350px] h-[500px] flex flex-col justify-center items-center rounded-md shadow-2xl"
+        className="mt-10 mx-auto space-y-4 w-[350px] h-[500px] flex flex-col justify-center items-center rounded-md shadow-2xl dark:text-white dark:shadow-[0px_0px_5px_rgba(255,255,255,0.5)]"
         onSubmit={submitHandler}
       >
         <div className="space-y-1">
@@ -103,7 +107,7 @@ const SignupPage = () => {
         </div>
         <button
           type="submit"
-          className="py-2 w-48 rounded-sm border-0 outline-none cursor-pointer text-lg text-white font-semibold bg-teal-500 hover:bg-teal-800"
+          className="py-2 w-48 rounded-sm border-0 outline-none cursor-pointer text-lg text-white font-semibold bg-teal-500 transition-colors hover:bg-teal-800 dark:bg-orange-500 dark:hover:bg-orange-800"
           disabled={isSubmitting}
         >
           회원가입

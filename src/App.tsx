@@ -62,8 +62,6 @@ const App = () => {
     return unsubscribe;
   }, []);
 
-  console.log(authUser.user);
-
   const router = createBrowserRouter([
     {
       path: "/",

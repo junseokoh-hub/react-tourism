@@ -6,13 +6,15 @@ const PreferenceLists = ({ data }: { data: DocumentsType }) => {
 
   return (
     <li
-      className="p-2 flex border border-solid border-blue-500 dark:border-orange-500 dark:text-white"
+      className="space-x-2 p-2 flex border border-solid border-blue-500 dark:border-orange-500 dark:text-white"
       key={data.id}
       onClick={() =>
         navigate(`/${data.contentType}/${data.contentId}/${data.contentTypeId}`)
       }
     >
-      <img className="w-1/2 h-48 block" src={data.image} alt={data.title} />
+      <div className="w-1/3 md:w-1/2">
+        <img className="w-full h-60 block" src={data.image} alt={data.title} />
+      </div>
       <div className="w-full">
         <h3>{data.title}</h3>
         <h5>{data.addr}</h5>

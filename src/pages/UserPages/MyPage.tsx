@@ -10,7 +10,7 @@ const MyPage = () => {
   return (
     <>
       <SEOMeta title={"내정보"} content={"나의 정보"} />
-      <article className="p-2 flex">
+      <article className="p-2 flex dark:text-white">
         <div className="space-y-2 w-full flex flex-col justify-center items-center">
           <img
             src={"../images/noImage.jpg"}
