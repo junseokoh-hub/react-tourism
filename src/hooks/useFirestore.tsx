@@ -9,6 +9,17 @@ import {
 } from "firebase/firestore";
 import { appFireStore, timestamp } from "../lib/firebaseConfig";
 
+type DocType = {
+  uid: string;
+  title: string;
+  image: string;
+  overview: string;
+  addr: string;
+  tel: string;
+  contentId: string | undefined;
+  contentTypeId: string | undefined;
+};
+
 type InitialStateType = {
   document: any;
   isLoading: boolean;
@@ -59,7 +70,7 @@ export const useFirestore = (transaction: string) => {
   const colRef = collection(appFireStore, transaction);
 
   const addDocument = useCallback(
-    async (doc: { uid: string; title: string; overview: string }) => {
+    async (doc: DocType) => {
       dispatch({ type: "isLoading" });
       try {
         const createdTime = timestamp.fromDate(new Date());

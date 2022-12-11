@@ -19,6 +19,11 @@ type DocumentsType = {
   overview: string;
   title: string;
   uid: string;
+  addr: string;
+  tel: string;
+  image: string;
+  contentId: string;
+  contentTypeId: string;
 };
 
 export const useCollection = (

@@ -55,8 +55,6 @@ const Detail = ({ contentType }: DetailProps) => {
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
-  console.log("rendering");
-
   return (
     <>
       {isLoading ? (

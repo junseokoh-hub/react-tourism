@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useSelector } from "../../store/hooks";
@@ -12,6 +13,7 @@ type CommonDetailProps = {
 const CommonDetail = ({ data }: CommonDetailProps) => {
   const [isPreferred, setIsPreferred] = useState(false);
   const authUser = useSelector((state) => state.auth.user);
+  const { contentId, contentTypeId } = useParams();
   const { addDocument, deleteDocument } = useFirestore("preference");
   const { documents } = useCollection("preference");
   const filtered =
@@ -24,13 +26,26 @@ const CommonDetail = ({ data }: CommonDetailProps) => {
     }
   }, [documents]);
 
-  console.log(filtered);
-
   const switchLikeHandler = useCallback(
-    (title: string, overview: string) => {
+    (
+      title: string,
+      overview: string,
+      image: string,
+      addr: string,
+      tel: string,
+    ) => {
       if (authUser && filtered) {
         if (filtered.length === 0) {
-          addDocument({ title, overview, uid: authUser.uid });
+          addDocument({
+            title,
+            overview,
+            image,
+            addr,
+            tel,
+            contentId,
+            contentTypeId,
+            uid: authUser.uid,
+          });
           setIsPreferred(true);
         } else {
           deleteDocument(filtered[0].id);
@@ -66,7 +81,13 @@ const CommonDetail = ({ data }: CommonDetailProps) => {
             className={`w-8 h-8 ${isPreferred ? "fill-red-500" : ""}`}
             onClick={() => {
               if (data) {
-                switchLikeHandler(data.title, data.overview);
+                switchLikeHandler(
+                  data.title,
+                  data.overview,
+                  data.firstimage || data.firstimage2 || "",
+                  data.tel,
+                  data.addr1,
+                );
               }
             }}
           >

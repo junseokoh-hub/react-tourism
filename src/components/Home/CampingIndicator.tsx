@@ -13,23 +13,23 @@ const CampingIndicator = ({ sliderId }: CampingIndicatorProps) => {
       <div className="space-x-3">
         <button
           className="p-2 rounded-md border border-solid border-blue-500 text-blue-500 bg-transparent transition-colors cursor-pointer dark:text-orange-500 dark:border-orange-500 dark:text-orange hover:bg-blue-500 hover:text-white dark:hover:bg-orange-500 dark:hover:text-white"
-          onClick={() => (document.getElementById(sliderId)!.scrollLeft -= 730)}
+          onClick={() => (document.getElementById(sliderId)!.scrollLeft -= 725)}
         >
           직접 검색하기
         </button>
         <button
           className="p-2 rounded-md border border-solid border-blue-500 text-blue-500 bg-transparent transition-colors cursor-pointer dark:text-orange-500 dark:border-orange-500 dark:text-orange hover:bg-blue-500 hover:text-white dark:hover:bg-orange-500 dark:hover:text-white"
-          onClick={() => (document.getElementById(sliderId)!.scrollLeft += 730)}
+          onClick={() => (document.getElementById(sliderId)!.scrollLeft += 725)}
         >
           지도로 검색하기
         </button>
       </div>
       <ul
         id={sliderId}
-        className="w-full flex space-x-1 overflow-x-hidden transition-all scroll-smooth"
+        className="flex overflow-x-hidden transition-all scroll-smooth"
       >
         <li
-          className="cursor-pointer"
+          className="relative cursor-pointer"
           onClick={() => navigate("camping/input-search")}
         >
           <img
@@ -37,9 +37,12 @@ const CampingIndicator = ({ sliderId }: CampingIndicatorProps) => {
             src={"../images/camping1.jpg"}
             alt={"camping"}
           />
+          <span className="absolute bottom-16 right-10 text-white font-bold text-3xl">
+            직접 검색하기
+          </span>
         </li>
         <li
-          className="cursor-pointer"
+          className="relative cursor-pointer"
           onClick={() => navigate("camping/map-search")}
         >
           <img
@@ -47,6 +50,9 @@ const CampingIndicator = ({ sliderId }: CampingIndicatorProps) => {
             src={"../images/camping2.jpg"}
             alt={"camping"}
           />
+          <span className="absolute bottom-16 right-10 text-white font-bold text-3xl">
+            지도로 검색하기
+          </span>
         </li>
       </ul>
     </section>
