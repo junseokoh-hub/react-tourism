@@ -49,6 +49,12 @@ const Course = React.lazy(() => import("./pages/Course"));
 const MyPage = React.lazy(() => import("./pages/UserPages/MyPage"));
 const MySchedule = React.lazy(() => import("./pages/UserPages/MySchedule"));
 const MyPreference = React.lazy(() => import("./pages/UserPages/MyPreference"));
+const TourismPreference = React.lazy(
+  () => import("./pages/UserPages/TourismPreference"),
+);
+const CampingPreference = React.lazy(
+  () => import("./pages/UserPages/CampingPreference"),
+);
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
@@ -143,6 +149,24 @@ const App = () => {
         {
           path: "myPreference",
           element: authUser.user ? <MyPreference /> : <Navigate to="/login" />,
+          children: [
+            {
+              path: "tourism",
+              element: authUser.user ? (
+                <TourismPreference />
+              ) : (
+                <Navigate to="/login" />
+              ),
+            },
+            {
+              path: "camping",
+              element: authUser.user ? (
+                <CampingPreference />
+              ) : (
+                <Navigate to="/login" />
+              ),
+            },
+          ],
         },
         {
           path: "mySchedule",

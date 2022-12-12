@@ -25,8 +25,8 @@ const authSlice = createSlice({
         isAuthReady: true,
       };
     },
-    updateState(state, action: PayloadAction<string>) {
-      return { ...state, photoURL: action.payload };
+    updateState(state, action: PayloadAction<any>) {
+      return { ...state, ...action.payload };
     },
   },
 });
