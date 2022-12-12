@@ -15,7 +15,11 @@ const MyPreference = () => {
           >
             여행지
             {tourismPreferenceMatch && (
-              <div className="mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500 " />
+              <div
+                className={
+                  "mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500"
+                }
+              />
             )}
           </Link>
           <Link

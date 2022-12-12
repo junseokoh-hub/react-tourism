@@ -6,11 +6,13 @@ import Loader from "../utils/Loader";
 const Course = () => {
   const { routeIdx } = useParams();
 
-  const { data: courses, isLoading } = useQuery([routeIdx], () =>
-    courseList(routeIdx as string),
-  );
+  const { data: courses, isLoading } = useQuery([routeIdx], () => {
+    if (routeIdx) {
+      return courseList(routeIdx);
+    }
+  });
 
-  console.log(courses?.items.item);
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
 
   return (
     <div className="space-y-8 dark:text-white transition-colors">

@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SearchedContentType } from "../../api/campingApi";
 import { useCollection } from "../../hooks/useCollection";
+import { useFirestore } from "../../hooks/useFirestore";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onOpen } from "../../store/slices/menuSlice";
 
@@ -16,9 +17,10 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
   const authUser = useSelector((state) => state.auth.user);
   const params = useSearchParams();
   const keyword = params[0].get("keyword");
-  const { documents } = useCollection("preference", authUser?.uid);
+  const { addDocument, deleteDocument } = useFirestore("preference_camping");
+  const { documents } = useCollection("preference_camping", authUser?.uid);
 
-  const onClick = useCallback(() => {
+  const openImageModal = useCallback(() => {
     if (keyword) {
       navigate(`?keyword=${keyword}&id=${camp.contentId}`);
     } else {
@@ -26,6 +28,42 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
     }
     dispatch(onOpen());
   }, []);
+
+  const lists =
+    documents && documents.filter((doc) => doc.contentId === camp.contentId);
+
+  const switchLikeHandler = useCallback(() => {
+    if (authUser && lists) {
+      if (lists.length === 0) {
+        addDocument({
+          contentId: camp.contentId,
+          uid: authUser.uid,
+          title: camp.facltNm,
+          addr: camp.addr1 || camp.addr2 || "",
+        });
+        setIsPreferred(true);
+      } else {
+        deleteDocument(lists[0].id);
+        setIsPreferred(false);
+      }
+    } else {
+      if (
+        window.confirm(
+          `로그인 하셔야 이용하실 수 있습니다. 로그인 하시겠습니까?`,
+        )
+      ) {
+        navigate("/login");
+      }
+    }
+  }, [lists]);
+
+  useEffect(() => {
+    if (lists && lists.length > 0) {
+      setIsPreferred(true);
+    } else {
+      setIsPreferred(false);
+    }
+  }, [documents]);
 
   return (
     <li
@@ -36,7 +74,7 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
         src={camp.firstImageUrl || "../images/noImage.jpg"}
         alt={camp.facltNm}
         className="w-1/3 h-1/2 block"
-        onClick={onClick}
+        onClick={openImageModal}
       />
       <ul className="px-2 w-full flex flex-col justify-between relative">
         <li>이름 : {camp.facltNm}</li>
@@ -52,10 +90,7 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
           </a>
         </li>
         <li>전화번호 : {camp.tel}</li>
-        <li
-          className="absolute right-0 bottom-0"
-          onClick={() => setIsPreferred((prev) => !prev)}
-        >
+        <li className="absolute right-0 bottom-0" onClick={switchLikeHandler}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
