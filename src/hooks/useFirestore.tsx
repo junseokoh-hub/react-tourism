@@ -12,7 +12,7 @@ import { appFireStore, timestamp } from "../lib/firebaseConfig";
 type DocType = {
   uid: string;
   title: string;
-  image?: string;
+  image: string;
   overview?: string;
   addr: string;
   tel?: string;

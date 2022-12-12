@@ -4,6 +4,9 @@ import SEOMeta from "../../SEOMeta";
 const MyPreference = () => {
   const tourismPreferenceMatch = useMatch("myPreference/tourism");
   const campingPreferenceMatch = useMatch("myPreference/camping");
+
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+
   return (
     <>
       <SEOMeta title={"나의 선호"} content={"내가 선호하는 여행지"} />

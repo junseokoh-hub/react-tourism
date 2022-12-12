@@ -40,6 +40,7 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
           uid: authUser.uid,
           title: camp.facltNm,
           addr: camp.addr1 || camp.addr2 || "",
+          image: camp.firstImageUrl || "",
         });
         setIsPreferred(true);
       } else {

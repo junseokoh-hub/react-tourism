@@ -49,12 +49,10 @@ const Course = React.lazy(() => import("./pages/Course"));
 const MyPage = React.lazy(() => import("./pages/UserPages/MyPage"));
 const MySchedule = React.lazy(() => import("./pages/UserPages/MySchedule"));
 const MyPreference = React.lazy(() => import("./pages/UserPages/MyPreference"));
-const TourismPreference = React.lazy(
-  () => import("./pages/UserPages/TourismPreference"),
+const MyPreferenceLists = React.lazy(
+  () => import("./pages/UserPages/MyPreferenceLists"),
 );
-const CampingPreference = React.lazy(
-  () => import("./pages/UserPages/CampingPreference"),
-);
+
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 const App = () => {
@@ -153,7 +151,7 @@ const App = () => {
             {
               path: "tourism",
               element: authUser.user ? (
-                <TourismPreference />
+                <MyPreferenceLists />
               ) : (
                 <Navigate to="/login" />
               ),
@@ -161,7 +159,7 @@ const App = () => {
             {
               path: "camping",
               element: authUser.user ? (
-                <CampingPreference />
+                <MyPreferenceLists />
               ) : (
                 <Navigate to="/login" />
               ),
