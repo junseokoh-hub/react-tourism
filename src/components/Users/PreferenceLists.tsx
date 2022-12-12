@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { DocumentsType } from "../../hooks/useCollection";
 
-const PreferenceLists = ({ data }: { data: DocumentsType }) => {
+type PreferenceListsProps = {
+  data: DocumentsType;
+};
+
+const PreferenceLists = ({ data }: PreferenceListsProps) => {
   const navigate = useNavigate();
 
   return (

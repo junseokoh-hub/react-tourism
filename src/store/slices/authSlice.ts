@@ -25,9 +25,12 @@ const authSlice = createSlice({
         isAuthReady: true,
       };
     },
+    updateState(state, action: PayloadAction<string>) {
+      return { ...state, photoURL: action.payload };
+    },
   },
 });
 
-export const { onLogin, onLogout, onState } = authSlice.actions;
+export const { onLogin, onLogout, onState, updateState } = authSlice.actions;
 
 export default authSlice.reducer;
