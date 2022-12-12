@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { useQueries } from "react-query";
-import { Link, Outlet, useMatch, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../../api/tourismApi";
 import AccommodationDetail from "../../components/Detail/AccommodationDetail";
 import CommonDetail from "../../components/Detail/CommonDetail";
@@ -11,6 +11,7 @@ import RestaurantDetail from "../../components/Detail/RestaurantDetail";
 import ShoppingDetail from "../../components/Detail/ShoppingDetail";
 import TouristDestinationDetail from "../../components/Detail/TouristDestinationDetail";
 import TravelCourseDetail from "../../components/Detail/TravelCourseDetail";
+import OutletIndicator from "../../components/UI/OutletIndicator";
 import { DetailProps } from "../../types/DetailType";
 import Loader from "../../utils/Loader";
 
@@ -56,12 +57,18 @@ const Detail = ({ contentType }: DetailProps) => {
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
-  const detailMatch = useMatch(
-    `/${contentType}/${contentId}/${contentTypeId}/detail`,
-  );
-  const mapMatch = useMatch(
-    `/${contentType}/${contentId}/${contentTypeId}/map`,
-  );
+  const detailIndicators = [
+    {
+      match: `/${contentType}/${contentId}/${contentTypeId}/detail`,
+      path: "detail",
+      title: "세부사항",
+    },
+    {
+      match: `/${contentType}/${contentId}/${contentTypeId}/map`,
+      path: "map",
+      title: "위치",
+    },
+  ];
 
   return (
     <>
@@ -70,30 +77,7 @@ const Detail = ({ contentType }: DetailProps) => {
       ) : (
         <article className="space-y-4 dark:text-white">
           <CommonDetail data={data?.data} contentType={contentType} />
-          <nav className="flex shadow-md rounded-md dark:shadow-[0px_0px_3px_rgba(255,255,255,0.5)]">
-            <Link
-              to="detail"
-              className="py-3 px-1 w-1/2 block text-lg text-center dark:text-white"
-            >
-              세부사항
-              {detailMatch && (
-                <div
-                  className={
-                    "mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500"
-                  }
-                />
-              )}
-            </Link>
-            <Link
-              to="map"
-              className="py-3 w-1/2 block text-lg text-center dark:text-white"
-            >
-              위치
-              {mapMatch && (
-                <div className="mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500" />
-              )}
-            </Link>
-          </nav>
+          <OutletIndicator indicators={detailIndicators} />
           <Suspense fallback={<Loader />}>
             <Outlet context={data?.data} />
           </Suspense>

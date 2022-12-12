@@ -1,15 +1,14 @@
 import { Suspense, useCallback, useEffect } from "react";
-import { Link, Outlet, useMatch, useSearchParams } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 import CampingImages from "../../components/Camping/CampingImages";
 import Modal from "../../components/Modal/Modal";
+import OutletIndicator from "../../components/UI/OutletIndicator";
 import SEOMeta from "../../SEOMeta";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onClose } from "../../store/slices/menuSlice";
 import Loader from "../../utils/Loader";
 
 const Camping = () => {
-  const mapMatch = useMatch("camping/map-search");
-  const inputMatch = useMatch("camping/input-search");
   const params = useSearchParams();
   const contentId = params[0].get("id");
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
@@ -23,6 +22,15 @@ const Camping = () => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
   }, []);
 
+  const campingIndicators = [
+    {
+      match: "camping/input-search",
+      path: "input-search",
+      title: "검색으로 찾기",
+    },
+    { match: "camping/map-search", path: "map-search", title: "지도로 찾기" },
+  ];
+
   return (
     <>
       <SEOMeta
@@ -35,26 +43,7 @@ const Camping = () => {
         </Modal>
       )}
       <section>
-        <nav className="flex shadow-md rounded-md dark:shadow-[0px_0px_3px_rgba(255,255,255,0.5)]">
-          <Link
-            to="input-search"
-            className="py-3 px-1 w-1/2 block text-lg text-center dark:text-white"
-          >
-            검색으로 찾기
-            {inputMatch && (
-              <div className="mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500 " />
-            )}
-          </Link>
-          <Link
-            to="map-search"
-            className="py-3 w-1/2 block text-lg text-center dark:text-white"
-          >
-            지도로 찾기
-            {mapMatch && (
-              <div className="mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500" />
-            )}
-          </Link>
-        </nav>
+        <OutletIndicator indicators={campingIndicators} />
         <article className="mt-10">
           <Suspense fallback={<Loader />}>
             <Outlet />

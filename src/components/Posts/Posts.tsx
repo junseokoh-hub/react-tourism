@@ -36,6 +36,7 @@ const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
   const { data, isLoading } = useQuery<AreaCodeType[]>(
     ["areaCode", realm],
     () => areaCode(realm),
+    { suspense: true },
   );
 
   const { data: province, isLoading: provinceLoading } = useQuery(
