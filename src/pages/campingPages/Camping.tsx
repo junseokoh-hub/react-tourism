@@ -1,10 +1,11 @@
-import { useCallback, useEffect } from "react";
+import { Suspense, useCallback, useEffect } from "react";
 import { Link, Outlet, useMatch, useSearchParams } from "react-router-dom";
 import CampingImages from "../../components/Camping/CampingImages";
 import Modal from "../../components/Modal/Modal";
 import SEOMeta from "../../SEOMeta";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onClose } from "../../store/slices/menuSlice";
+import Loader from "../../utils/Loader";
 
 const Camping = () => {
   const mapMatch = useMatch("camping/map-search");
@@ -55,7 +56,9 @@ const Camping = () => {
           </Link>
         </nav>
         <article className="mt-10">
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </article>
       </section>
     </>

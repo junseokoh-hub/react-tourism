@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { DocumentsType } from "../../hooks/useCollection";
 
@@ -16,7 +17,7 @@ const TourismPreferenceLists = ({ data }: TourismPreferenceListsProps) => {
         navigate(`/${data.contentType}/${data.contentId}/${data.contentTypeId}`)
       }
     >
-      <div className="w-1/3 md:w-1/2">
+      <div className="w-3/4 md:w-1/2">
         <img className="w-full h-60 block" src={data.image} alt={data.title} />
       </div>
       <div className="w-full flex flex-col justify-around">
@@ -33,4 +34,4 @@ const TourismPreferenceLists = ({ data }: TourismPreferenceListsProps) => {
   );
 };
 
-export default TourismPreferenceLists;
+export default React.memo(TourismPreferenceLists);

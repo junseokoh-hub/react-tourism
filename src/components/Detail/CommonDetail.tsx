@@ -125,13 +125,13 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
             }}
           />
         </li>
-        <li>
+        {/* <li>
           <KakaoMap
             latitude={Number(data?.mapy)}
             longitude={Number(data?.mapx)}
             infoWindow={data?.addr1 || data?.addr2 || data?.title}
           />
-        </li>
+        </li> */}
       </ul>
     </>
   );

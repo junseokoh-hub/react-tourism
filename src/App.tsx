@@ -14,12 +14,15 @@ import { HelmetProvider } from "react-helmet-async";
 
 const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
+const Detail = React.lazy(() => import("./pages/tourismPages/Detail"));
+const DetailInfo = React.lazy(() => import("./components/Detail/DetailInfo"));
+const DetailMap = React.lazy(() => import("./components/Detail/DetailMap"));
 const Accommodation = React.lazy(
   () => import("./pages/tourismPages/Accommodation"),
 );
 const Shopping = React.lazy(() => import("./pages/tourismPages/Shopping"));
 const Festival = React.lazy(() => import("./pages/tourismPages/Festival"));
-const Detail = React.lazy(() => import("./pages/tourismPages/Detail"));
+
 const LeisureSports = React.lazy(
   () => import("./pages/tourismPages/LeisureSports"),
 );
@@ -95,41 +98,73 @@ const App = () => {
         {
           path: "accommodation/:contentId/:contentTypeId",
           element: <Detail contentType={"accommodation"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         { path: "festival", element: <Festival /> },
         {
           path: "festival/:contentId/:contentTypeId",
           element: <Detail contentType={"festival"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         { path: "restaurant", element: <Restaurant /> },
         {
           path: "restaurant/:contentId/:contentTypeId",
           element: <Detail contentType={"restaurant"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         { path: "shopping", element: <Shopping /> },
         {
           path: "shopping/:contentId/:contentTypeId",
           element: <Detail contentType={"shopping"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         { path: "cultural-facilities", element: <Shopping /> },
         {
           path: "cultural-facilities/:contentId/:contentTypeId",
           element: <Detail contentType={"cultural-facilities"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         { path: "leisure-sports", element: <LeisureSports /> },
         {
           path: "leisure-sports/:contentId/:contentTypeId",
           element: <Detail contentType={"leisure-sports"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         { path: "tourist-destination", element: <TouristDestination /> },
         {
           path: "tourist-destination/:contentId/:contentTypeId",
           element: <Detail contentType={"tourist-destination"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         { path: "travel-course", element: <TravelCourse /> },
         {
           path: "travel-course/:contentId/:contentTypeId",
           element: <Detail contentType={"travel-course"} />,
+          children: [
+            { path: "detail", element: <DetailInfo /> },
+            { path: "map", element: <DetailMap /> },
+          ],
         },
         {
           path: "camping",

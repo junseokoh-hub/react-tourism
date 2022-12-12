@@ -4,11 +4,8 @@ import { areaBasedList, areaCode } from "../../api/tourismApi";
 import { AreaCodeType, areas } from "../../lib/area";
 import SEOMeta from "../../SEOMeta";
 import Loader from "../../utils/Loader";
-
-const SelectBox = React.lazy(() => import("../SelectBox/SelectBox"));
-const SelectedContent = React.lazy(
-  () => import("../SelectedContents/SelectedContent"),
-);
+import SelectBox from "../SelectBox/SelectBox";
+import SelectedContent from "../SelectedContents/SelectedContent";
 
 type PostsProps = {
   title:

@@ -1,5 +1,6 @@
+import { Suspense } from "react";
 import { useQueries } from "react-query";
-import { useParams } from "react-router-dom";
+import { Link, Outlet, useMatch, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../../api/tourismApi";
 import AccommodationDetail from "../../components/Detail/AccommodationDetail";
 import CommonDetail from "../../components/Detail/CommonDetail";
@@ -55,6 +56,13 @@ const Detail = ({ contentType }: DetailProps) => {
   const isLoading =
     data.isLoading || detailInfoData.isLoading || detailIntroData.isLoading;
 
+  const detailMatch = useMatch(
+    `/${contentType}/${contentId}/${contentTypeId}/detail`,
+  );
+  const mapMatch = useMatch(
+    `/${contentType}/${contentId}/${contentTypeId}/map`,
+  );
+
   return (
     <>
       {isLoading ? (
@@ -62,54 +70,33 @@ const Detail = ({ contentType }: DetailProps) => {
       ) : (
         <article className="space-y-4 dark:text-white">
           <CommonDetail data={data?.data} contentType={contentType} />
-          {accommodationMatch && (
-            <AccommodationDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
-          {festivalMatch && (
-            <FestivalDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
-          {restaurantMatch && (
-            <RestaurantDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
-          {shoppingMatch && (
-            <ShoppingDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
-          {culturalFacilitiesMatch && (
-            <CulturalFacilitiesDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
-          {leisureSportsMatch && (
-            <LeisureSportsDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
-          {touristDestinationMatch && (
-            <TouristDestinationDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
-          {travelCourseMatch && (
-            <TravelCourseDetail
-              detailInfoData={detailInfoData.data}
-              detailIntroData={detailIntroData.data}
-            />
-          )}
+          <nav className="flex shadow-md rounded-md dark:shadow-[0px_0px_3px_rgba(255,255,255,0.5)]">
+            <Link
+              to="detail"
+              className="py-3 px-1 w-1/2 block text-lg text-center dark:text-white"
+            >
+              세부사항
+              {detailMatch && (
+                <div
+                  className={
+                    "mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500"
+                  }
+                />
+              )}
+            </Link>
+            <Link
+              to="map"
+              className="py-3 w-1/2 block text-lg text-center dark:text-white"
+            >
+              위치
+              {mapMatch && (
+                <div className="mt-2 mx-auto w-1/2 h-1 rounded-md bg-blue-500 dark:bg-orange-500" />
+              )}
+            </Link>
+          </nav>
+          <Suspense fallback={<Loader />}>
+            <Outlet context={data?.data} />
+          </Suspense>
         </article>
       )}
     </>

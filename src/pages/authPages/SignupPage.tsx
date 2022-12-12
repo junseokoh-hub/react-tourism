@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useSignup } from "../../hooks/useSignup";
 import SEOMeta from "../../SEOMeta";
