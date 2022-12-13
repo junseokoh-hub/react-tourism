@@ -3,7 +3,7 @@ import { DetailCommonType } from "../../types/DetailType";
 import KakaoMap from "../../utils/KakaoMap";
 
 const DetailMap = () => {
-  const data = useOutletContext<DetailCommonType>();
+  const { data } = useOutletContext<{ data: DetailCommonType }>();
 
   return (
     <KakaoMap
