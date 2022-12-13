@@ -3,6 +3,7 @@ import {
   TouristDestinationDetailInfoType,
   TouristDestinationDetailIntroType,
 } from "../../types/TouristDestinationType";
+import CommonDetailTable from "./CommonDetailTable";
 
 type TouristDestinationDetailProps = {
   detailInfoData: TouristDestinationDetailInfoType[];
@@ -16,10 +17,10 @@ const TouristDestinationDetail = ({
   return (
     <article className="mt-10 space-y-10">
       <div className="space-y-3">
-        <ul>
+        <ul className="space-y-5">
           {detailInfoData?.map((item) => (
             <li key={item.serialnum}>
-              <p dangerouslySetInnerHTML={{ __html: item.infotext }} />
+              <CommonDetailTable item={item} />
             </li>
           ))}
         </ul>

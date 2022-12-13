@@ -3,6 +3,7 @@ import {
   LeisureSportsDetailInfoType,
   LeisureSportsDetailIntroType,
 } from "../../types/LeisureSportsType";
+import CommonDetailTable from "./CommonDetailTable";
 
 type LeisureSportsDetailProps = {
   detailInfoData: LeisureSportsDetailInfoType[];
@@ -18,8 +19,7 @@ const LeisureSportsDetail = ({
       <ul className="space-y-3">
         {detailInfoData?.map((item) => (
           <li key={item.serialnum}>
-            <h3>{item.infoname}</h3>
-            <h5>{item.infotext}</h5>
+            <CommonDetailTable item={item} />
           </li>
         ))}
       </ul>

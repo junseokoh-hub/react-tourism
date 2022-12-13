@@ -9,6 +9,7 @@ const CampingIndicator = React.lazy(
 );
 
 const Home = () => {
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
   return (
     <>
       <SEOMeta

@@ -3,6 +3,7 @@ import {
   AccommodationDetailInfoType,
   AccommodationDetailIntroType,
 } from "../../types/AccommodationType";
+import AccommodationDetailTable from "./AccommodationDetailTable";
 
 type AccommodationDetailProps = {
   detailInfoData: AccommodationDetailInfoType[];
@@ -15,11 +16,11 @@ const AccommodationDetail = ({
 }: AccommodationDetailProps) => {
   return (
     <>
-      <div className="mt-3 grid grid-cols-1 gap-2 text-center md:grid-cols-2">
+      <div className="mt-3 space-y-10">
         {detailInfoData?.map((item) => (
-          <div key={item.roomcode} className="space-y-2">
+          <div key={item.roomcode} className="min-h-3/4 space-x-2 flex">
             <img
-              className="w-full h-60 block rounded-md"
+              className="w-1/2 md:w-1/3 block rounded-md"
               src={
                 item.roomimg1 || item.roomimg2
                   ? `https://${
@@ -29,7 +30,7 @@ const AccommodationDetail = ({
               }
               alt={item.roomimg1alt || item.roomimg2alt}
             />
-            <h3>{item.roomtitle}</h3>
+            <AccommodationDetailTable item={item} />
           </div>
         ))}
       </div>

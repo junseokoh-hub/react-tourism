@@ -3,6 +3,7 @@ import {
   RestaurantDetailInfoType,
   RestaurantDetailIntroType,
 } from "../../types/RestaurantType";
+import CommonDetailTable from "./CommonDetailTable";
 
 type RestaurantDetailProps = {
   detailInfoData: RestaurantDetailInfoType[];
@@ -13,13 +14,13 @@ const RestaurantDetail = ({
   detailInfoData,
   detailIntroData,
 }: RestaurantDetailProps) => {
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
   return (
     <article className="space-y-10">
       <ul>
         {detailInfoData?.map((item) => (
           <li key={item.serialnum} className="flex flex-col">
-            <span>{item.infoname}</span>
-            <span>{item.infotext}</span>
+            <CommonDetailTable item={item} />
           </li>
         ))}
       </ul>

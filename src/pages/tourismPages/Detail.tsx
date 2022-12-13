@@ -4,6 +4,7 @@ import { Outlet, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../../api/tourismApi";
 import CommonDetail from "../../components/Detail/CommonDetail";
 import OutletIndicator from "../../components/UI/OutletIndicator";
+import SEOMeta from "../../SEOMeta";
 import { DetailProps } from "../../types/DetailType";
 import Loader from "../../utils/Loader";
 
@@ -55,6 +56,10 @@ const Detail = ({ contentType }: DetailProps) => {
 
   return (
     <>
+      <SEOMeta
+        title={data?.data?.title || contentType}
+        content={data?.data?.overview || contentType}
+      />
       {isLoading ? (
         <Loader />
       ) : (

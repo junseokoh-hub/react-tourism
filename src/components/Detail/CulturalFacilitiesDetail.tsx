@@ -3,6 +3,7 @@ import {
   CulturalFacilitiesDetailInfoType,
   CulturalFacilitiesDetailIntroType,
 } from "../../types/CulturalFacilitiesType";
+import CommonDetailTable from "./CommonDetailTable";
 
 type CulturalFacilitiesDetailProps = {
   detailInfoData: CulturalFacilitiesDetailInfoType[];
@@ -15,11 +16,10 @@ const CulturalFacilitiesDetail = ({
 }: CulturalFacilitiesDetailProps) => {
   return (
     <article className="space-y-10">
-      <ul>
+      <ul className="space-y-5">
         {detailInfoData?.map((item) => (
           <li key={item.serialnum}>
-            <h4>{item.infoname}</h4>
-            <h5>{item.infotext}</h5>
+            <CommonDetailTable item={item} />
           </li>
         ))}
       </ul>

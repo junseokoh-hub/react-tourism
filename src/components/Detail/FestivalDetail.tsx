@@ -3,6 +3,7 @@ import {
   FestivalDetailInfoType,
   FestivalDetailIntroType,
 } from "../../types/FestivalType";
+import CommonDetailTable from "./CommonDetailTable";
 
 type FestivalDetailProps = {
   detailInfoData: FestivalDetailInfoType[];
@@ -18,7 +19,11 @@ const FestivalDetail = ({
       <div className="space-y-3">
         {detailInfoData?.map(
           (item) =>
-            item.infotext && <div key={item.fldgubun}>{item.infotext}</div>,
+            item.infotext && (
+              <div key={item.serialnum}>
+                <CommonDetailTable item={item} />
+              </div>
+            ),
         )}
       </div>
       <div className="mt-3">
