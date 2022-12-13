@@ -4,7 +4,6 @@ import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useSelector } from "../../store/hooks";
 import { DetailCommonType } from "../../types/DetailType";
-import KakaoMap from "../../utils/KakaoMap";
 
 type CommonDetailProps = {
   data: DetailCommonType | undefined;
@@ -17,7 +16,11 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
   const { contentId, contentTypeId } = useParams();
   const navigate = useNavigate();
   const { addDocument, deleteDocument } = useFirestore("preference");
-  const { documents } = useCollection("preference", authUser?.uid);
+  const { documents } = useCollection("preference", [
+    "uid",
+    "==",
+    authUser?.uid,
+  ]);
 
   const filtered =
     documents && documents.filter((doc) => doc.title === data?.title);
@@ -125,13 +128,6 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
             }}
           />
         </li>
-        {/* <li>
-          <KakaoMap
-            latitude={Number(data?.mapy)}
-            longitude={Number(data?.mapx)}
-            infoWindow={data?.addr1 || data?.addr2 || data?.title}
-          />
-        </li> */}
       </ul>
     </>
   );

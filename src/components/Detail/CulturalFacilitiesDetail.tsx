@@ -23,7 +23,7 @@ const CulturalFacilitiesDetail = ({
           </li>
         ))}
       </ul>
-      <ul className="space-y-3">
+      <ul className="space-y-3 dark:text-white">
         {detailIntroData?.map((item) => (
           <li key={item.contentid}>
             <h4>펫 : {item.chkpetculture}</h4>

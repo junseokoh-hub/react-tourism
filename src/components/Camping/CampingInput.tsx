@@ -37,6 +37,8 @@ const CampingInput = () => {
     }
   }, [isView]);
 
+  console.log("rendering");
+
   return (
     <>
       <ul className="py-10 space-y-10 dark:text-white">

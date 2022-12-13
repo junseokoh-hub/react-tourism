@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useQueries } from "react-query";
 import { Outlet, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../../api/tourismApi";
@@ -52,7 +52,16 @@ const Detail = ({ contentType }: DetailProps) => {
       path: "map",
       title: "위치",
     },
+    {
+      match: `${contentType}/${contentId}/${contentTypeId}/review`,
+      path: "review",
+      title: "리뷰",
+    },
   ];
+
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, []);
 
   return (
     <>

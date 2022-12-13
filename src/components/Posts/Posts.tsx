@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useQuery } from "react-query";
 import { areaBasedList, areaCode } from "../../api/tourismApi";
 import { AreaCodeType, areas } from "../../lib/area";
@@ -58,20 +58,22 @@ const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
           setValue={setCity}
           options={data as AreaCodeType[]}
         />
-        {!provinceLoading && province === undefined ? (
-          <div className="mt-10 text-center dark:text-white">
-            검색 결과가 없습니다.
-          </div>
-        ) : (
-          <ul className="mt-10 grid grid-cols-2 gap-2 dark:text-white">
-            {province &&
-              province.length > 0 &&
-              province.map((prov) => (
-                <SelectedContent data={prov} key={prov.contentid} />
-              ))}
-          </ul>
-        )}
-        {provinceLoading && <Loader />}
+        <Suspense fallback={<Loader />}>
+          {!provinceLoading && province === undefined ? (
+            <div className="mt-10 text-center dark:text-white">
+              검색 결과가 없습니다.
+            </div>
+          ) : (
+            <ul className="mt-10 grid grid-cols-2 gap-2 dark:text-white">
+              {province &&
+                province.length > 0 &&
+                province.map((prov) => (
+                  <SelectedContent data={prov} key={prov.contentid} />
+                ))}
+            </ul>
+          )}
+          {provinceLoading && <Loader />}
+        </Suspense>
       </div>
     </>
   );

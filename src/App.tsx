@@ -17,6 +17,9 @@ const Home = React.lazy(() => import("./pages/Home"));
 const Detail = React.lazy(() => import("./pages/tourismPages/Detail"));
 const DetailInfo = React.lazy(() => import("./components/Detail/DetailInfo"));
 const DetailMap = React.lazy(() => import("./components/Detail/DetailMap"));
+const DetailReview = React.lazy(
+  () => import("./components/Detail/DetailReview"),
+);
 const Accommodation = React.lazy(
   () => import("./pages/tourismPages/Accommodation"),
 );
@@ -50,7 +53,7 @@ const CampingInputSearch = React.lazy(
 const Route = React.lazy(() => import("./pages/Route"));
 const Course = React.lazy(() => import("./pages/Course"));
 const MyPage = React.lazy(() => import("./pages/UserPages/MyPage"));
-const MySchedule = React.lazy(() => import("./pages/UserPages/MySchedule"));
+const MyReviews = React.lazy(() => import("./pages/UserPages/MyReviews"));
 const MyPreference = React.lazy(() => import("./pages/UserPages/MyPreference"));
 const MyPreferenceLists = React.lazy(
   () => import("./pages/UserPages/MyPreferenceLists"),
@@ -101,6 +104,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         { path: "festival", element: <Festival /> },
@@ -110,6 +114,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         { path: "restaurant", element: <Restaurant /> },
@@ -119,6 +124,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         { path: "shopping", element: <Shopping /> },
@@ -128,6 +134,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         { path: "cultural-facilities", element: <Shopping /> },
@@ -137,6 +144,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         { path: "leisure-sports", element: <LeisureSports /> },
@@ -146,6 +154,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         { path: "tourist-destination", element: <TouristDestination /> },
@@ -155,6 +164,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         { path: "travel-course", element: <TravelCourse /> },
@@ -164,6 +174,7 @@ const App = () => {
           children: [
             { path: "detail", element: <DetailInfo /> },
             { path: "map", element: <DetailMap /> },
+            { path: "review", element: <DetailReview /> },
           ],
         },
         {
@@ -203,7 +214,7 @@ const App = () => {
         },
         {
           path: "mySchedule",
-          element: authUser.user ? <MySchedule /> : <Navigate to="/login" />,
+          element: authUser.user ? <MyReviews /> : <Navigate to="/login" />,
         },
         {
           path: "myPage",

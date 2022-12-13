@@ -11,14 +11,15 @@ import { appFireStore, timestamp } from "../lib/firebaseConfig";
 
 type DocType = {
   uid: string;
-  title: string;
-  image: string;
+  title?: string;
+  image?: string;
   overview?: string;
-  addr: string;
+  addr?: string;
   tel?: string;
   contentType?: string;
   contentId: string | undefined;
   contentTypeId?: string | undefined;
+  author?: string | null;
 };
 
 type InitialStateType = {

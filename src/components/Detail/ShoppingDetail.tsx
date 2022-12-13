@@ -19,7 +19,7 @@ const ShoppingDetail = ({
         {detailIntroData?.map((item) => (
           <li key={item.shopguide} className="space-y-3">
             <span>{item.fairday}</span>
-            <span>{item.opentime}</span>
+            <span dangerouslySetInnerHTML={{ __html: item.opentime }} />
             <p>{item.saleitem}</p>
             <p>주차 : {item.parkingshopping}</p>
             <p>카드 사용 : {item.chkcreditcardshopping}</p>

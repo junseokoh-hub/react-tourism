@@ -33,7 +33,7 @@ const AccommodationDetailTable = ({ item }: any) => {
             객실 크기
           </td>
           <td className="p-[10px] text-center border-b border-solid border-[#444444]">
-            {item.size1}평
+            {item.roomsize1}평
           </td>
         </tr>
         <tr>

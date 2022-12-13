@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { SearchedContentType } from "../../api/campingApi";
 import { useCollection } from "../../hooks/useCollection";
@@ -18,7 +18,11 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
   const params = useSearchParams();
   const keyword = params[0].get("keyword");
   const { addDocument, deleteDocument } = useFirestore("preference_camping");
-  const { documents } = useCollection("preference_camping", authUser?.uid);
+  const { documents } = useCollection(
+    "preference_camping",
+    authUser && "uid",
+    authUser && authUser.uid,
+  );
 
   const openImageModal = useCallback(() => {
     if (keyword) {
@@ -56,15 +60,19 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
         navigate("/login");
       }
     }
-  }, [lists]);
+  }, [setIsPreferred]);
 
   useEffect(() => {
-    if (lists && lists.length > 0) {
-      setIsPreferred(true);
+    if (authUser) {
+      if (lists && lists.length > 0) {
+        setIsPreferred(true);
+      } else {
+        setIsPreferred(false);
+      }
     } else {
       setIsPreferred(false);
     }
-  }, [documents]);
+  }, [lists]);
 
   return (
     <li

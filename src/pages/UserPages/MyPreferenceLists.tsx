@@ -14,10 +14,15 @@ const CampingPreferenceLists = React.lazy(
 const MyPreferenceLists = () => {
   const authUser = useSelector((state) => state.auth.user);
   const tourismPreferenceMatch = useMatch("/myPreference/tourism");
-  const { documents: tours } = useCollection("preference", authUser?.uid);
+  const { documents: tours } = useCollection(
+    "preference",
+    authUser && "uid",
+    authUser && authUser.uid,
+  );
   const { documents: camps } = useCollection(
     "preference_camping",
-    authUser?.uid,
+    authUser && "uid",
+    authUser && authUser.uid,
   );
 
   document.body.scrollTop = document.documentElement.scrollTop = 0;

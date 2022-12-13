@@ -25,17 +25,22 @@ export type DocumentsType = {
   contentType: string;
   contentId: string;
   contentTypeId: string;
+  author?: string;
 };
 
-export const useCollection = (transaction: any, myQuery?: string) => {
+export const useCollection = (
+  transaction: string,
+  myFilt: string | null,
+  myQuery: string | null,
+) => {
   const [documents, setDocuments] = useState<DocumentsType[] | null>(null);
   const [error, setError] = useState(null);
   useEffect(() => {
     let q: any;
-    if (myQuery) {
+    if (myQuery && myFilt) {
       q = query(
         collection(appFireStore, transaction),
-        where("uid", "==", myQuery),
+        where(myFilt, "==", myQuery),
       );
     }
     const unsubscribe = onSnapshot(
