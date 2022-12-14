@@ -32,8 +32,6 @@ const CampingInput = () => {
     },
   );
 
-  console.log(data);
-
   useEffect(() => {
     if (isView && hasNextPage) {
       fetchNextPage();

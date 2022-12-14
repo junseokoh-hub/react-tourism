@@ -14,7 +14,7 @@ const CampingMapSearch = () => {
             <CampingSearchedContent key={camp.contentId} camp={camp} />
           ))
         ) : (
-          <li className="dark:text-white">검색 결과가 없습니다.</li>
+          <li className="text-center dark:text-white">검색 결과가 없습니다.</li>
         )}
       </ul>
     </>

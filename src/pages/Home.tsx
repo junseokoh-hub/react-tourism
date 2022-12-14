@@ -18,7 +18,7 @@ const Home = () => {
       />
       <section className="space-y-8 divide-y-2">
         <FrontBanner />
-        <CampingIndicator sliderId="slider" />
+        <CampingIndicator />
         <Link to="route" className="dark:text-white">
           Route
         </Link>

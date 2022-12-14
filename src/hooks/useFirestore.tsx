@@ -20,6 +20,8 @@ type DocType = {
   contentId: string | undefined;
   contentTypeId?: string | undefined;
   author?: string | null;
+  mapX?: string;
+  mapY?: string;
 };
 
 type InitialStateType = {

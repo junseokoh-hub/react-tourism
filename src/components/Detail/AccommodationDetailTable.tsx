@@ -5,7 +5,7 @@ const AccommodationDetailTable = ({ item }: any) => {
         <tr>
           <th
             colSpan={2}
-            className="p-[10px] text-center border-b border-solid border-[#444444]"
+            className="p-[10px] text-center border-b border-solid border-[#444444] text-white bg-blue-500 dark:bg-orange-500"
           >
             정보
           </th>

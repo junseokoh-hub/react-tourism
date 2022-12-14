@@ -18,13 +18,11 @@ const MyPreferenceLists = () => {
   const { deleteDocument } = useFirestore("preference_camping");
   const { documents: tours } = useCollection(
     "preference",
-    authUser && "uid",
-    authUser && authUser.uid,
+    authUser && ["uid", "==", authUser.uid],
   );
   const { documents: camps } = useCollection(
     "preference_camping",
-    authUser && "uid",
-    authUser && authUser.uid,
+    authUser && ["uid", "==", authUser.uid],
   );
 
   const deletePreference = useCallback((id: string) => {

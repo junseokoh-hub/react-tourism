@@ -40,7 +40,7 @@ details {
 }
 
 .th_layout {
-  @apply p-[10px] text-center border-b border-solid border-[#444444] dark:bg-orange-500;
+  @apply p-[10px] text-center border-b border-solid border-[#444444] text-white bg-blue-500 dark:bg-orange-500;
 }
 
 .td_layout {
@@ -65,4 +65,12 @@ details {
 
 .td_names {
   width: 20%;
+}
+
+.home_swiper {
+  width: 90%;
+}
+
+.home_swiper-slide {
+  position: relative;
 }

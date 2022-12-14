@@ -1,17 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import { useObserve } from "./hooks/useObserve";
 
-const MainHeader = React.lazy(() => import("./components/UI/MainHeader"));
-const LowerNavigation = React.lazy(
-  () => import("./components/Layout/LowerNavigation"),
-);
-const Layout = React.lazy(() => import("./components/Layout/Layout"));
-const Footer = React.lazy(() => import("./components/Layout/Footer"));
+const mainHeader = import("./components/UI/MainHeader");
+const lowerNavigation = import("./components/Layout/LowerNavigation");
+const layout = import("./components/Layout/Layout");
+const footer = import("./components/Layout/Footer");
+
+const MainHeader = React.lazy(() => mainHeader);
+const LowerNavigation = React.lazy(() => lowerNavigation);
+
+const Layout = React.lazy(() => layout);
+const Footer = React.lazy(() => footer);
 
 const Root = () => {
   const { isView, targetRef } = useObserve();
-
   document.body.scrollTop = document.documentElement.scrollTop = 0;
 
   return (
@@ -22,7 +25,7 @@ const Root = () => {
         <Layout>
           <Outlet />
         </Layout>
-        <Footer />
+        {!isView && <Footer />}
       </main>
       <LowerNavigation />
     </>

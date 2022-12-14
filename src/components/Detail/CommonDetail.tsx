@@ -35,44 +35,37 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
     }
   }, [documents]);
 
-  const switchLikeHandler = useCallback(
-    (
-      title: string,
-      overview: string,
-      image: string,
-      addr: string,
-      tel: string,
-    ) => {
-      if (authUser && filtered) {
-        if (filtered.length === 0) {
+  const switchLikeHandler = useCallback(() => {
+    if (authUser && filtered) {
+      if (filtered.length === 0) {
+        if (data) {
           addDocument({
-            title,
-            overview,
-            image,
-            addr,
-            tel,
+            title: data.title,
+            overview: data.overview,
+            image: data.firstimage || data.firstimage2 || "",
+            addr: data.addr1,
+            tel: data.tel,
             contentId,
             contentTypeId,
             contentType,
             uid: authUser.uid,
           });
           setIsPreferred(true);
-        } else {
-          deleteDocument(filtered[0].id);
-          setIsPreferred(false);
         }
       } else {
-        if (
-          window.confirm(
-            `로그인 하셔야 이용하실 수 있습니다. 로그인 하시겠습니까?`,
-          )
-        ) {
-          navigate("/login");
-        }
+        deleteDocument(filtered[0].id);
+        setIsPreferred(false);
       }
-    },
-    [filtered],
-  );
+    } else {
+      if (
+        window.confirm(
+          `로그인 하셔야 이용하실 수 있습니다. 로그인 하시겠습니까?`,
+        )
+      ) {
+        navigate("/login");
+      }
+    }
+  }, [filtered]);
 
   return (
     <>
@@ -97,17 +90,7 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
             strokeWidth="1.5"
             stroke="currentColor"
             className={`w-8 h-8 ${isPreferred ? "fill-red-500" : ""}`}
-            onClick={() => {
-              if (data) {
-                switchLikeHandler(
-                  data.title,
-                  data.overview,
-                  data.firstimage || data.firstimage2 || "",
-                  data.tel,
-                  data.addr1,
-                );
-              }
-            }}
+            onClick={switchLikeHandler}
           >
             <path
               strokeLinecap="round"
