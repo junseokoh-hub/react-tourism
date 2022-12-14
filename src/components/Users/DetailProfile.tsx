@@ -1,42 +1,114 @@
-import { updateProfile, User } from "firebase/auth";
-import { useCallback, useRef, useState } from "react";
-import { appAuth } from "../../lib/firebaseConfig";
-import { useDispatch, useSelector } from "../../store/hooks";
-import { updateState } from "../../store/slices/authSlice";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useCollection } from "../../hooks/useCollection";
+import { useFirestore } from "../../hooks/useFirestore";
+import { useSelector } from "../../store/hooks";
 
 const DetailProfile = () => {
-  const [isEdit, setIsEdit] = useState(false);
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isEditProfile, setIsEditProfile] = useState(false);
   const authUser = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
+  const { register, handleSubmit, setValue } = useForm();
+  const { addDocument, updateDocument } = useFirestore("myReviews");
+  const { documents } = useCollection(
+    "myReviews",
+    authUser && ["uid", "==", authUser.uid],
+  );
 
-  const updateDisplayNameHandler = useCallback(() => {
-    updateProfile(appAuth.currentUser as User, {
-      displayName: inputRef.current?.value,
-    })
-      .then(() => {
-        dispatch(updateState({ displayName: inputRef.current?.value }));
-        setIsEdit(false);
-      })
-      .catch((err) => {
-        alert(`${err.message}`);
-      });
-  }, []);
+  const submitProfileHandler = handleSubmit((data) => {
+    const { address, favfood, hobby, sightseeing } = data;
+    if (authUser) {
+      if (!(documents && documents[0])) {
+        addDocument({
+          uid: authUser.uid,
+          addr: address,
+          favfood,
+          hobby,
+          sightseeing,
+        });
+      } else {
+        updateDocument(documents && documents[0].id, {
+          uid: authUser.uid,
+          addr: address,
+          favfood,
+          hobby,
+          sightseeing,
+        });
+      }
+      setIsEditProfile(false);
+    }
+  });
+
+  useEffect(() => {
+    if (isEditProfile) {
+      setValue("address", documents && documents[0].addr);
+      setValue("favfood", documents && documents[0].favfood);
+      setValue("hobby", documents && documents[0].hobby);
+      setValue("sightseeing", documents && documents[0].sightseeing);
+    }
+  }, [documents && documents[0]]);
 
   return (
-    <ul className="mt-5 space-y-2 w-full flex flex-col justify-center text-xl font-semibold">
-      {!isEdit ? (
-        <li onDoubleClick={() => setIsEdit(true)}>
-          닉네임 : {authUser && authUser.displayName}
-        </li>
-      ) : (
-        <li className="flex items-center space-x-3">
-          <input type="text" ref={inputRef} />
-          <span onClick={updateDisplayNameHandler}>수정</span>
-          <span onClick={() => setIsEdit(false)}>취소</span>
-        </li>
-      )}
-      <li>이메일 : {authUser && authUser.email}</li>
+    <ul className="space-y-4">
+      <li>
+        <label htmlFor="address">주소 : </label>
+        {isEditProfile ? (
+          <input {...register("address")} id="address" type="text" />
+        ) : (
+          <span>{documents && documents[0]?.addr}</span>
+        )}
+      </li>
+      <li>
+        <label htmlFor="favfood">좋아하는 음식 : </label>
+        {isEditProfile ? (
+          <input {...register("favfood")} id="favfood" type="text" />
+        ) : (
+          <span>{documents && documents[0]?.favfood}</span>
+        )}
+      </li>
+      <li>
+        <label htmlFor="hobby">취미 : </label>
+        {isEditProfile ? (
+          <input {...register("hobby")} id="hobby" type="text" />
+        ) : (
+          <span>{documents && documents[0]?.hobby}</span>
+        )}
+      </li>
+      <li>
+        <label htmlFor="sightseeing">가고 싶은 여행지 : </label>
+        {isEditProfile ? (
+          <input {...register("sightseeing")} id="sightseeing" type="text" />
+        ) : (
+          <span>{documents && documents[0]?.sightseeing}</span>
+        )}
+      </li>
+      <li className="space-x-3">
+        {isEditProfile ? (
+          <button
+            className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
+            type="submit"
+            onClick={submitProfileHandler}
+          >
+            저장
+          </button>
+        ) : (
+          <button
+            className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
+            type="button"
+            onClick={() => setIsEditProfile(true)}
+          >
+            작성
+          </button>
+        )}
+        {isEditProfile ? (
+          <button
+            className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
+            type="button"
+            onClick={() => setIsEditProfile(false)}
+          >
+            취소
+          </button>
+        ) : null}
+      </li>
     </ul>
   );
 };

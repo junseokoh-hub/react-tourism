@@ -14,7 +14,7 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
   return (
     <li
       key={camp.contentId}
-      className="p-2 flex border border-solid border-blue-100 bg-blue-100 rounded-md select-none dark:bg-orange-500 dark:border-orange-500 dark:text-white"
+      className="p-2 flex border border-solid border-blue-100 bg-blue-100 rounded-md select-none cursor-pointer dark:bg-orange-500 dark:border-orange-500 dark:text-white"
       onClick={() => navigate(`/camping/detail/${mapX}/${mapY}`)}
     >
       <img

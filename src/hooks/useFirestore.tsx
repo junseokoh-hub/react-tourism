@@ -17,11 +17,14 @@ type DocType = {
   addr?: string;
   tel?: string;
   contentType?: string;
-  contentId: string | undefined;
+  contentId?: string | undefined;
   contentTypeId?: string | undefined;
   author?: string | null;
   mapX?: string;
   mapY?: string;
+  favfood?: string;
+  hobby?: string;
+  sightseeing?: string;
 };
 
 type InitialStateType = {

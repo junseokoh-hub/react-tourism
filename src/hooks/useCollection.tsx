@@ -26,6 +26,9 @@ export type DocumentsType = {
   contentId: string;
   contentTypeId: string;
   author?: string;
+  favfood: string;
+  hobby: string;
+  sightseeing: string;
 };
 
 export const useCollection = (

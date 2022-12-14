@@ -130,26 +130,6 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
                 국내여행
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "text-blue-900" : "dark:text-white"
-                }
-                to="search/camping"
-              >
-                캠핑
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "text-blue-900" : "dark:text-white"
-                }
-                to="search/data"
-              >
-                데이터
-              </NavLink>
-            </li>
           </ul>
           <SearchBox />
         </nav>

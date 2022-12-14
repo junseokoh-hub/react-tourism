@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import VisitorData from "../components/Home/VisitorData";
 import SEOMeta from "../SEOMeta";
@@ -9,7 +9,9 @@ const CampingIndicator = React.lazy(
 );
 
 const Home = () => {
-  document.body.scrollTop = document.documentElement.scrollTop = 0;
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, []);
   return (
     <>
       <SEOMeta

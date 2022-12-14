@@ -134,9 +134,9 @@ const CampingDetail = () => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className={`w-8 h-8 absolute right-[20%] sm:right-1/4 md:right-1/3 -top-1 ${
+                className={`w-8 h-8 absolute right-[10%] sm:right-[15%] md:right-[25%] -top-1 ${
                   isPreferred ? "fill-red-500" : ""
-                }`}
+                } dark:text-white`}
                 onClick={switchLikeHandler}
               >
                 <path
