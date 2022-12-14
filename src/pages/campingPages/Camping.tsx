@@ -1,23 +1,10 @@
-import { Suspense, useCallback, useEffect } from "react";
-import { Outlet, useSearchParams } from "react-router-dom";
-import CampingImages from "../../components/Camping/CampingImages";
-import Modal from "../../components/Modal/Modal";
+import { Suspense, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import OutletIndicator from "../../components/UI/OutletIndicator";
 import SEOMeta from "../../SEOMeta";
-import { useDispatch, useSelector } from "../../store/hooks";
-import { onClose } from "../../store/slices/menuSlice";
 import Loader from "../../utils/Loader";
 
 const Camping = () => {
-  const params = useSearchParams();
-  const contentId = params[0].get("id");
-  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
-  const dispatch = useDispatch();
-
-  const closeModal = useCallback(() => {
-    dispatch(onClose());
-  }, []);
-
   useEffect(() => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
   }, []);
@@ -37,11 +24,7 @@ const Camping = () => {
         title={"캠핑 검색"}
         content={"캠핑을 떠나고 싶으시다면 검색해보아요"}
       />
-      {isMenuOpen && contentId && (
-        <Modal closeModal={closeModal}>
-          <CampingImages isMenuOpen={isMenuOpen} contentId={contentId} />
-        </Modal>
-      )}
+
       <section>
         <OutletIndicator indicators={campingIndicators} />
         <article className="mt-10">

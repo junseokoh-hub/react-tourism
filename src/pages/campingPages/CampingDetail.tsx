@@ -1,9 +1,18 @@
+import { useCallback } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { locationBasedList } from "../../api/campingApi";
+import CampingImages from "../../components/Camping/CampingImages";
+import Modal from "../../components/Modal/Modal";
+import SEOMeta from "../../SEOMeta";
+import { useDispatch, useSelector } from "../../store/hooks";
+import { onClose, onOpen } from "../../store/slices/menuSlice";
 import Loader from "../../utils/Loader";
 
 const CampingDetail = () => {
+  const navigate = useNavigate();
+  const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
+  const dispatch = useDispatch();
   const { mapX, mapY } = useParams();
   const newMapX = mapX && mapX.split("");
   const newMapY = mapY && mapY.split("");
@@ -22,7 +31,18 @@ const CampingDetail = () => {
     },
   );
 
-  console.log("rendering");
+  const contentId = data && data[0].contentId;
+
+  const openImageModal = useCallback(() => {
+    navigate(`?id=${contentId}`);
+    dispatch(onOpen());
+  }, []);
+
+  const closeModal = useCallback(() => {
+    dispatch(onClose());
+  }, []);
+
+  console.log(data && data[0].contentId);
 
   return (
     <article>
@@ -30,16 +50,26 @@ const CampingDetail = () => {
         <Loader />
       ) : data ? (
         <div className="space-y-5">
+          <SEOMeta
+            title={"캠핑 - " + data[0].facltNm}
+            content={data[0].intro}
+          />
+          {isMenuOpen && contentId && (
+            <Modal closeModal={closeModal}>
+              <CampingImages isMenuOpen={isMenuOpen} contentId={contentId} />
+            </Modal>
+          )}
           <ul className="space-y-5">
             <li>
               <img
                 className="w-full rounded-md"
                 src={data[0].firstImageUrl}
                 alt={data[0].facltNm}
+                onDoubleClick={openImageModal}
               />
             </li>
             <li>
-              <h3 className="text-center">{data[0].facltNm}</h3>
+              <h3 className="text-center dark:text-white">{data[0].facltNm}</h3>
             </li>
           </ul>
           <table className="table_layout">
@@ -79,9 +109,11 @@ const CampingDetail = () => {
                 <td className="td_layout td_names">홈페이지</td>
                 <td className="td_layout">
                   <a
+                    aria-label="홈페이지 링크"
                     href={data[0].homepage}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="dark:text-white"
                   >
                     링크
                   </a>
