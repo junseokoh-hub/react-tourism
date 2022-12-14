@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { searchList } from "../../api/campingApi";
@@ -8,6 +8,7 @@ import CampingSearchedContent from "./CampingSearchedContent";
 
 const CampingInput = () => {
   const { targetRef, isView } = useObserve();
+
   const params = useSearchParams();
   const keyword = params[0].get("keyword");
 
@@ -31,24 +32,30 @@ const CampingInput = () => {
     },
   );
 
+  console.log(data);
+
   useEffect(() => {
     if (isView && hasNextPage) {
       fetchNextPage();
     }
   }, [isView]);
 
-  console.log("rendering");
-
   return (
     <>
       <ul className="py-10 space-y-10 dark:text-white">
-        {data?.pages.map((item) =>
-          item?.items.item.map((camp) => (
-            <CampingSearchedContent key={camp.contentId} camp={camp} />
-          )),
+        {data?.pages?.map((item) =>
+          item?.items?.item?.map(
+            (camp) =>
+              camp && (
+                <CampingSearchedContent key={camp.contentId} camp={camp} />
+              ),
+          ),
+        )}
+        {isFetching && <Loader />}
+        {data && data.pages[0]?.totalCount === 0 && (
+          <div className="text-center">데이터가 없습니다.</div>
         )}
       </ul>
-      {isFetching && <Loader />}
       <div ref={targetRef} />
     </>
   );

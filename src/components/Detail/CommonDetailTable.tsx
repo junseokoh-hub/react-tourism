@@ -1,12 +1,9 @@
 const CommonDetailTable = ({ item }: any) => {
   return (
-    <table className="mx-auto w-[80%] h-full border-t border-solid border-[#444444] border-collapse">
+    <table className="table_layout">
       <thead>
         <tr>
-          <th
-            colSpan={2}
-            className="p-[10px] text-center border-b border-solid border-[#444444]"
-          >
+          <th colSpan={2} className="th_layout">
             {item.infoname}
           </th>
         </tr>
@@ -15,7 +12,7 @@ const CommonDetailTable = ({ item }: any) => {
         <tr>
           <td
             dangerouslySetInnerHTML={{ __html: item.infotext }}
-            className="p-[10px] text-center border-b border-solid border-[#444444]"
+            className="td_layout"
           ></td>
         </tr>
       </tbody>

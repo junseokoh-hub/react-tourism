@@ -73,6 +73,7 @@ const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
               const data = await locationBasedList(
                 latlng.getLng(),
                 latlng.getLat(),
+                "5000",
               );
               const array = [];
               for (let i = 0; i < data?.length; i++) {

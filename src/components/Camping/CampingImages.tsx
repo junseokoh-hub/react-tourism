@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import { EffectCards } from "swiper";
 import Loader from "../../utils/Loader";
+import React from "react";
 
 type CampingImagesProps = {
   isMenuOpen: boolean;
@@ -45,4 +46,4 @@ const CampingImages = ({ isMenuOpen, contentId }: CampingImagesProps) => {
   );
 };
 
-export default CampingImages;
+export default React.memo(CampingImages);

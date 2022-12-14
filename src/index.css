@@ -35,6 +35,18 @@ details {
   @apply py-2 px-5 space-y-0.5 rounded-md flex flex-col items-center cursor-pointer hover:shadow-md;
 }
 
+.table_layout {
+  @apply mx-auto w-[80%] h-full border-t border-solid border-[#444444] border-collapse dark:text-white;
+}
+
+.th_layout {
+  @apply p-[10px] text-center border-b border-solid border-[#444444] dark:bg-orange-500;
+}
+
+.td_layout {
+  @apply p-[10px] text-center border-b border-solid border-[#444444];
+}
+
 .swiper {
   width: 50vw;
   height: 50vh;
@@ -49,4 +61,8 @@ details {
   font-weight: bold;
   color: #fff;
   cursor: grab;
+}
+
+.td_names {
+  width: 20%;
 }

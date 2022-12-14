@@ -30,18 +30,16 @@ export type DocumentsType = {
 
 export const useCollection = (
   transaction: string,
-  myFilt: string | null,
-  myQuery: string | null,
+  myQuery:
+    | [fieldPath: string | FieldPath, opStr: WhereFilterOp, value: unknown]
+    | null,
 ) => {
   const [documents, setDocuments] = useState<DocumentsType[] | null>(null);
   const [error, setError] = useState(null);
   useEffect(() => {
     let q: any;
-    if (myQuery && myFilt) {
-      q = query(
-        collection(appFireStore, transaction),
-        where(myFilt, "==", myQuery),
-      );
+    if (myQuery) {
+      q = query(collection(appFireStore, transaction), where(...myQuery));
     }
     const unsubscribe = onSnapshot(
       myQuery ? q : collection(appFireStore, transaction),

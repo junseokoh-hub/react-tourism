@@ -16,17 +16,20 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
   const { contentId, contentTypeId } = useParams();
   const navigate = useNavigate();
   const { addDocument, deleteDocument } = useFirestore("preference");
-  const { documents } = useCollection("preference", [
-    "uid",
-    "==",
-    authUser?.uid,
-  ]);
+  const { documents } = useCollection(
+    "preference",
+    authUser && ["uid", "==", authUser.uid],
+  );
 
   const filtered =
     documents && documents.filter((doc) => doc.title === data?.title);
   useEffect(() => {
-    if (filtered && filtered.length > 0) {
-      setIsPreferred(true);
+    if (authUser) {
+      if (filtered && filtered.length > 0) {
+        setIsPreferred(true);
+      } else {
+        setIsPreferred(false);
+      }
     } else {
       setIsPreferred(false);
     }

@@ -248,8 +248,9 @@ export const searchList = async (
 };
 
 export const locationBasedList = async (
-  mapX: number,
-  mapY: number,
+  mapX: string,
+  mapY: string,
+  radius: string,
 ): Promise<LocationBasedListType[]> => {
   try {
     const {
@@ -266,7 +267,7 @@ export const locationBasedList = async (
         pageNo: 1,
         mapX,
         mapY,
-        radius: "5000",
+        radius,
       },
     });
     return item;

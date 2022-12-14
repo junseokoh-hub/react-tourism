@@ -1,6 +1,7 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useCallback, useEffect } from "react";
 import { useMatch } from "react-router-dom";
 import { useCollection } from "../../hooks/useCollection";
+import { useFirestore } from "../../hooks/useFirestore";
 import { useSelector } from "../../store/hooks";
 import Loader from "../../utils/Loader";
 
@@ -14,6 +15,7 @@ const CampingPreferenceLists = React.lazy(
 const MyPreferenceLists = () => {
   const authUser = useSelector((state) => state.auth.user);
   const tourismPreferenceMatch = useMatch("/myPreference/tourism");
+  const { deleteDocument } = useFirestore("preference_camping");
   const { documents: tours } = useCollection(
     "preference",
     authUser && "uid",
@@ -25,7 +27,13 @@ const MyPreferenceLists = () => {
     authUser && authUser.uid,
   );
 
-  document.body.scrollTop = document.documentElement.scrollTop = 0;
+  const deletePreference = useCallback((id: string) => {
+    deleteDocument(id);
+  }, []);
+
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, []);
 
   return (
     <>
@@ -36,7 +44,11 @@ const MyPreferenceLists = () => {
                 <TourismPreferenceLists key={tour.id} data={tour} />
               ))
             : camps?.map((camp) => (
-                <CampingPreferenceLists key={camp.id} data={camp} />
+                <CampingPreferenceLists
+                  key={camp.id}
+                  {...camp}
+                  deletePreference={deletePreference}
+                />
               ))}
           {tourismPreferenceMatch
             ? tours &&

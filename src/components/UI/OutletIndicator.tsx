@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 type OutletIndicatorProps = {
@@ -29,4 +30,4 @@ const OutletIndicator = ({ indicators }: OutletIndicatorProps) => {
   );
 };
 
-export default OutletIndicator;
+export default React.memo(OutletIndicator);
