@@ -9,13 +9,14 @@ const DetailReview = () => {
   const { data: detailData } = useOutletContext<{ data: DetailCommonType }>();
   const { register, handleSubmit, reset } = useForm();
   const authUser = useSelector((state) => state.auth.user);
-  const { addDocument } = useFirestore("tourism_reviews");
+  const { addDocument } = useFirestore("myReviews");
   const { documents } = useCollection(
-    "tourism_reviews",
-    authUser && "contentId",
-    authUser && detailData.contentid,
+    "myReviews",
+    detailData && ["contentId", "==", detailData.contentid],
   );
   const navigate = useNavigate();
+
+  console.log(detailData);
 
   const reviewSubmitHandler = handleSubmit((data) => {
     if (authUser) {
@@ -25,6 +26,7 @@ const DetailReview = () => {
       } else {
         addDocument({
           uid: authUser.uid,
+          title: detailData?.title,
           contentId: detailData?.contentid,
           overview: data.review,
           author: authUser.displayName,

@@ -46,8 +46,10 @@ const CampingDetail = () => {
   const contentId = data && data[0].contentId;
 
   const openImageModal = useCallback(() => {
-    navigate(`?id=${contentId}`);
-    dispatch(onOpen());
+    if (data) {
+      navigate(`?id=${contentId}`);
+      dispatch(onOpen());
+    }
   }, []);
 
   const closeModal = useCallback(() => {

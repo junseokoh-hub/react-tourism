@@ -8,9 +8,9 @@ const DetailProfile = () => {
   const [isEditProfile, setIsEditProfile] = useState(false);
   const authUser = useSelector((state) => state.auth.user);
   const { register, handleSubmit, setValue } = useForm();
-  const { addDocument, updateDocument } = useFirestore("myReviews");
+  const { addDocument, updateDocument } = useFirestore("myProfile");
   const { documents } = useCollection(
-    "myReviews",
+    "myProfile",
     authUser && ["uid", "==", authUser.uid],
   );
 

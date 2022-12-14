@@ -217,7 +217,7 @@ const App = () => {
           ],
         },
         {
-          path: "mySchedule",
+          path: "myReviews",
           element: authUser.user ? <MyReviews /> : <Navigate to="/login" />,
         },
         {
