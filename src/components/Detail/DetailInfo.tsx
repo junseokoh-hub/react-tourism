@@ -1,18 +1,46 @@
 import { lazy } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 
-const AccommodationDetail = lazy(() => import("./AccommodationDetail"));
-const CulturalFacilitiesDetail = lazy(
-  () => import("./CulturalFacilitiesDetail"),
+const AccommodationDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./AccommodationDetail"),
+  ),
 );
-const FestivalDetail = lazy(() => import("./FestivalDetail"));
-const LeisureSportsDetail = lazy(() => import("./LeisureSportsDetail"));
-const RestaurantDetail = lazy(() => import("./RestaurantDetail"));
-const ShoppingDetail = lazy(() => import("./ShoppingDetail"));
-const TouristDestinationDetail = lazy(
-  () => import("./TouristDestinationDetail"),
+const CulturalFacilitiesDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./CulturalFacilitiesDetail"),
+  ),
 );
-const TravelCourseDetail = lazy(() => import("./TravelCourseDetail"));
+const FestivalDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./FestivalDetail"),
+  ),
+);
+const LeisureSportsDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./LeisureSportsDetail"),
+  ),
+);
+const RestaurantDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./RestaurantDetail"),
+  ),
+);
+const ShoppingDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./ShoppingDetail"),
+  ),
+);
+const TouristDestinationDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./TouristDestinationDetail"),
+  ),
+);
+const TravelCourseDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./TravelCourseDetail"),
+  ),
+);
 
 const DetailInfo = () => {
   const { detailInfoData, detailIntroData } = useOutletContext<any>();

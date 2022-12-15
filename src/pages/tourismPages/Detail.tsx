@@ -1,12 +1,21 @@
-import { Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useQueries } from "react-query";
 import { Outlet, useParams } from "react-router-dom";
 import { detailCommon, detailInfo, detailIntro } from "../../api/tourismApi";
-import CommonDetail from "../../components/Detail/CommonDetail";
-import OutletIndicator from "../../components/UI/OutletIndicator";
 import SEOMeta from "../../SEOMeta";
 import { DetailProps } from "../../types/DetailType";
 import Loader from "../../utils/Loader";
+
+const CommonDetail = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("../../components/Detail/CommonDetail"),
+  ),
+);
+const OutletIndicator = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("../../components/UI/OutletIndicator"),
+  ),
+);
 
 const Detail = ({ contentType }: DetailProps) => {
   const { contentId, contentTypeId } = useParams();
@@ -70,12 +79,16 @@ const Detail = ({ contentType }: DetailProps) => {
         content={data?.data?.overview || contentType}
       />
       {isLoading ? (
-        <Loader />
+        <Loader position={"top-0"} />
       ) : (
-        <article className="space-y-4 dark:text-white">
-          <CommonDetail data={data?.data} contentType={contentType} />
-          <OutletIndicator indicators={detailIndicators} />
-          <Suspense fallback={<Loader />}>
+        <article className="space-y-4 flex flex-col dark:text-white">
+          <Suspense fallback={<Loader position={"top-0"} />}>
+            <CommonDetail data={data?.data} contentType={contentType} />
+          </Suspense>
+          <Suspense fallback={<Loader position={"top-0"} />}>
+            <OutletIndicator indicators={detailIndicators} />
+          </Suspense>
+          <Suspense fallback={<Loader position={"top-0"} />}>
             <Outlet
               context={{
                 data: data?.data,

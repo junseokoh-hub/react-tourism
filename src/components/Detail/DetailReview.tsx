@@ -54,7 +54,10 @@ const DetailReview = () => {
 
   return (
     <>
-      <ul className="w-full max-h-[50vh] h-[50vh] shadow-md overflow-y-auto">
+      <ul className="w-full max-h-[50vh] h-[50vh] shadow-md overflow-y-auto dark:shadow-[0px_0px_10px_rgba(255,255,255,0.8)]">
+        {reviews && reviews.length === 0 && (
+          <div className="text-center">리뷰를 작성해주세요!</div>
+        )}
         {reviews &&
           reviews.map((doc) => (
             <li className="w-3/4" key={doc.id}>

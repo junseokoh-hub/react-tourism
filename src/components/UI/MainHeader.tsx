@@ -1,15 +1,9 @@
-import React, { Suspense, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, NavLink, useMatch, useNavigate } from "react-router-dom";
 import { useSelector } from "../../store/hooks";
 import { setDark } from "../../store/slices/darkSlice";
-import Loader from "../../utils/Loader";
-
-const SearchBox = React.lazy(() =>
-  new Promise((resolve) => setTimeout(resolve, 1000)).then(
-    () => import("../Search/SearchBox"),
-  ),
-);
+import SearchBox from "../Search/SearchBox";
 
 type MainHeaderProps = {
   isView: boolean;
@@ -150,9 +144,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
               </NavLink>
             </li>
           </ul>
-          <Suspense fallback={<Loader position={"top-[10px]"} />}>
-            <SearchBox />
-          </Suspense>
+          <SearchBox />
         </nav>
       )}
     </header>
