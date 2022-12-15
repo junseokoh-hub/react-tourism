@@ -1,9 +1,14 @@
 import { useLogout } from "../../hooks/useLogout";
 import SEOMeta from "../../SEOMeta";
-import ImageProfile from "../../components/Users/ImageProfile";
 import ContactProfile from "../../components/Users/ContactProfile";
 import DetailProfile from "../../components/Users/DetailProfile";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
+
+const ImageProfile = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
+    () => import("../../components/Users/ImageProfile"),
+  ),
+);
 
 const MyPage = () => {
   const { logout } = useLogout();
@@ -15,14 +20,10 @@ const MyPage = () => {
   return (
     <>
       <SEOMeta title={"내정보"} content={"나의 정보"} />
-      <article className="p-2 dark:text-white">
-        <div>
-          <ImageProfile />
-          <ContactProfile />
-        </div>
-        <div className="my-10">
-          <DetailProfile />
-        </div>
+      <article className="p-2 space-y-10 dark:text-white">
+        <ImageProfile />
+        <ContactProfile />
+        <DetailProfile />
         <span
           className="flex justify-end items-center cursor-pointer transition-colors hover:text-red-400"
           onClick={logout}

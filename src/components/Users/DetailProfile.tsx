@@ -38,6 +38,8 @@ const DetailProfile = () => {
     }
   });
 
+  console.log(documents);
+
   useEffect(() => {
     if (isEditProfile) {
       setValue("address", documents && documents[0].addr);
@@ -45,7 +47,7 @@ const DetailProfile = () => {
       setValue("hobby", documents && documents[0].hobby);
       setValue("sightseeing", documents && documents[0].sightseeing);
     }
-  }, [documents && documents[0]]);
+  }, [isEditProfile]);
 
   return (
     <ul className="space-y-4">

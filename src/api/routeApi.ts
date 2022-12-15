@@ -56,7 +56,10 @@ const routeConfig: AxiosRequestConfig = {
 
 const route = axios.create(routeConfig);
 
-export const routeList = async (page: number): Promise<RouteListType> => {
+export const routeList = async (
+  pageNo: number,
+  themeNm: string,
+): Promise<RouteListType> => {
   try {
     const {
       data: {
@@ -64,7 +67,8 @@ export const routeList = async (page: number): Promise<RouteListType> => {
       },
     } = await route.get("routeList", {
       params: {
-        pageNo: page,
+        pageNo,
+        themeNm,
       },
     });
     return body;

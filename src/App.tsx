@@ -34,6 +34,7 @@ const Search = React.lazy(() => import("./pages/Search"));
 const DomesticSearch = React.lazy(
   () => import("./components/Search/DomesticSearch"),
 );
+const RouteSearch = React.lazy(() => import("./components/Search/RouteSearch"));
 
 const Restaurant = React.lazy(() => import("./pages/tourismPages/Restaurant"));
 const LoginPage = React.lazy(() => import("./pages/authPages/LoginPage"));
@@ -53,7 +54,6 @@ const CampingMapSearch = React.lazy(
 const CampingInputSearch = React.lazy(
   () => import("./pages/campingPages/CampingInputSearch"),
 );
-const Route = React.lazy(() => import("./pages/Route"));
 const Course = React.lazy(() => import("./pages/Course"));
 const MyPage = React.lazy(() => import("./pages/UserPages/MyPage"));
 const MyReviews = React.lazy(() => import("./pages/UserPages/MyReviews"));
@@ -93,7 +93,10 @@ const App = () => {
         {
           path: "search",
           element: <Search />,
-          children: [{ path: "domestic", element: <DomesticSearch /> }],
+          children: [
+            { path: "domestic", element: <DomesticSearch /> },
+            { path: "route", element: <RouteSearch /> },
+          ],
         },
         {
           path: "accommodation",
@@ -190,7 +193,6 @@ const App = () => {
           ],
         },
         { path: "camping/detail/:mapX/:mapY", element: <CampingDetail /> },
-        { path: "route", element: <Route /> },
         { path: "route/:routeIdx", element: <Course /> },
         {
           path: "myPreference",

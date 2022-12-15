@@ -128,11 +128,25 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? "text-blue-900" : "dark:text-white"
+                  isActive
+                    ? "text-blue-900 dark:text-orange-500"
+                    : "dark:text-white"
                 }
                 to="search/domestic"
               >
                 국내여행
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-900 dark:text-orange-500"
+                    : "dark:text-white"
+                }
+                to="search/route"
+              >
+                길
               </NavLink>
             </li>
           </ul>

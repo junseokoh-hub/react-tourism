@@ -54,10 +54,10 @@ const DetailReview = () => {
 
   return (
     <>
-      <ul className="w-full max-h-[50vh] shadow-md overflow-y-auto">
+      <ul className="w-full max-h-[50vh] h-[50vh] shadow-md overflow-y-auto">
         {reviews &&
           reviews.map((doc) => (
-            <li className="w-3/4 h-full" key={doc.id}>
+            <li className="w-3/4" key={doc.id}>
               <h3>{doc.author}</h3>
               <p className="min-h-[50px]">{doc.overview}</p>
             </li>

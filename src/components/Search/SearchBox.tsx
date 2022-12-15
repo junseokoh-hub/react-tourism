@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SearchBox = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
+  const params = useSearchParams();
+  const keyword = params[0].get("keyword");
   const navigate = useNavigate();
   const searchSubmitHandler = handleSubmit((data) => {
     if (data) {
@@ -19,6 +21,10 @@ const SearchBox = () => {
     },
   };
 
+  useEffect(() => {
+    setValue("search", keyword);
+  }, [keyword]);
+
   return (
     <form onSubmit={searchSubmitHandler} className="px-6 py-2 text-center">
       <input
@@ -31,4 +37,4 @@ const SearchBox = () => {
   );
 };
 
-export default React.memo(SearchBox);
+export default SearchBox;

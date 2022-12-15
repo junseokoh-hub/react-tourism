@@ -21,6 +21,8 @@ const DomesticSearch = () => {
     },
   );
 
+  console.log(doms);
+
   const navigationHandler = useCallback(
     (contentId: string, contentTypeId: string) => {
       switch (contentTypeId) {
@@ -58,9 +60,9 @@ const DomesticSearch = () => {
   return (
     <article>
       {isLoading ? (
-        <Loader />
+        <Loader position={"top-0"} />
       ) : (
-        <ul className="mt-10 md:grid md:grid-cols-2 md:gap-2">
+        <ul className="space-y-10 mt-10 md:grid md:grid-cols-2 md:gap-2">
           {doms &&
             doms.map((dom) => (
               <li
@@ -71,7 +73,7 @@ const DomesticSearch = () => {
                 }
               >
                 <img
-                  className="w-full h-80 rounded-md"
+                  className="w-full h-full rounded-md"
                   src={
                     dom.firstimage || dom.firstimage2 || "../images/noImage.jpg"
                   }
