@@ -25,15 +25,17 @@ export type DocumentsType = {
   contentType: string;
   contentId: string;
   contentTypeId: string;
-  author?: string;
+  author: string;
   favfood: string;
   hobby: string;
   sightseeing: string;
+  mapX: string;
+  mapY: string;
 };
 
 export const useCollection = (
   transaction: string,
-  myQuery:
+  myQuery?:
     | [fieldPath: string | FieldPath, opStr: WhereFilterOp, value: unknown]
     | null,
 ) => {
@@ -42,7 +44,11 @@ export const useCollection = (
   useEffect(() => {
     let q: any;
     if (myQuery) {
-      q = query(collection(appFireStore, transaction), where(...myQuery));
+      q = query(
+        collection(appFireStore, transaction),
+        where(...myQuery),
+        orderBy("createdTime", "desc"),
+      );
     }
     const unsubscribe = onSnapshot(
       myQuery ? q : collection(appFireStore, transaction),

@@ -1,8 +1,8 @@
 import classes from "./Loader.module.css";
 
-const Loader = () => {
+const Loader = ({ position }: { position: string }) => {
   return (
-    <div className={classes.lds_spinner}>
+    <div className={classes.lds_spinner + ` ${position}`}>
       <div></div>
       <div></div>
       <div></div>

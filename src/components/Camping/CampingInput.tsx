@@ -49,7 +49,7 @@ const CampingInput = () => {
               ),
           ),
         )}
-        {isFetching && <Loader />}
+        {isFetching && <Loader position={"top-0"} />}
         {data && data.pages[0]?.totalCount === 0 && (
           <div className="text-center">데이터가 없습니다.</div>
         )}

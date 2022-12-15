@@ -1,12 +1,18 @@
+import { lazy } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
-import AccommodationDetail from "./AccommodationDetail";
-import CulturalFacilitiesDetail from "./CulturalFacilitiesDetail";
-import FestivalDetail from "./FestivalDetail";
-import LeisureSportsDetail from "./LeisureSportsDetail";
-import RestaurantDetail from "./RestaurantDetail";
-import ShoppingDetail from "./ShoppingDetail";
-import TouristDestinationDetail from "./TouristDestinationDetail";
-import TravelCourseDetail from "./TravelCourseDetail";
+
+const AccommodationDetail = lazy(() => import("./AccommodationDetail"));
+const CulturalFacilitiesDetail = lazy(
+  () => import("./CulturalFacilitiesDetail"),
+);
+const FestivalDetail = lazy(() => import("./FestivalDetail"));
+const LeisureSportsDetail = lazy(() => import("./LeisureSportsDetail"));
+const RestaurantDetail = lazy(() => import("./RestaurantDetail"));
+const ShoppingDetail = lazy(() => import("./ShoppingDetail"));
+const TouristDestinationDetail = lazy(
+  () => import("./TouristDestinationDetail"),
+);
+const TravelCourseDetail = lazy(() => import("./TravelCourseDetail"));
 
 const DetailInfo = () => {
   const { detailInfoData, detailIntroData } = useOutletContext<any>();

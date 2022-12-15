@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useMatch } from "react-router-dom";
 import { locationBasedList } from "../api/campingApi";
 import { onGetData } from "../store/slices/campingSlice";
-import { useDispatch, useSelector } from "../store/hooks";
+import { useDispatch } from "../store/hooks";
 
 declare global {
   interface Window {
@@ -17,7 +17,6 @@ type KakaoMapProps = {
 };
 
 const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
-  const homeMatch = useMatch("/");
   const campingMatch = useMatch("camping/*");
   const dispatch = useDispatch();
 

@@ -1,17 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import LowerNavigation from "./components/Layout/LowerNavigation";
+import MainHeader from "./components/UI/MainHeader";
 import { useObserve } from "./hooks/useObserve";
+import Loader from "./utils/Loader";
 
-const mainHeader = import("./components/UI/MainHeader");
-const lowerNavigation = import("./components/Layout/LowerNavigation");
 const layout = import("./components/Layout/Layout");
-const footer = import("./components/Layout/Footer");
-
-const MainHeader = React.lazy(() => mainHeader);
-const LowerNavigation = React.lazy(() => lowerNavigation);
-
 const Layout = React.lazy(() => layout);
-const Footer = React.lazy(() => footer);
+const Footer = React.lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
+    () => import("./components/Layout/Footer"),
+  ),
+);
 
 const Root = () => {
   const { isView, targetRef } = useObserve();
@@ -21,11 +21,13 @@ const Root = () => {
     <>
       <MainHeader isView={isView} />
       <div ref={targetRef} />
-      <main className="w-full md:mx-auto overflow-x-hidden md:max-w-3xl md:shadow-2xl">
-        <Layout>
-          <Outlet />
-        </Layout>
-        {!isView && <Footer />}
+      <main className="w-full min-h-screen bg-white md:mx-auto overflow-hidden md:max-w-3xl md:shadow-2xl dark:bg-black">
+        <Suspense fallback={<Loader position={"top-[100px]"} />}>
+          <Layout>
+            <Outlet />
+          </Layout>
+          {!isView && <Footer />}
+        </Suspense>
       </main>
       <LowerNavigation />
     </>

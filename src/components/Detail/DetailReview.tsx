@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useCollection } from "../../hooks/useCollection";
@@ -7,16 +8,23 @@ import { DetailCommonType } from "../../types/DetailType";
 
 const DetailReview = () => {
   const { data: detailData } = useOutletContext<{ data: DetailCommonType }>();
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const authUser = useSelector((state) => state.auth.user);
   const { addDocument } = useFirestore("myReviews");
-  const { documents } = useCollection(
-    "myReviews",
-    detailData && ["contentId", "==", detailData.contentid],
-  );
+  const { documents } = useCollection("myReviews");
   const navigate = useNavigate();
 
-  console.log(detailData);
+  const reviews = useMemo(() => {
+    const filteredData =
+      documents &&
+      detailData &&
+      documents.filter((doc) => doc.contentId === detailData.contentid);
+    filteredData &&
+      filteredData.sort(
+        (a, b) => b.createdTime.seconds - a.createdTime.seconds,
+      );
+    return filteredData;
+  }, [documents]);
 
   const reviewSubmitHandler = handleSubmit((data) => {
     if (authUser) {
@@ -31,8 +39,8 @@ const DetailReview = () => {
           overview: data.review,
           author: authUser.displayName,
         });
-        reset();
       }
+      setValue("review", "");
     } else {
       if (
         window.confirm(
@@ -46,12 +54,12 @@ const DetailReview = () => {
 
   return (
     <>
-      <ul>
-        {documents &&
-          documents.map((doc) => (
-            <li key={doc.id}>
+      <ul className="w-full max-h-[50vh] shadow-md overflow-y-auto">
+        {reviews &&
+          reviews.map((doc) => (
+            <li className="w-3/4 h-full" key={doc.id}>
               <h3>{doc.author}</h3>
-              <p>{doc.overview}</p>
+              <p className="min-h-[50px]">{doc.overview}</p>
             </li>
           ))}
       </ul>
@@ -59,7 +67,7 @@ const DetailReview = () => {
       <button
         onClick={reviewSubmitHandler}
         type="submit"
-        className="py-2 w-full text-base border-solid border-blue-500 bg-blue-500 text-white dark:bg-orange-500 dark:border-orange-500"
+        className="py-2 w-full text-base cursor-pointer border-solid border-blue-500 bg-blue-500 text-white dark:bg-orange-500 dark:border-orange-500"
       >
         작성하기
       </button>

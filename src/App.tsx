@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { shallowEqual } from "react-redux";
 import {
@@ -11,8 +11,8 @@ import { onState } from "./store/slices/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
 import Loader from "./utils/Loader";
 import { HelmetProvider } from "react-helmet-async";
+import Root from "./Root";
 
-const Root = React.lazy(() => import("./Root"));
 const Home = React.lazy(() => import("./pages/Home"));
 const Detail = React.lazy(() => import("./pages/tourismPages/Detail"));
 const DetailInfo = React.lazy(() => import("./components/Detail/DetailInfo"));
@@ -79,13 +79,11 @@ const App = () => {
     {
       path: "/",
       element: authUser.isAuthReady ? (
-        <Suspense fallback={<Loader />}>
-          <HelmetProvider>
-            <Root />
-          </HelmetProvider>
-        </Suspense>
+        <HelmetProvider>
+          <Root />
+        </HelmetProvider>
       ) : (
-        <Loader />
+        <Loader position={"top-[100px]"} />
       ),
       children: [
         {

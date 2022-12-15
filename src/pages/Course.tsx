@@ -17,7 +17,7 @@ const Course = () => {
   return (
     <div className="space-y-8 dark:text-white transition-colors">
       {isLoading ? (
-        <Loader />
+        <Loader position={"top-0"} />
       ) : (
         courses?.items.item.map((course) => (
           <div className="space-y-4" key={course.crsIdx}>

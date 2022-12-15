@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import ReviewsLists from "../../components/Users/ReviewsLists";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import SEOMeta from "../../SEOMeta";
@@ -42,23 +43,12 @@ const MyReviews = () => {
         <ul className="space-y-3">
           {documents &&
             documents.map((doc) => (
-              <li
-                className="px-3 py-2 space-y-3 min-h-20 flex flex-col justify-around border border-dashed border-blue-500 rounded-md dark:border-orange-500"
-                key={doc.createdTime + doc.contentId}
-              >
-                <h3>{doc.title}</h3>
-                <div className="space-y-3 flex flex-col">
-                  <p>{doc.overview}</p>
-                  <span>{createdTime()}</span>
-                  <button
-                    onClick={deleteMyReview}
-                    type="button"
-                    className="py-2 w-1/5 bg-transparent rounded-md cursor-pointer transition-colors border border-solid border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white dark:border-orange-500 dark:text-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
-                  >
-                    제거
-                  </button>
-                </div>
-              </li>
+              <ReviewsLists
+                key={doc.id}
+                doc={doc}
+                createdTime={createdTime}
+                deleteMyReview={deleteMyReview}
+              />
             ))}
           {documents && documents.length === 0 && (
             <div className="mt-5 text-center">리뷰를 작성해 보세요</div>

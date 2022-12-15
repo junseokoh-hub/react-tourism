@@ -1,18 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { locationBasedList } from "../../api/campingApi";
+import CampingImages from "../../components/Camping/CampingImages";
+import Modal from "../../components/Modal/Modal";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import SEOMeta from "../../SEOMeta";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onClose, onOpen } from "../../store/slices/menuSlice";
 import Loader from "../../utils/Loader";
-
-const Modal = React.lazy(() => import("../../components/Modal/Modal"));
-const CampingImages = React.lazy(
-  () => import("../../components/Camping/CampingImages"),
-);
 
 const CampingDetail = () => {
   const [isPreferred, setIsPreferred] = useState(false);
@@ -50,7 +47,7 @@ const CampingDetail = () => {
       navigate(`?id=${contentId}`);
       dispatch(onOpen());
     }
-  }, []);
+  }, [contentId]);
 
   const closeModal = useCallback(() => {
     dispatch(onClose());

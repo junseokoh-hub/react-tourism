@@ -28,13 +28,17 @@ const Route = () => {
     }
   }, [currentPage, queryClient]);
 
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, [currentPage]);
+
   return (
     <>
       <SEOMeta title={"길 & 코스"} content={"여행 중 가고 싶은 길은?"} />
       <div className="space-y-8 dark:text-white">
         <div className="space-y-4 min-h-screen">
           {isLoading || isFetching ? (
-            <Loader />
+            <Loader position={"top-0"} />
           ) : (
             routes?.items.item.map((route) => (
               <div

@@ -1,11 +1,22 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import VisitorData from "../components/Home/VisitorData";
 import SEOMeta from "../SEOMeta";
 
-const FrontBanner = React.lazy(() => import("../components/Home/FrontBanner"));
-const CampingIndicator = React.lazy(
-  () => import("../components/Home/CampingIndicator"),
+const FrontBanner = React.lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 500)).then(
+    () => import("../components/Home/FrontBanner"),
+  ),
+);
+const CampingIndicator = React.lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
+    () => import("../components/Home/CampingIndicator"),
+  ),
+);
+
+const VisitorData = React.lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("../components/Home/VisitorData"),
+  ),
 );
 
 const Home = () => {

@@ -1,7 +1,5 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { DocumentsType } from "../../hooks/useCollection";
-import { useFirestore } from "../../hooks/useFirestore";
 
 type CampingPreferenceListsProps = {
   title: string;

@@ -25,7 +25,7 @@ const CampingIndicator = () => {
       <Swiper
         className="home_swiper"
         loop={true}
-        speed={2500}
+        speed={2000}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -38,6 +38,7 @@ const CampingIndicator = () => {
               className="w-full h-full block object-cover"
               src={idc.src}
               alt={idc.alt}
+              loading="lazy"
               onClick={() => navigate(idc.path)}
             />
             <span className="absolute bottom-10 right-10">{idc.alt}</span>
