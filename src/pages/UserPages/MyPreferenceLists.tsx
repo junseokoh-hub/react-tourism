@@ -36,7 +36,7 @@ const MyPreferenceLists = () => {
   return (
     <>
       <ul className="py-3 space-y-10">
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader position={"top-0"} />}>
           {tourismPreferenceMatch
             ? tours?.map((tour) => (
                 <TourismPreferenceLists key={tour.id} data={tour} />

@@ -1,5 +1,5 @@
-import React, { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import React, { Suspense, useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import LowerNavigation from "./components/Layout/LowerNavigation";
 import MainHeader from "./components/UI/MainHeader";
 import { useObserve } from "./hooks/useObserve";
@@ -15,7 +15,6 @@ const Footer = React.lazy(() =>
 
 const Root = () => {
   const { isView, targetRef } = useObserve();
-  document.body.scrollTop = document.documentElement.scrollTop = 0;
 
   return (
     <>
@@ -26,7 +25,7 @@ const Root = () => {
           <Layout>
             <Outlet />
           </Layout>
-          {!isView && <Footer />}
+          <Footer />
         </Suspense>
       </main>
       <LowerNavigation />

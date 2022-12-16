@@ -20,9 +20,6 @@ const VisitorData = React.lazy(() =>
 );
 
 const Home = () => {
-  useEffect(() => {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-  }, []);
   return (
     <>
       <SEOMeta

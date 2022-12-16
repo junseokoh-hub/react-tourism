@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import OutletIndicator from "../../components/UI/OutletIndicator";
 import SEOMeta from "../../SEOMeta";
@@ -10,14 +10,16 @@ const MyPreference = () => {
     { match: "myPreference/camping", path: "camping", title: "캠핑지" },
   ];
 
-  document.body.scrollTop = document.documentElement.scrollTop = 0;
+  useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }, []);
 
   return (
     <>
       <SEOMeta title={"나의 선호"} content={"내가 선호하는 여행지"} />
       <article className="flex flex-col">
         <OutletIndicator indicators={preferenceIndicators} />
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader position={"top-0"} />}>
           <Outlet />
         </Suspense>
       </article>

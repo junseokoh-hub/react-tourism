@@ -82,7 +82,6 @@ export const useFirestore = (transaction: string) => {
       try {
         const createdTime = timestamp.fromDate(new Date());
         const docRef = await addDoc(colRef, { ...doc, createdTime });
-        console.log(docRef);
         dispatch({ type: "addDoc", payload: docRef });
       } catch (error: any) {
         if (error instanceof Error) {

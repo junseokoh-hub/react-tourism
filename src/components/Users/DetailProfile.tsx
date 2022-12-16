@@ -38,8 +38,6 @@ const DetailProfile = () => {
     }
   });
 
-  console.log(documents);
-
   useEffect(() => {
     if (isEditProfile) {
       setValue("address", documents && documents[0].addr);
