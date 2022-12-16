@@ -42,6 +42,7 @@ export const useSignup = () => {
         setError(error.message);
         setIsLoading(false);
       });
+    setError(null);
   };
 
   return { isLoading, error, signup };

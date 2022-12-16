@@ -19,7 +19,7 @@ const ReviewsLists = ({
     >
       <h3>{doc.title}</h3>
       <div className="space-y-3 flex flex-col">
-        <p>{doc.overview}</p>
+        <p>내용 : {doc.overview}</p>
         <span>{createdTime()}</span>
         <button
           onClick={deleteMyReview}

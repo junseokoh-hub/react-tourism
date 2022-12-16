@@ -23,7 +23,7 @@ const MyReviews = () => {
       const date = data.getDate();
       const day = days[data.getDay()];
 
-      return `${year}년 ${month}월 ${date}일 ${day}요일`;
+      return `작성 일자 : ${year}년 ${month}월 ${date}일 ${day}요일`;
     }
   };
 

@@ -58,7 +58,7 @@ const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
           setValue={setCity}
           options={data as AreaCodeType[]}
         />
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader position={"top-0"} />}>
           {!provinceLoading && province === undefined ? (
             <div className="mt-10 text-center dark:text-white">
               검색 결과가 없습니다.
@@ -72,7 +72,7 @@ const Posts = ({ title, contentType, contentTypeId }: PostsProps) => {
                 ))}
             </ul>
           )}
-          {provinceLoading && <Loader />}
+          {provinceLoading && <Loader position={"top-0"} />}
         </Suspense>
       </div>
     </>

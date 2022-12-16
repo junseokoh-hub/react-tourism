@@ -36,7 +36,7 @@ const SelectedContent = ({ data }: SelectedContentProps) => {
 
   return (
     <li
-      className="w-full h-80 space-y-2 flex flex-col text-center cursor-pointer"
+      className="mb-10 w-full h-80 space-y-2 flex flex-col text-center cursor-pointer"
       onClick={() => navigate(`${data.contentid}/${data.contenttypeid}`)}
     >
       <img

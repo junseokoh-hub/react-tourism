@@ -27,6 +27,7 @@ export const useLogin = () => {
         setError(error.message);
         setIsLoading(false);
       });
+    setError(null);
   };
 
   return { isLoading, error, login };
