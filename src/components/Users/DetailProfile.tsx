@@ -54,7 +54,12 @@ const DetailProfile = () => {
       <li>
         <label htmlFor="address">주소 : </label>
         {isEditProfile ? (
-          <input {...register("address")} id="address" type="text" />
+          <input
+            {...register("address")}
+            className="border-0 border-solid border-b bg-transparent outline-none dark:text-white"
+            id="address"
+            type="text"
+          />
         ) : (
           <span>{documents && documents[0]?.addr}</span>
         )}
@@ -62,7 +67,12 @@ const DetailProfile = () => {
       <li>
         <label htmlFor="favfood">좋아하는 음식 : </label>
         {isEditProfile ? (
-          <input {...register("favfood")} id="favfood" type="text" />
+          <input
+            {...register("favfood")}
+            className="border-0 border-solid border-b bg-transparent outline-none dark:text-white"
+            id="favfood"
+            type="text"
+          />
         ) : (
           <span>{documents && documents[0]?.favfood}</span>
         )}
@@ -70,7 +80,12 @@ const DetailProfile = () => {
       <li>
         <label htmlFor="hobby">취미 : </label>
         {isEditProfile ? (
-          <input {...register("hobby")} id="hobby" type="text" />
+          <input
+            {...register("hobby")}
+            className="border-0 border-solid border-b bg-transparent outline-none dark:text-white"
+            id="hobby"
+            type="text"
+          />
         ) : (
           <span>{documents && documents[0]?.hobby}</span>
         )}
@@ -78,7 +93,12 @@ const DetailProfile = () => {
       <li>
         <label htmlFor="sightseeing">가고 싶은 여행지 : </label>
         {isEditProfile ? (
-          <input {...register("sightseeing")} id="sightseeing" type="text" />
+          <input
+            {...register("sightseeing")}
+            className="border-0 border-solid border-b bg-transparent outline-none dark:text-white"
+            id="sightseeing"
+            type="text"
+          />
         ) : (
           <span>{documents && documents[0]?.sightseeing}</span>
         )}

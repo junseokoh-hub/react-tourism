@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { searchList } from "../../api/campingApi";
 import { useObserve } from "../../hooks/useObserve";
 import Loader from "../../utils/Loader";
-import CampingSearchedContent from "./CampingSearchedContent";
+
+const CampingSearchedContent = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("./CampingSearchedContent"),
+  ),
+);
 
 const CampingInput = () => {
   const { targetRef, isView } = useObserve();
@@ -41,14 +46,16 @@ const CampingInput = () => {
   return (
     <>
       <ul className="py-10 space-y-10 dark:text-white">
-        {data?.pages?.map((item) =>
-          item?.items?.item?.map(
-            (camp) =>
-              camp && (
-                <CampingSearchedContent key={camp.contentId} camp={camp} />
-              ),
-          ),
-        )}
+        <Suspense fallback={<Loader position={"top-0"} />}>
+          {data?.pages?.map((item) =>
+            item?.items?.item?.map(
+              (camp) =>
+                camp && (
+                  <CampingSearchedContent key={camp.contentId} camp={camp} />
+                ),
+            ),
+          )}
+        </Suspense>
         {isFetching && <Loader position={"top-0"} />}
         {data && data.pages[0]?.totalCount === 0 && (
           <div className="text-center">데이터가 없습니다.</div>

@@ -28,7 +28,7 @@ const Camping = () => {
       <section>
         <OutletIndicator indicators={campingIndicators} />
         <article className="mt-10">
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<Loader position={"top-0"} />}>
             <Outlet />
           </Suspense>
         </article>

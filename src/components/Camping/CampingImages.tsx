@@ -24,7 +24,7 @@ const CampingImages = ({ isMenuOpen, contentId }: CampingImagesProps) => {
   return (
     <div className="flex fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100]">
       {isLoading ? (
-        <Loader />
+        <Loader position={"top-0"} />
       ) : data ? (
         <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]}>
           {data?.map((img) => (
