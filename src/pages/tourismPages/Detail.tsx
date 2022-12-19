@@ -81,7 +81,7 @@ const Detail = ({ contentType }: DetailProps) => {
       {isLoading ? (
         <Loader position={"top-0"} />
       ) : (
-        <article className="space-y-4 flex flex-col dark:text-white">
+        <article className="space-y-8 flex flex-col dark:text-white">
           <Suspense fallback={<Loader position={"top-0"} />}>
             <CommonDetail data={data?.data} contentType={contentType} />
           </Suspense>

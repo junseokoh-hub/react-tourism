@@ -7,6 +7,7 @@ import { useDispatch } from "../store/hooks";
 declare global {
   interface Window {
     kakao: any;
+    Kakao: any;
   }
 }
 
