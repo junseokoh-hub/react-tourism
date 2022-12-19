@@ -26,17 +26,24 @@ const FestivalDetail = ({
             ),
         )}
       </div>
-      <div className="mt-3">
-        {detailIntroData?.map((item, index) => (
-          <div className="space-y-3" key={index}>
-            <div>{item.eventplace}</div>
-            <h3>
-              {item.eventstartdate} ~ {item.eventenddate}
-            </h3>
-            <h4>{item.sponsor1tel}</h4>
-          </div>
+      <hr />
+      <ul className="mt-3 pl-10 space-y-5">
+        <li>
+          <h3>소개 정보</h3>
+        </li>
+        {detailIntroData?.map((item) => (
+          <li className="space-y-3" key={item.eventplace}>
+            <div>행사 장소 : {item.eventplace}</div>
+            <div>
+              행사 기간 : {item.eventstartdate} ~ {item.eventenddate}
+            </div>
+            <div>
+              스폰서 : {item.sponsor1} ({item.sponsor1tel}), {item.sponsor2} (
+              {item.sponsor1tel})
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </article>
   );
 };

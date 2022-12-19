@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { DetailCommonType } from "../../types/DetailType";
 
 const KakaoMap = lazy(() =>
-  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
     () => import("../../utils/KakaoMap"),
   ),
 );

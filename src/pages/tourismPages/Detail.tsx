@@ -7,12 +7,12 @@ import { DetailProps } from "../../types/DetailType";
 import Loader from "../../utils/Loader";
 
 const CommonDetail = lazy(() =>
-  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
     () => import("../../components/Detail/CommonDetail"),
   ),
 );
 const OutletIndicator = lazy(() =>
-  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
     () => import("../../components/UI/OutletIndicator"),
   ),
 );

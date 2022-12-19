@@ -4,14 +4,14 @@ const CommonDetailTable = ({ item }: any) => {
       <thead>
         <tr>
           <th colSpan={2} className="th_layout">
-            {item.infoname}
+            {item.infoname || "정보"}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td
-            dangerouslySetInnerHTML={{ __html: item.infotext }}
+            dangerouslySetInnerHTML={{ __html: item.infotext || "없음" }}
             className="td_layout"
           ></td>
         </tr>

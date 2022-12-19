@@ -14,6 +14,7 @@ const AccommodationDetail = ({
   detailInfoData,
   detailIntroData,
 }: AccommodationDetailProps) => {
+  console.log(detailIntroData);
   return (
     <>
       <div className="mt-3 space-y-10">
@@ -34,23 +35,27 @@ const AccommodationDetail = ({
           </div>
         ))}
       </div>
-      <details open className="mt-10">
-        <summary className="font-bold cursor-pointer">⁕ 세부 내용</summary>
-        <ul className="border border-solid border-gray-800 rounded-sm">
-          {detailIntroData?.map((item) => (
-            <li key={item.infocenterlodging}>
-              <div>• 연락처 : {item.infocenterlodging}</div>
-              <div>
-                <span>• 체크인 : {item.checkintime} / </span>
-                <span>체크아웃 : {item.checkouttime}</span>
-              </div>
-              <div>• 식당 : {item.foodplace}</div>
-              <div>• 방 종류 : {item.roomtype}</div>
-              <div>• 숙소 구조 : {item.scalelodging}</div>
-            </li>
-          ))}
-        </ul>
-      </details>
+      <hr />
+      <ul className="mt-10">
+        <li>
+          <h3>소개 정보</h3>
+        </li>
+        {detailIntroData?.map((item) => (
+          <li key={item.infocenterlodging}>
+            <div>• 안내데스크 연락처 : {item.infocenterlodging || "-"}</div>
+            <div>• 예약 연락처 : {item.reservationlodging || "-"}</div>
+            <div>
+              <span>• 체크인 : {item.checkintime || "-"} / </span>
+              <span>체크아웃 : {item.checkouttime || "-"}</span>
+            </div>
+            <div>• 식당 : {item.foodplace || "-"}</div>
+            <div>• 방 종류 : {item.roomtype || "-"}</div>
+            <div>• 숙소 구조 : {item.scalelodging || "-"}</div>
+            <div>• 주차 : {item.parkinglodging || "-"}</div>
+            <div>• 픽업 : {item.pickup || "-"}</div>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };

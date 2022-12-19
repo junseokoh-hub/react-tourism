@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import SEOMeta from "../SEOMeta";
 
 const FrontBanner = React.lazy(() =>
-  new Promise((resolve) => setTimeout(resolve, 500)).then(
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
     () => import("../components/Home/FrontBanner"),
   ),
 );
@@ -20,6 +19,7 @@ const VisitorData = React.lazy(() =>
 );
 
 const Home = () => {
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
   return (
     <>
       <SEOMeta

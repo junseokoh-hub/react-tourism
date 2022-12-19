@@ -87,7 +87,11 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
         alt={data?.title}
       />
       {isShared ? (
-        <ShareButtons text={data?.title} closeShare={toggleShareBtnHandler} />
+        <ShareButtons
+          text={data?.title}
+          closeShare={toggleShareBtnHandler}
+          data={data}
+        />
       ) : null}
       <ul className="space-y-5">
         <li className="space-x-5 flex items-center">
@@ -109,11 +113,10 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
           </svg>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-6 h-6 fill-purple-500"
             onClick={toggleShareBtnHandler}
           >
             <path
@@ -124,17 +127,17 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
           </svg>
         </li>
         <li
-          className="leading-5"
+          className="leading-7"
           dangerouslySetInnerHTML={{
             __html: data?.overview as string,
           }}
         ></li>
-        <li>
-          <span>{data?.telname}</span>
-          <span>{data?.tel}</span>
+        <li className="space-y-6 flex flex-col">
+          <span>대상 : {data?.telname || "-"}</span>
+          <span>연락처 : {data?.tel || "-"}</span>
           <span
             dangerouslySetInnerHTML={{
-              __html: data?.homepage || "#",
+              __html: `주소 : ${data?.homepage || "-"}`,
             }}
           />
         </li>
