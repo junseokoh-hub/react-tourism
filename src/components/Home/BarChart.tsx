@@ -139,7 +139,7 @@ const BarChart = ({ date }: BarChartProps) => {
   return (
     <>
       {isLoading && !chart ? (
-        <Loader />
+        <Loader position={"top-0"} />
       ) : (
         <Bar
           width={700}

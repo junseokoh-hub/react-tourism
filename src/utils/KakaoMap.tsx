@@ -114,7 +114,10 @@ const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
 
   return (
     <>
-      <div id="map" className="mx-auto md:w-2/3 h-[500px] rounded-md"></div>
+      <div
+        id="map"
+        className="h-[400px] md:w-2/3 md:h-[500px] rounded-md"
+      ></div>
       <div id="result" className="dark:text-white"></div>
     </>
   );

@@ -44,8 +44,8 @@ const SelectedContent = ({ data }: SelectedContentProps) => {
         src={data.firstimage || data.firstimage2 || "../images/noImage.jpg"}
         alt={data.title}
       />
-      <h3>{data.title}</h3>
-      <h5>{data.addr1}</h5>
+      <h3 className="text-xs sm:text-base">{data.title}</h3>
+      <h5 className="text-xs sm:text-base">{data.addr1}</h5>
     </li>
   );
 };

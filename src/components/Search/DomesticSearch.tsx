@@ -21,8 +21,6 @@ const DomesticSearch = () => {
     },
   );
 
-  console.log(doms);
-
   const navigationHandler = useCallback(
     (contentId: string, contentTypeId: string) => {
       switch (contentTypeId) {

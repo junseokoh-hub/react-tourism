@@ -26,14 +26,11 @@ const VisitorData = () => {
           </label>
           <input
             id="date"
-            className="py-1 px-2 border rounded-md font-semibold font-mono"
+            className="py-1 px-4 border rounded-md font-semibold font-mono"
             type="date"
             value={date}
             onChange={dateChangeHandler}
           />
-          <button className="py-1 px-6 border-0 text-white font-semibold bg-teal-400 rounded-md transition-colors cursor-pointer hover:bg-teal-700">
-            검색
-          </button>
         </div>
         <BarChart date={splitedDate} />
       </article>

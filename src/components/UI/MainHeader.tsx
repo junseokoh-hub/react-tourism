@@ -76,7 +76,7 @@ const MainHeader = ({ isView }: MainHeaderProps) => {
             className="text-2xl dark:text-white"
             aria-label="home-link"
           >
-            Tourism
+            Travelisty
           </Link>
         </div>
         <div

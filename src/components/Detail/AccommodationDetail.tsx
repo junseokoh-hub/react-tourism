@@ -14,7 +14,6 @@ const AccommodationDetail = ({
   detailInfoData,
   detailIntroData,
 }: AccommodationDetailProps) => {
-  console.log(detailIntroData);
   return (
     <>
       <div className="mt-3 space-y-10">

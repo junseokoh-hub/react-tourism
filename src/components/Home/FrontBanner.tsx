@@ -32,7 +32,7 @@ const FrontBanner = () => {
         </svg>
         <span>국내여행 Go</span>
       </div>
-      <ul className="grid grid-cols-4 gap-2 text-sm md:text-base">
+      <ul className="grid grid-cols-4 gap-2 text-[10px] sm:text-sm md:text-base">
         <li
           className="front_btns dark:hover:shadow-[0px_0px_5px_rgba(255,255,255,0.4)]"
           onClick={() => navigate("accommodation")}

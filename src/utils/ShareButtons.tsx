@@ -8,10 +8,11 @@ type ShareButtonsProps = {
 };
 
 const ShareButtons = ({ text, closeShare, data }: ShareButtonsProps) => {
-  const currentUrl = encodeURIComponent(window.location.href);
+  // const currentUrl = `https://travelisty.web.app/${contentType}/${data?.contentid}/${data?.contenttypeid}`;
+  const currentUrl = window.location.href;
 
   function shareTwitter() {
-    let sendText = text && encodeURIComponent(text);
+    let sendText = text;
     let sendUrl = currentUrl;
     window.open(
       "https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl,
@@ -24,8 +25,8 @@ const ShareButtons = ({ text, closeShare, data }: ShareButtonsProps) => {
   }
 
   return (
-    <div className=" flex items-center fixed top-1/2 left-1/2 -translate-x-[100px] -translate-y-[100px] rounded-md bg-white shadow-lg z-50">
-      <div className="py-3 px-8 space-x-14 flex items-center">
+    <div className=" flex items-center fixed top-1/2 left-1/2 -translate-x-[130px] -translate-y-[80px] sm:-translate-x-[150px] rounded-md bg-white shadow-lg z-50 md:-translate-x-[100px]">
+      <div className="py-3 px-2 space-x-4 flex items-center sm:space-x-8 sm:px-4 md:px-8 md:space-x-14">
         <svg
           className="w-12 h-12"
           fill="#3b5998"
@@ -67,7 +68,9 @@ const KakaoTalkShareBtn = ({
   data: DetailCommonType | undefined;
 }) => {
   useEffect(() => {
-    const url = encodeURIComponent(window.location.href);
+    // const url = `https://travelisty.web.app/${contentType}/${data?.contentid}/${data?.contenttypeid}`;
+    const url = window.location.href;
+
     const text = data && data.overview.replace(/<[^>]*>?/g, "");
     const createKakaoButton = () => {
       if (window.Kakao) {
@@ -122,7 +125,8 @@ const KakaoStoryShareBtn = ({
 }: {
   data: DetailCommonType | undefined;
 }) => {
-  const url = encodeURIComponent(window.location.href);
+  // const url = `https://travelisty.web.app/${contentType}/${data?.contentid}/${data?.contenttypeid}`;
+  const url = window.location.href;
   const text = data && data.overview.replace(/<[^>]*>?/g, "");
   const shareStoryWeb = () => {
     window.Kakao.Story.share({
@@ -132,13 +136,13 @@ const KakaoStoryShareBtn = ({
   };
 
   return (
-    <a id="share-kakaostory-button" href="#disable">
+    <div id="share-kakaostory-button">
       <img
         onClick={shareStoryWeb}
         src="https://developers.kakao.com/sdk/js/resources/story/icon_small.png"
         alt="카카오스토리 공유하기 버튼"
         className="w-12 h-12 rounded-md"
       />
-    </a>
+    </div>
   );
 };
