@@ -4,7 +4,7 @@ import { imageList } from "../../api/campingApi";
 import "swiper/css";
 import "swiper/css/effect-cards";
 import { EffectCards } from "swiper";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 import React from "react";
 
 type CampingImagesProps = {
@@ -26,7 +26,12 @@ const CampingImages = ({ isMenuOpen, contentId }: CampingImagesProps) => {
       {isLoading ? (
         <Loader position={"top-0"} />
       ) : data ? (
-        <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]}>
+        <Swiper
+          className="w-[50vw] h-[50vh] md:w-[40vw] lg:w-[30vw]"
+          effect={"cards"}
+          grabCursor={true}
+          modules={[EffectCards]}
+        >
           {data?.map((img) => (
             <SwiperSlide key={img.serialnum}>
               <img

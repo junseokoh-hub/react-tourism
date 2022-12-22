@@ -1,13 +1,13 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { searchList } from "../../api/campingApi";
 import { useObserve } from "../../hooks/useObserve";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 
 const CampingSearchedContent = lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 3000)).then(
-    () => import("./CampingSearchedContent"),
+    () => import("./CampingSearchedContent.js"),
   ),
 );
 

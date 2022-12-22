@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useSelector } from "../../store/hooks";
+import Loader from "../../utils/Loader.js";
 
 const DetailProfile = () => {
   const [isEditProfile, setIsEditProfile] = useState(false);
@@ -16,8 +17,8 @@ const DetailProfile = () => {
 
   const submitProfileHandler = handleSubmit((data) => {
     const { address, favfood, hobby, sightseeing } = data;
-    if (authUser) {
-      if (!(documents && documents[0])) {
+    if (authUser && documents) {
+      if (!documents[0]) {
         addDocument({
           uid: authUser.uid,
           addr: address,
@@ -26,7 +27,7 @@ const DetailProfile = () => {
           sightseeing,
         });
       } else {
-        updateDocument(documents && documents[0].id, {
+        updateDocument(documents[0].id, {
           uid: authUser.uid,
           addr: address,
           favfood,
@@ -37,15 +38,18 @@ const DetailProfile = () => {
       setIsEditProfile(false);
     }
   });
-
   useEffect(() => {
-    if (isEditProfile) {
-      setValue("address", documents && documents[0].addr);
-      setValue("favfood", documents && documents[0].favfood);
-      setValue("hobby", documents && documents[0].hobby);
-      setValue("sightseeing", documents && documents[0].sightseeing);
+    if (isEditProfile && documents) {
+      if (documents[0]) {
+        setValue("address", documents[0].addr);
+        setValue("favfood", documents[0].favfood);
+        setValue("hobby", documents[0].hobby);
+        setValue("sightseeing", documents[0].sightseeing);
+      }
     }
   }, [isEditProfile]);
+
+  const [isPending, startTransition] = useTransition();
 
   return (
     <ul className="space-y-4">
@@ -59,7 +63,7 @@ const DetailProfile = () => {
             type="text"
           />
         ) : (
-          <span>{documents && documents[0]?.addr}</span>
+          <span>{documents && documents[0] ? documents[0].addr : null}</span>
         )}
       </li>
       <li>
@@ -72,7 +76,7 @@ const DetailProfile = () => {
             type="text"
           />
         ) : (
-          <span>{documents && documents[0]?.favfood}</span>
+          <span>{documents && documents[0] ? documents[0].favfood : null}</span>
         )}
       </li>
       <li>
@@ -85,7 +89,7 @@ const DetailProfile = () => {
             type="text"
           />
         ) : (
-          <span>{documents && documents[0]?.hobby}</span>
+          <span>{documents && documents[0] ? documents[0].hobby : null}</span>
         )}
       </li>
       <li>
@@ -98,36 +102,50 @@ const DetailProfile = () => {
             type="text"
           />
         ) : (
-          <span>{documents && documents[0]?.sightseeing}</span>
+          <span>
+            {documents && documents[0] ? documents[0].sightseeing : null}
+          </span>
         )}
       </li>
       <li className="space-x-3">
         {isEditProfile ? (
-          <button
-            className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
-            type="submit"
-            onClick={submitProfileHandler}
-          >
-            저장
-          </button>
+          isPending ? (
+            <Loader position={"top-0"} />
+          ) : (
+            <>
+              <button
+                className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
+                type="submit"
+                onClick={submitProfileHandler}
+              >
+                저장
+              </button>
+              <button
+                className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
+                type="button"
+                onClick={() =>
+                  startTransition(() => {
+                    setIsEditProfile(false);
+                  })
+                }
+              >
+                취소
+              </button>
+            </>
+          )
         ) : (
           <button
             className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
             type="button"
-            onClick={() => setIsEditProfile(true)}
+            onClick={() =>
+              startTransition(() => {
+                setIsEditProfile(true);
+              })
+            }
           >
             작성
           </button>
         )}
-        {isEditProfile ? (
-          <button
-            className="py-1 px-8 rounded-md transition-colors border border-solid border-blue-500 bg-transparent cursor-pointer text-blue-500 hover:bg-blue-500 hover:text-white dark:text-orange-500 dark:border-orange-500 dark:hover:bg-orange-500 dark:hover:text-white"
-            type="button"
-            onClick={() => setIsEditProfile(false)}
-          >
-            취소
-          </button>
-        ) : null}
       </li>
     </ul>
   );

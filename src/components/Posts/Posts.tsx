@@ -3,9 +3,9 @@ import { useQuery } from "react-query";
 import { areaBasedList, areaCode } from "../../api/tourismApi";
 import { AreaCodeType, areas } from "../../lib/area";
 import SEOMeta from "../../SEOMeta";
-import Loader from "../../utils/Loader";
-import SelectBox from "../SelectBox/SelectBox";
-import SelectedContent from "../SelectedContents/SelectedContent";
+import Loader from "../../utils/Loader.js";
+import SelectBox from "../SelectBox/SelectBox.js";
+import SelectedContent from "../SelectedContents/SelectedContent.js";
 
 type PostsProps = {
   title:

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { routeList } from "../../api/routeApi";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 
 const RouteSearch = () => {
   const [currentPage, setCurrentPage] = useState(1);

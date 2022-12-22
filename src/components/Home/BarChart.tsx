@@ -12,7 +12,7 @@ import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { useQuery } from "react-query";
 import { MetVisitorType, metVistior } from "../../api/bigDataApi";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 import { useSelector } from "../../store/hooks";
 
 type DataType = {

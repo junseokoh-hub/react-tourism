@@ -1,7 +1,7 @@
 import { useMatch } from "react-router-dom";
-import DomesticSearch from "../components/Search/DomesticSearch";
-import RouteSearch from "../components/Search/RouteSearch";
-import SEOMeta from "../SEOMeta";
+import DomesticSearch from "../components/Search/DomesticSearch.js";
+import RouteSearch from "../components/Search/RouteSearch.js";
+import SEOMeta from "../SEOMeta.js";
 
 const Search = () => {
   const searchMatch = useMatch("search/*");

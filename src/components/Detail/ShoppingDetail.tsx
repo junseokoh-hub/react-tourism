@@ -3,7 +3,7 @@ import {
   ShoppingDetailInfoType,
   ShoppingDetailIntroType,
 } from "../../types/ShoppingType";
-import CommonDetailTable from "./CommonDetailTable";
+import CommonDetailTable from "./CommonDetailTable.js";
 
 type ShoppingDetailProps = {
   detailInfoData: ShoppingDetailInfoType[];
@@ -30,13 +30,13 @@ const ShoppingDetail = ({
         </li>
         {detailIntroData?.map((item) => (
           <li key={item.shopguide} className="space-y-5">
-            <div>$ 영업일 : {item.fairday || "-"}</div>
-            <div>$ 영업시간 : {item.opentime || "-"}</div>
-            <div>$ 휴일 : {item.restdateshopping || "-"}</div>
-            <div>$ 판매 품목 : {item.saleitem || "-"}</div>
-            <div>$ 주차 : {item.parkingshopping || "-"}</div>
-            <div>$ 카드 사용 : {item.chkcreditcardshopping || "-"}</div>
-            <div>$ 매장 안내 : {item.shopguide || "-"}</div>
+            <div>• 영업일 : {item.fairday || "-"}</div>
+            <div>• 영업시간 : {item.opentime || "-"}</div>
+            <div>• 휴일 : {item.restdateshopping || "-"}</div>
+            <div>• 판매 품목 : {item.saleitem || "-"}</div>
+            <div>• 주차 : {item.parkingshopping || "-"}</div>
+            <div>• 카드 사용 : {item.chkcreditcardshopping || "-"}</div>
+            <div>• 매장 안내 : {item.shopguide || "-"}</div>
           </li>
         ))}
       </ul>

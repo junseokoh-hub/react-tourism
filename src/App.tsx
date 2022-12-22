@@ -9,60 +9,68 @@ import {
 import { appAuth } from "./lib/firebaseConfig";
 import { onState } from "./store/slices/authSlice";
 import { useDispatch, useSelector } from "./store/hooks";
-import Loader from "./utils/Loader";
+import Loader from "./utils/Loader.js";
 import { HelmetProvider } from "react-helmet-async";
-import Root from "./Root";
+import Root from "./Root.js";
 
-const Home = React.lazy(() => import("./pages/Home"));
-const Detail = React.lazy(() => import("./pages/tourismPages/Detail"));
-const DetailInfo = React.lazy(() => import("./components/Detail/DetailInfo"));
-const DetailMap = React.lazy(() => import("./components/Detail/DetailMap"));
+const Home = React.lazy(() => import("./pages/Home.js"));
+const Detail = React.lazy(() => import("./pages/tourismPages/Detail.js"));
+const DetailInfo = React.lazy(
+  () => import("./components/Detail/DetailInfo.js"),
+);
+const DetailMap = React.lazy(() => import("./components/Detail/DetailMap.js"));
 const DetailReview = React.lazy(
-  () => import("./components/Detail/DetailReview"),
+  () => import("./components/Detail/DetailReview.js"),
 );
 const Accommodation = React.lazy(
-  () => import("./pages/tourismPages/Accommodation"),
+  () => import("./pages/tourismPages/Accommodation.js"),
 );
-const Shopping = React.lazy(() => import("./pages/tourismPages/Shopping"));
-const Festival = React.lazy(() => import("./pages/tourismPages/Festival"));
+const Shopping = React.lazy(() => import("./pages/tourismPages/Shopping.js"));
+const Festival = React.lazy(() => import("./pages/tourismPages/Festival.js"));
 
 const LeisureSports = React.lazy(
-  () => import("./pages/tourismPages/LeisureSports"),
+  () => import("./pages/tourismPages/LeisureSports.js"),
 );
-const SignupPage = React.lazy(() => import("./pages/authPages/SignupPage"));
-const Search = React.lazy(() => import("./pages/Search"));
+const SignupPage = React.lazy(() => import("./pages/authPages/SignupPage.js"));
+const Search = React.lazy(() => import("./pages/Search.js"));
 const DomesticSearch = React.lazy(
-  () => import("./components/Search/DomesticSearch"),
+  () => import("./components/Search/DomesticSearch.js"),
 );
-const RouteSearch = React.lazy(() => import("./components/Search/RouteSearch"));
+const RouteSearch = React.lazy(
+  () => import("./components/Search/RouteSearch.js"),
+);
 
-const Restaurant = React.lazy(() => import("./pages/tourismPages/Restaurant"));
-const LoginPage = React.lazy(() => import("./pages/authPages/LoginPage"));
+const Restaurant = React.lazy(
+  () => import("./pages/tourismPages/Restaurant.js"),
+);
+const LoginPage = React.lazy(() => import("./pages/authPages/LoginPage.js"));
 const TravelCourse = React.lazy(
-  () => import("./pages/tourismPages/TravelCourse"),
+  () => import("./pages/tourismPages/TravelCourse.js"),
 );
 const TouristDestination = React.lazy(
-  () => import("./pages/tourismPages/TouristDestination"),
+  () => import("./pages/tourismPages/TouristDestination.js"),
 );
-const Camping = React.lazy(() => import("./pages/campingPages/Camping"));
+const Camping = React.lazy(() => import("./pages/campingPages/Camping.js"));
 const CampingDetail = React.lazy(
-  () => import("./pages/campingPages/CampingDetail"),
+  () => import("./pages/campingPages/CampingDetail.js"),
 );
 const CampingMapSearch = React.lazy(
-  () => import("./pages/campingPages/CampingMapSearch"),
+  () => import("./pages/campingPages/CampingMapSearch.js"),
 );
 const CampingInputSearch = React.lazy(
-  () => import("./pages/campingPages/CampingInputSearch"),
+  () => import("./pages/campingPages/CampingInputSearch.js"),
 );
-const Course = React.lazy(() => import("./pages/Course"));
-const MyPage = React.lazy(() => import("./pages/UserPages/MyPage"));
-const MyReviews = React.lazy(() => import("./pages/UserPages/MyReviews"));
-const MyPreference = React.lazy(() => import("./pages/UserPages/MyPreference"));
+const Course = React.lazy(() => import("./pages/Course.js"));
+const MyPage = React.lazy(() => import("./pages/UserPages/MyPage.js"));
+const MyReviews = React.lazy(() => import("./pages/UserPages/MyReviews.js"));
+const MyPreference = React.lazy(
+  () => import("./pages/UserPages/MyPreference.js"),
+);
 const MyPreferenceLists = React.lazy(
-  () => import("./pages/UserPages/MyPreferenceLists"),
+  () => import("./pages/UserPages/MyPreferenceLists.js"),
 );
 
-const NotFound = React.lazy(() => import("./pages/NotFound"));
+const NotFound = React.lazy(() => import("./pages/NotFound.js"));
 
 const App = () => {
   const authUser = useSelector((state) => state.auth, shallowEqual);

@@ -36,7 +36,7 @@ details {
 }
 
 .table_layout {
-  @apply mx-auto w-[80%] h-full border-t border-solid border-[#444444] border-collapse dark:text-white;
+  @apply mx-auto w-[80%] h-full border-t border-solid border-[#444444] border-collapse dark:text-white text-xs sm:text-sm md:text-base;
 }
 
 .th_layout {
@@ -68,7 +68,7 @@ details {
 }
 
 .home_swiper {
-  width: 90%;
+  width: 100%;
 }
 
 .home_swiper-slide {

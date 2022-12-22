@@ -3,7 +3,7 @@ import {
   TouristDestinationDetailInfoType,
   TouristDestinationDetailIntroType,
 } from "../../types/TouristDestinationType";
-import CommonDetailTable from "./CommonDetailTable";
+import CommonDetailTable from "./CommonDetailTable.js";
 
 type TouristDestinationDetailProps = {
   detailInfoData: TouristDestinationDetailInfoType[];
@@ -30,15 +30,15 @@ const TouristDestinationDetail = ({
         </li>
         {detailIntroData?.map((item) => (
           <li className="space-y-5" key={item.contentid}>
-            <div>$ 펫 : {item.chkpet || "-"}</div>
-            <div>$ 카드 : {item.chkcreditcard || "-"}</div>
-            <div>$ 유모차 : {item.chkbabycarriage || "-"}</div>
+            <div>• 펫 : {item.chkpet || "-"}</div>
+            <div>• 카드 : {item.chkcreditcard || "-"}</div>
+            <div>• 유모차 : {item.chkbabycarriage || "-"}</div>
             {item.expagerange && <div>$아이 : {item.expagerange}</div>}
-            <div>$ 주차 : {item.parking || "-"}</div>
-            <div>$ 문의 안내 : {item.infocenter || "-"}</div>
-            <div>$ 이용 시기 : {item.useseason || "-"}</div>
-            <div>$ 이용 시간 : {item.usetime || "-"}</div>
-            <div>$ 휴무일 : {item.restdate || "-"}</div>
+            <div>• 주차 : {item.parking || "-"}</div>
+            <div>• 문의 안내 : {item.infocenter || "-"}</div>
+            <div>• 이용 시기 : {item.useseason || "-"}</div>
+            <div>• 이용 시간 : {item.usetime || "-"}</div>
+            <div>• 휴무일 : {item.restdate || "-"}</div>
           </li>
         ))}
       </ul>

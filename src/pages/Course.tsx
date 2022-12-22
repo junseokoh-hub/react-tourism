@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { courseList } from "../api/routeApi";
-import Loader from "../utils/Loader";
+import { courseList } from "../api/routeApi.js";
+import Loader from "../utils/Loader.js";
 
 const Course = () => {
   const { routeIdx } = useParams();

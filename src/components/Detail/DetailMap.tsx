@@ -1,10 +1,10 @@
-import { lazy } from "react";
+import React from "react";
 import { useOutletContext } from "react-router-dom";
 import { DetailCommonType } from "../../types/DetailType";
 
-const KakaoMap = lazy(() =>
+const KakaoMap = React.lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 2000)).then(
-    () => import("../../utils/KakaoMap"),
+    () => import("../../utils/KakaoMap.js"),
   ),
 );
 

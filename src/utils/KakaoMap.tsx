@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useMatch } from "react-router-dom";
-import { locationBasedList } from "../api/campingApi";
-import { onGetData } from "../store/slices/campingSlice";
-import { useDispatch } from "../store/hooks";
+import { locationBasedList } from "../api/campingApi.js";
+import { onGetData } from "../store/slices/campingSlice.js";
+import { useDispatch } from "../store/hooks.js";
 
 declare global {
   interface Window {
@@ -114,10 +114,7 @@ const KakaoMap = ({ latitude, longitude, infoWindow }: KakaoMapProps) => {
 
   return (
     <>
-      <div
-        id="map"
-        className="h-[400px] md:w-2/3 md:h-[500px] rounded-md"
-      ></div>
+      <div id="map" className="h-[400px] md:h-[500px] rounded-md"></div>
       <div id="result" className="dark:text-white"></div>
     </>
   );

@@ -1,20 +1,20 @@
 import React from "react";
-import SEOMeta from "../SEOMeta";
+import SEOMeta from "../SEOMeta.js";
 
 const FrontBanner = React.lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 2000)).then(
-    () => import("../components/Home/FrontBanner"),
+    () => import("../components/Home/FrontBanner.js"),
   ),
 );
 const CampingIndicator = React.lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 2000)).then(
-    () => import("../components/Home/CampingIndicator"),
+    () => import("../components/Home/CampingIndicator.js"),
   ),
 );
 
 const VisitorData = React.lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 3000)).then(
-    () => import("../components/Home/VisitorData"),
+    () => import("../components/Home/VisitorData.js"),
   ),
 );
 

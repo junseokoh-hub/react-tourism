@@ -8,12 +8,12 @@ import Loader from "../../utils/Loader";
 
 const CommonDetail = lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 2000)).then(
-    () => import("../../components/Detail/CommonDetail"),
+    () => import("../../components/Detail/CommonDetail.js"),
   ),
 );
 const OutletIndicator = lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 2000)).then(
-    () => import("../../components/UI/OutletIndicator"),
+    () => import("../../components/UI/OutletIndicator.js"),
   ),
 );
 

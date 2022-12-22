@@ -3,7 +3,7 @@ import {
   RestaurantDetailInfoType,
   RestaurantDetailIntroType,
 } from "../../types/RestaurantType";
-import CommonDetailTable from "./CommonDetailTable";
+import CommonDetailTable from "./CommonDetailTable.js";
 
 type RestaurantDetailProps = {
   detailInfoData: RestaurantDetailInfoType[];
@@ -30,14 +30,14 @@ const RestaurantDetail = ({
         </li>
         {detailIntroData?.map((item) => (
           <li key={item.lcnsno} className="space-y-5">
-            <div>$ 대표메뉴 : {item.firstmenu || "-"}</div>
-            <div>$ 취급메뉴 : {item.treatmenu || "-"}</div>
-            <div>$ 영업시간 : {item.opentimefood || "-"}</div>
-            <div>$ 포장 : {item.packing || "-"}</div>
-            <div>$ 주차시설 : {item.parkingfood || "-"}</div>
-            <div>$ 문의 안내 : {item.infocenterfood || "-"}</div>
+            <div>• 대표메뉴 : {item.firstmenu || "-"}</div>
+            <div>• 취급메뉴 : {item.treatmenu || "-"}</div>
+            <div>• 영업시간 : {item.opentimefood || "-"}</div>
+            <div>• 포장 : {item.packing || "-"}</div>
+            <div>• 주차시설 : {item.parkingfood || "-"}</div>
+            <div>• 문의 안내 : {item.infocenterfood || "-"}</div>
             <div>
-              $ 어린이 방 : {item.kidsfacility === "0" ? "없음" : "있음"}
+              • 어린이 방 : {item.kidsfacility === "0" ? "없음" : "있음"}
             </div>
           </li>
         ))}

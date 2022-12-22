@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DetailCommonType } from "../types/DetailType";
+import { DetailCommonType } from "../types/DetailType.js";
 
 type ShareButtonsProps = {
   text: string | undefined;

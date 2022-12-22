@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, NavLink, useMatch, useNavigate } from "react-router-dom";
 import { useSelector } from "../../store/hooks";
 import { setDark } from "../../store/slices/darkSlice";
-import SearchBox from "../Search/SearchBox";
+import SearchBox from "../Search/SearchBox.js";
 
 type MainHeaderProps = {
   isView: boolean;

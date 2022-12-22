@@ -1,8 +1,8 @@
 import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import OutletIndicator from "../../components/UI/OutletIndicator";
-import SEOMeta from "../../SEOMeta";
-import Loader from "../../utils/Loader";
+import OutletIndicator from "../../components/UI/OutletIndicator.js";
+import SEOMeta from "../../SEOMeta.js";
+import Loader from "../../utils/Loader.js";
 
 const MyPreference = () => {
   const preferenceIndicators = [

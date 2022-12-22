@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import AuthForm from "../../components/Auth/AuthForm";
+import AuthForm from "../../components/Auth/AuthForm.js";
 
 const SignupPage = () => {
   useEffect(() => {

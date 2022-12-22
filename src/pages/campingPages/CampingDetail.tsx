@@ -2,14 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { locationBasedList } from "../../api/campingApi";
-import CampingImages from "../../components/Camping/CampingImages";
-import Modal from "../../components/Modal/Modal";
+import CampingImages from "../../components/Camping/CampingImages.js";
+import Modal from "../../components/Modal/Modal.js";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import SEOMeta from "../../SEOMeta";
 import { useDispatch, useSelector } from "../../store/hooks";
 import { onClose, onOpen } from "../../store/slices/menuSlice";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 
 const CampingDetail = () => {
   const [isPreferred, setIsPreferred] = useState(false);
@@ -136,8 +136,11 @@ const CampingDetail = () => {
                   alt={data[0].facltNm}
                   onDoubleClick={openImageModal}
                 />
+                <span className="block text-center italic text-gray-500 text-xs sm:text-sm">
+                  (이미지를 두 번 클릭하시면 여러 사진들을 볼 수 있습니다.)
+                </span>
               </li>
-              <li className="relative">
+              <li className="flex justify-center items-center space-x-2">
                 <h3 className="text-center dark:text-white">
                   {data[0].facltNm}
                 </h3>
@@ -147,7 +150,7 @@ const CampingDetail = () => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className={`w-8 h-8 absolute right-[10%] sm:right-[15%] md:right-[25%] -top-1 ${
+                  className={`w-8 h-8 ${
                     isPreferred ? "fill-red-500" : ""
                   } dark:text-white`}
                   onClick={switchLikeHandler}

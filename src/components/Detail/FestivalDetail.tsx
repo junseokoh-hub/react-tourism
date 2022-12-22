@@ -3,7 +3,7 @@ import {
   FestivalDetailInfoType,
   FestivalDetailIntroType,
 } from "../../types/FestivalType";
-import CommonDetailTable from "./CommonDetailTable";
+import CommonDetailTable from "./CommonDetailTable.js";
 
 type FestivalDetailProps = {
   detailInfoData: FestivalDetailInfoType[];
@@ -33,13 +33,13 @@ const FestivalDetail = ({
         </li>
         {detailIntroData?.map((item) => (
           <li className="space-y-3" key={item.eventplace}>
-            <div>행사 장소 : {item.eventplace}</div>
+            <div>• 행사 장소 : {item.eventplace}</div>
             <div>
-              행사 기간 : {item.eventstartdate} ~ {item.eventenddate}
+              • 행사 기간 : {item.eventstartdate} ~ {item.eventenddate}
             </div>
             <div>
-              스폰서 : {item.sponsor1} ({item.sponsor1tel}), {item.sponsor2} (
-              {item.sponsor1tel})
+              • 스폰서 : {item.sponsor1} ({item.sponsor1tel}), {item.sponsor2}
+              <br />({item.sponsor1tel})
             </div>
           </li>
         ))}

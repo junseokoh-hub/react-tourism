@@ -3,7 +3,7 @@ import {
   AccommodationDetailInfoType,
   AccommodationDetailIntroType,
 } from "../../types/AccommodationType";
-import AccommodationDetailTable from "./AccommodationDetailTable";
+import AccommodationDetailTable from "./AccommodationDetailTable.js";
 
 type AccommodationDetailProps = {
   detailInfoData: AccommodationDetailInfoType[];
@@ -35,12 +35,12 @@ const AccommodationDetail = ({
         ))}
       </div>
       <hr />
-      <ul className="mt-10">
+      <ul className="pl-10 mt-10 space-y-5">
         <li>
           <h3>소개 정보</h3>
         </li>
         {detailIntroData?.map((item) => (
-          <li key={item.infocenterlodging}>
+          <li className="space-y-3" key={item.infocenterlodging}>
             <div>• 안내데스크 연락처 : {item.infocenterlodging || "-"}</div>
             <div>• 예약 연락처 : {item.reservationlodging || "-"}</div>
             <div>

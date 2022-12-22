@@ -1,12 +1,23 @@
 import { useLogout } from "../../hooks/useLogout";
-import SEOMeta from "../../SEOMeta";
-import ContactProfile from "../../components/Users/ContactProfile";
-import DetailProfile from "../../components/Users/DetailProfile";
-import { lazy, useEffect } from "react";
+import SEOMeta from "../../SEOMeta.js";
+import { lazy, Suspense, useEffect } from "react";
+import Loader from "../../utils/Loader.js";
 
 const ImageProfile = lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 2000)).then(
-    () => import("../../components/Users/ImageProfile"),
+    () => import("../../components/Users/ImageProfile.js"),
+  ),
+);
+
+const ContactProfile = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 2000)).then(
+    () => import("../../components/Users/ContactProfile.js"),
+  ),
+);
+
+const DetailProfile = lazy(() =>
+  new Promise((resolve) => setTimeout(resolve, 3000)).then(
+    () => import("../../components/Users/DetailProfile.js"),
   ),
 );
 
@@ -20,10 +31,16 @@ const MyPage = () => {
   return (
     <>
       <SEOMeta title={"내정보"} content={"나의 정보"} />
-      <article className="p-2 space-y-10 dark:text-white">
-        <ImageProfile />
-        <ContactProfile />
-        <DetailProfile />
+      <article className="p-2 space-y-10 flex flex-col dark:text-white">
+        <Suspense fallback={<Loader position={"top-0"} />}>
+          <ImageProfile />
+        </Suspense>
+        <Suspense fallback={<Loader position={"top-0"} />}>
+          <ContactProfile />
+        </Suspense>
+        <Suspense fallback={<Loader position={"top-0"} />}>
+          <DetailProfile />
+        </Suspense>
         <span
           className="flex justify-end items-center cursor-pointer transition-colors hover:text-red-400"
           onClick={logout}

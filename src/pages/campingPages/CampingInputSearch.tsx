@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import CampingInput from "../../components/Camping/CampingInput";
+import CampingInput from "../../components/Camping/CampingInput.js";
 
 const CampingInputSearch = () => {
   const { register, handleSubmit } = useForm();

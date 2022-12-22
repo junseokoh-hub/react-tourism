@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import SNSLinks from "./SNSLinks";
+import SNSLinks from "./SNSLinks.js";
 
 const Footer = () => {
   const navigate = useNavigate();

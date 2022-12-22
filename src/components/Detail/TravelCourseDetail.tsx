@@ -39,11 +39,11 @@ const TravelCourseDetail = ({
         </li>
         {detailIntroData?.map((item) => (
           <li className="space-y-5" key={item.distance}>
-            <div>$ 코스 거리 : {item.distance || "-"}</div>
-            <div>$ 코스 소요시간 : {item.taketime || "-"}</div>
-            <div>$ 코스 일정 : {item.schedule || "-"}</div>
-            <div>$ 코스 테마 : {item.theme || "-"}</div>
-            <div>$ 문의 안내 : {item.infocentertourcourse || "-"}</div>
+            <div>• 코스 거리 : {item.distance || "-"}</div>
+            <div>• 코스 소요시간 : {item.taketime || "-"}</div>
+            <div>• 코스 일정 : {item.schedule || "-"}</div>
+            <div>• 코스 테마 : {item.theme || "-"}</div>
+            <div>• 문의 안내 : {item.infocentertourcourse || "-"}</div>
           </li>
         ))}
       </ul>

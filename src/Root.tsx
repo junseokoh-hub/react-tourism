@@ -1,15 +1,15 @@
-import React, { Suspense, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import LowerNavigation from "./components/Layout/LowerNavigation";
-import MainHeader from "./components/UI/MainHeader";
-import { useObserve } from "./hooks/useObserve";
-import Loader from "./utils/Loader";
+import React, { Suspense } from "react";
+import { Outlet } from "react-router-dom";
+import LowerNavigation from "./components/Layout/LowerNavigation.js";
+import MainHeader from "./components/UI/MainHeader.js";
+import { useObserve } from "./hooks/useObserve.js";
+import Loader from "./utils/Loader.js";
 
-const layout = import("./components/Layout/Layout");
+const layout = import("./components/Layout/Layout.js");
 const Layout = React.lazy(() => layout);
 const Footer = React.lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 2000)).then(
-    () => import("./components/Layout/Footer"),
+    () => import("./components/Layout/Footer.js"),
   ),
 );
 

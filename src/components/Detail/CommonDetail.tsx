@@ -4,7 +4,7 @@ import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useSelector } from "../../store/hooks";
 import { DetailCommonType } from "../../types/DetailType";
-import ShareButtons from "../../utils/ShareButtons";
+import ShareButtons from "../../utils/ShareButtons.js";
 
 type CommonDetailProps = {
   data: DetailCommonType | undefined;
@@ -136,6 +136,7 @@ const CommonDetail = ({ data, contentType }: CommonDetailProps) => {
           <span>대상 : {data?.telname || "-"}</span>
           <span>연락처 : {data?.tel || "-"}</span>
           <span
+            className="prose dark:prose-invert"
             dangerouslySetInnerHTML={{
               __html: `주소 : ${data?.homepage || "-"}`,
             }}

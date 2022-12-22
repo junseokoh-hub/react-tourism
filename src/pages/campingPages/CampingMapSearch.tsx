@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
-import CampingSearchedContent from "../../components/Camping/CampingSearchedContent";
+import CampingSearchedContent from "../../components/Camping/CampingSearchedContent.js";
 import { useSelector } from "../../store/hooks";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 
 const KakaoMap = lazy(() =>
   new Promise((resolve) => setTimeout(resolve, 3000)).then(
-    () => import("../../utils/KakaoMap"),
+    () => import("../../utils/KakaoMap.js"),
   ),
 );
 

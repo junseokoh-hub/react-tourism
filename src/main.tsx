@@ -2,9 +2,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Provider } from "react-redux";
-import { store } from "./store/index";
+import { store } from "./store/index.js";
 import { ReactQueryDevtools } from "react-query/devtools";
-import App from "./App";
+import App from "./App.js";
 
 export const queryClient = new QueryClient({
   defaultOptions: {

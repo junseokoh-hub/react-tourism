@@ -30,10 +30,14 @@ const CampingPreferenceLists = ({
     <li
       className="space-x-2 p-2 flex border border-solid border-blue-500 cursor-pointer dark:border-orange-500 dark:text-white"
       key={id}
-      onClick={() => navigate(`/camping/detail/${newMapX}/${newMapY}`)}
     >
       <div className="w-3/4 md:w-1/2">
-        <img className="w-full h-60 block" src={image} alt={title} />
+        <img
+          className="w-full h-60 block"
+          src={image}
+          alt={title}
+          onClick={() => navigate(`/camping/detail/${newMapX}/${newMapY}`)}
+        />
       </div>
       <div className="w-full flex flex-col justify-around">
         <h3>이름 : {title || "없음"}</h3>

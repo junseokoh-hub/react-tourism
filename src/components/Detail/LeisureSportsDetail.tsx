@@ -3,7 +3,7 @@ import {
   LeisureSportsDetailInfoType,
   LeisureSportsDetailIntroType,
 } from "../../types/LeisureSportsType";
-import CommonDetailTable from "./CommonDetailTable";
+import CommonDetailTable from "./CommonDetailTable.js";
 
 type LeisureSportsDetailProps = {
   detailInfoData: LeisureSportsDetailInfoType[];
@@ -30,17 +30,17 @@ const LeisureSportsDetail = ({
         </li>
         {detailIntroData?.map((item) => (
           <li className="space-y-5" key={item.infocenterleports}>
-            <div>개장 기간 : {item.openperiod || "-"}</div>
+            <div>• 개장 기간 : {item.openperiod || "-"}</div>
             <div>
-              이용 시간 :{" "}
+              • 이용 시간 :
               {item.usetimeleports.replace(/<[^>]*>?/g, " -") || "-"}
             </div>
-            <div>휴무일 : {item.restdateleports || "-"}</div>
-            <div>체험가능연령 : {item.expagerangeleports || "-"}</div>
-            <div>애완동물 동반여부 : {item.chkpetleports || "-"}</div>
-            <div>문의 안내 : {item.infocenterleports || "-"}</div>
-            <div>예약 안내 : {item.reservation || "-"}</div>
-            <div>주차 시설 : {item.parkingleports || "-"}</div>
+            <div>• 휴무일 : {item.restdateleports || "-"}</div>
+            <div>• 체험가능연령 : {item.expagerangeleports || "-"}</div>
+            <div>• 애완동물 동반여부 : {item.chkpetleports || "-"}</div>
+            <div>• 문의 안내 : {item.infocenterleports || "-"}</div>
+            <div>• 예약 안내 : {item.reservation || "-"}</div>
+            <div>• 주차 시설 : {item.parkingleports || "-"}</div>
           </li>
         ))}
       </ul>

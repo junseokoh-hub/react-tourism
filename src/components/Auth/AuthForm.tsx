@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import { useSignup } from "../../hooks/useSignup";
-import SEOMeta from "../../SEOMeta";
+import SEOMeta from "../../SEOMeta.js";
 
 type AuthType = {
   email: string;

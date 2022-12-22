@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from "react";
-import ReviewsLists from "../../components/Users/ReviewsLists";
+import ReviewsLists from "../../components/Users/ReviewsLists.js";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
-import SEOMeta from "../../SEOMeta";
-import { useSelector } from "../../store/hooks";
+import SEOMeta from "../../SEOMeta.js";
+import { useSelector } from "../../store/hooks.js";
 
 const MyReviews = () => {
   const authUser = useSelector((state) => state.auth.user);

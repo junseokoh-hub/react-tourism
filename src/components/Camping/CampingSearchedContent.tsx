@@ -20,9 +20,9 @@ const CampingSearchedContent = ({ camp }: CampingSearchedContentProps) => {
       <img
         src={camp.firstImageUrl || "../images/noImage.jpg"}
         alt={camp.facltNm}
-        className="w-1/3 h-1/2 block"
+        className="w-1/3 block"
       />
-      <ul className="px-2 w-full flex flex-col justify-between relative">
+      <ul className="px-2 w-full space-y-5 flex flex-col justify-between relative text-xs sm:text-base">
         <li>이름 : {camp.facltNm}</li>
         <li>주소 : {camp.addr1 || camp.addr2 || ""}</li>
         <li>전화번호 : {camp.tel}</li>

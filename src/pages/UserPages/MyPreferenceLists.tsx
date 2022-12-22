@@ -3,13 +3,13 @@ import { useMatch } from "react-router-dom";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useSelector } from "../../store/hooks";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 
 const TourismPreferenceLists = React.lazy(
-  () => import("../../components/Users/TourismPreferenceLists"),
+  () => import("../../components/Users/TourismPreferenceLists.js"),
 );
 const CampingPreferenceLists = React.lazy(
-  () => import("../../components/Users/CampingPreferenceLists"),
+  () => import("../../components/Users/CampingPreferenceLists.js"),
 );
 
 const MyPreferenceLists = () => {

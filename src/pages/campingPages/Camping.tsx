@@ -1,8 +1,8 @@
 import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import OutletIndicator from "../../components/UI/OutletIndicator";
+import OutletIndicator from "../../components/UI/OutletIndicator.js";
 import SEOMeta from "../../SEOMeta";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 
 const Camping = () => {
   useEffect(() => {

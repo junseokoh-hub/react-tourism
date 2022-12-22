@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { searchKeyword } from "../../api/tourismApi";
-import Loader from "../../utils/Loader";
+import Loader from "../../utils/Loader.js";
 
 const DomesticSearch = () => {
   const navigate = useNavigate();
